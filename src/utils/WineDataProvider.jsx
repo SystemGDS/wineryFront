@@ -1,7 +1,8 @@
 export const WineDataProvider = {
     wineById: async (id) => {
       try {
-        const request = await fetch(`http://localhost:3001/wines/${id}`, {
+        // http://localhost:3001
+        const request = await fetch(`/wines/${id}`, {
           method: "GET",
         });
         const result = await request.json();

@@ -62,7 +62,8 @@ const shop = () => {
   useEffect(() => {
     (async function () {
       try {
-        const response = await fetch("http://localhost:3001/wines");
+        // http://localhost:3001
+        const response = await fetch("/wines");
         const data = await response.json();
         const paises = [];
         await data?.forEach((el) => {

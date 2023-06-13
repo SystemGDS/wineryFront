@@ -32,7 +32,8 @@ export function getNameWine(name) {
   //se puede llamar name o payload
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/wines?name=" + name);
+      // http://localhost:3001
+      const json = await axios.get("/wines?name=" + name);
       console.log(json.data);
       return dispatch({
         type: GET_NAME_WINE,
