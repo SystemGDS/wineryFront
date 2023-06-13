@@ -1,0 +1,70 @@
+.our {
+  font-size: 45px;
+  color: #5E455A;
+  display: flex;
+  margin-top: 25px;
+  margin-left: 40px;
+  text-decoration: underline;
+}
+
+.topwines {
+    color: #5E455A;
+    float: left;
+    font-size: 60px;
+    margin-right: 45px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    text-decoration: underline;
+      
+  }
+  .flexContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: larger;
+  }
+  
+  .reel {
+    width: 100%;
+    padding: 5px 1px;
+    background-color: #EFE1D3;
+  }
+  
+  .prodCard {
+    width: 300px;
+  }
+
+.name{
+    color: #5E455A;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: underline;
+}
+
+.cardtop{
+    display: flex;
+    justify-content: center;
+}
+
+.cardbottom{
+    display: flex;
+    justify-content: center;
+}
+
+.cardbottom h3{
+    color: #5E455A;
+    text-align: center;
+    margin-left: 12px;
+}
+
+.category h4{
+    color: #5E455A;
+    justify-content: center;
+    margin-top: -14px;
+    display: flex;
+    margin-left: 5px;
+}

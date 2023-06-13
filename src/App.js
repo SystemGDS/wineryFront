@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import NavBar from "./components/NavBar/NavBar.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+import Home from "./views/Home/Home.jsx";
+import { Route, Routes } from "react-router-dom";
+import WineDetail from "./views/Detail/WineDetail.jsx";
+import Contact from "./components/ContactForm/Contact.jsx";
+import Shop from "./views/Shop/Shop.jsx";
+import About from "./views/About/About.jsx";
+import Cart from "./views/Cart/Cart.jsx";
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loader from "./components/Loader/Loader";
+import { ProtectedRouter } from "./components/ProtectedRouter/ProtectedRouter.jsx";
 
-function App() {
+axios.defaults.baseURL = "http://localhost:3001";
+
+export default function App() {
+  const { isLoading, isAuthenticated } = useAuth0();
+  if (isLoading) return <Loader />;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/detail/:id" element={<WineDetail />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route element={<ProtectedRouter isAuthenticated={isAuthenticated} />}>
+          {/* Aquí van las rutas protegidas. La estructura es la misma.Ejemplo:        <Route path="/checkout" element={<Checkout /> } />         */}
+        </Route>
+      </Routes>
+      <Footer />
     </div>
   );
 }
-
-export default App;

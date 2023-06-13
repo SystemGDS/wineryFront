@@ -1,0 +1,128 @@
+.colores{
+    background-color: #EFE1D3;
+  }
+
+  .headercontainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100px;
+      margin: 0,3rem auto;
+      border-color: #632033;
+    }
+
+    .sideleft {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(270deg, #632033 0%, #632033 89.62%);
+      width: 752px;
+      height: 535px;
+      margin-bottom: 5px;
+
+  }
+  .sideleft h1 {
+    font-size: 61px;
+    font-weight: 700;
+    width: 470px;
+    margin: 0 auto;
+    line-height: 74px;
+    letter-spacing: -0.005em;
+  }
+
+  .sideleft p {
+    width: 600px;
+    margin: 0 auto;
+    padding: 28px 0;
+    font-weight: 800;
+    line-height: 150%;
+    color:#EFE1D3;
+    font-size: large;
+  }
+
+.sideright img {
+
+   width: 575px;
+   height: 535px;
+   font-weight: 100px;
+   margin-bottom: 1px;
+
+
+  }
+  .up{
+    color: #EFE1D3;
+  }
+
+  .imagen{
+  margin-top: 0%;
+  height: 533px;
+  width: 752px ;
+    border-color: #632033;
+    margin-top: 4px;
+  }
+
+.imagen2{
+
+    margin-bottom: 0%;
+    height: 565px;
+    width: 99.99% ;
+    border-color: #632033;
+    margin-top: 5px;
+    }
+.text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(270deg, #632033 0%, #632033 89.62%);
+    height: 533px;
+    width: 575px;
+    margin-top: 4px;
+    margin-bottom: 1px;
+
+}
+.text h1 {
+    font-size: 61px;
+    font-weight: 700;
+    margin: 0 auto;
+    line-height: 74px;
+    letter-spacing: -0.005em;
+  }
+
+.text p {
+    font-weight: 800;
+    color: #EFE1D3;
+    line-height: 150%;
+    font-size: large;
+  }
+
+  .up2{
+    color:#EFE1D3
+  }
+  .up3{
+    color: #EFE1D3;
+  }
+
+.text2{
+    margin-top: 1,5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #632033;
+    height: 565px;
+    width: 590px;
+    border-color: #632033;
+    margin-top: 5px;
+}
+
+.text2 h1{
+    font-size: 61px;
+      font-weight: 700;
+      margin: 0 auto;
+      line-height: 74px;
+      letter-spacing: -0.005em;
+  }
+
+.text2 p{
+    font-weight: 800;
+    color: #EFE1D3;
+    line-height:150%;
+}

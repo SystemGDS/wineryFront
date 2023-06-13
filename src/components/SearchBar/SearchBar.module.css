@@ -1,0 +1,59 @@
+.input {
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+    height: 30px;
+    width: 250px;
+    border-radius: 20px;
+    border: #ebe8e8;
+    padding-left: 20px;
+    font-family: "Rubik", sans-serif;
+    background-color:  #e3e3ff
+    
+  }
+  
+  .input:focus {
+    outline: none;
+  }
+  
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    
+}
+
+.searchButton {
+    background: #e7e0df;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 3px;
+    height: 35px;
+    width: 35px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: -55px;
+    
+  }
+  
+  .searchButton:hover {
+    background-color: #e3e3ff;
+  }
+  
+  .buscar {
+    height: 25px;
+  }
+
+  .shopBackground{
+    background-image: linear-gradient(to right, rgba(49, 48, 48, 0.8),rgba(24, 23, 23, 0.7)), url(../SearchBar//Img//viñedo1.jpg); 
+    background-position: center; 
+    background-size: cover;
+    padding: 5rem 0;
+    margin-top: 0;
+    margin-bottom: -50px;
+    border-bottom: 10px solid #B09DAC;
+  }

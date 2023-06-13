@@ -1,0 +1,52 @@
+/* .loginUser {
+    color: #5C7F61;
+    border: solid 3pt;
+    border-radius: 45px;
+    cursor: pointer;
+    overflow: hidden;
+    margin-right: 30px;
+    padding: 20px 30px;
+    font-weight: bold;
+    margin-top: -10px;
+    margin-left: 515px;
+
+  }
+  
+   .loginUser:hover {
+    color: rgb(255, 255, 255);
+    background-color: #5C7F61;
+  } 
+
+  .loginUser a{
+  margin-bottom: px;
+  } 
+   */
+
+  .loginUser {
+    color: #EFE1D3;
+    background-color: #5E455A;
+     border: solid 3pt;
+    border-radius: 45px; 
+    cursor: pointer;
+    overflow: hidden;
+    padding: 15px 32px;
+    font-weight: bold;
+    position: absolute;
+    margin-left: 567px;
+    top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Trebuchet MS", "sans-serif";
+  }
+  .loginUser:hover {
+    color: #5E455A;
+        background-color: #EFE1D3;
+        border-radius: 45px;
+        text-decoration: underline;
+        -webkit-box-shadow: 0px 0px 26px -4px rgba(255,255,255,1);
+-moz-box-shadow: 0px 0px 26px -4px rgba(255,255,255,1);
+box-shadow: 0px 0px 26px -4px rgba(255,255,255,1);
+
+  }  
+  

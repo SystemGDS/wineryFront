@@ -1,0 +1,47 @@
+.mainHome {
+    display: block;
+    align-items: center;
+    width: 100%;
+}
+
+.map {
+    background-image: url(../Home//Img/Corcho-background.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    margin-bottom: 20px;
+    margin-top: 31px;
+}
+
+
+.carousel{
+    margin-top: 25px;
+}
+
+.nbar {
+    position: sticky;
+    top: 0px;
+    z-index: 1900;
+    background-color: rgb(255, 255, 255);
+}
+
+.discount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.h1ofertas {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #5E455A;
+    text-decoration: underline;
+}
+
+a{
+    text-decoration: none;
+}

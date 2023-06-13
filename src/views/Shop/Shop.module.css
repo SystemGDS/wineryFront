@@ -1,0 +1,147 @@
+.container{
+    padding:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    align-items: center;
+    justify-Content:center;
+}
+.loading {
+    height: 100vh;
+}
+
+.loaderContainer {
+    height: 80%;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filterContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: #EFE1D3 ;
+}
+
+.categoryContainer{
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    background-color: #5E455A;
+    justify-content: flex-start;
+}
+
+
+.filter{
+    text-decoration: underline;
+    font-family: "Trebuchet MS", "sans-serif";
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #EFE1D3;
+    border-radius: 10px;
+}
+
+.labelFilter{
+    cursor: pointer;
+    text-align: center;
+    font-family: "Trebuchet MS", "sans-serif";
+}
+
+.mainCountries{
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.countries{
+    text-align: center;
+    font-family: "Trebuchet MS", "sans-serif";
+    cursor: pointer;
+    margin-top: 35px;
+}
+.origin{
+    margin-top: 20px;
+    text-align: center;
+    align-self: center;
+    font-family: "Trebuchet MS", "sans-serif";
+    text-decoration: underline;
+    background-color: #EFE1D3;
+    border-radius: 10px;
+    width: 55%;
+    height: 65px;
+}
+
+
+.mainFilter{
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+ .buttonFilter{
+    display: inline-block;
+    padding: 12px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "Trebuchet MS", "sans-serif";
+    text-align: center;
+    background-color: #B09DAC;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+} 
+
+.buttonFilter:hover{
+background-color: #EFE1D3;
+}
+
+.containerWines{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 35px;
+}
+
+.containerFilter{
+     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 40px;
+    margin-top: 10px; 
+}
+
+.filterButton1{
+    margin-left: -9px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+
+}
+
+.filterButton2{
+    margin-left: 1px;
+    margin-top: -5px; 
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.ButtonsShop{
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    font-family: "Trebuchet MS", "sans-serif";
+    border-radius: 20px;
+    padding: 15px 13.5px;
+    border: none;
+    background-color: #B09DAC;
+    color: #000000;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

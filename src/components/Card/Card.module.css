@@ -1,0 +1,36 @@
+.contCard{
+    max-Width:290px;
+    width:250px;
+    box-Shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    text-Align:center;
+    padding:10px;
+    margin: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    text-Decoration:none;
+    color:black;
+    background-color: rgb(255, 255, 255);
+    -webkit-box-shadow: inset 0px 6px 97px -18px rgba(0,0,0,0.37);
+    -moz-box-shadow: inset 0px 6px 97px -18px rgba(0,0,0,0.37);
+    box-shadow: inset 0px 6px 97px -18px rgba(0,0,0,0.37);
+}
+
+.name{
+    height:40px;
+}
+
+.image{
+    width:150px;
+    height:150px;
+    object-Fit:contain;
+}
+
+.price{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+.origin{
+    font-style:oblique;
+}

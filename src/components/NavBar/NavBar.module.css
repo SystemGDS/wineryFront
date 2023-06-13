@@ -1,0 +1,130 @@
+.background {
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  display: flex;
+  display: inline;
+}
+.navBar{
+  background-color: #5E455A;
+  display: flex;
+  justify-content: space-between;
+  height: 55px;
+  width: 100%;
+   padding-top: 30px;
+  padding-bottom: 10px; 
+   /* outline: solid 6.0pt #EFE1D3  ;  */
+}
+.navBar svg {
+  height: 30px;
+}
+.right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-end;
+  justify-content: center;
+  /* padding-right: 1400px; */
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-end;
+  justify-content: center;
+}
+
+.definition {
+  color: #5C7F61;
+  border: solid 3pt;
+  border-radius: 45px;
+  cursor: pointer;
+  overflow: hidden;
+  margin-right: px;
+  padding: 220px 30px;
+  font-weight: bold;
+}
+.buttonLogin{
+  color: #ffffff;
+  /* border: solid 3pt;
+  border-radius: 45px; */
+  cursor: pointer;
+  overflow: hidden;
+  margin-right: 20px;
+  padding: 15px 32px;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonLogin:hover {
+  color: #5E455A;
+      background-color: #ffffff;
+      border-radius: 15px;
+      text-decoration: underline;
+}  
+
+.userName{
+  display: flex;
+  gap: 15px;
+  color: #5C7F61;
+  margin-right: 15px;
+  padding: 10px 40px;
+  font-weight: bold;
+  font-size: large;
+  align-items: center;
+}
+
+.btn_right {
+  color: #ffffff;
+  /* border: solid 3pt;
+  border-radius: 45px; */
+  cursor: pointer;
+  overflow: hidden;
+  margin-right: 20px;
+  padding: 15px 32px;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn_right:hover {
+  color: #5E455A;
+      background-color: #ffffff;
+      border-radius: 15px;
+      text-decoration: underline;
+}  
+
+.left {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-left: 20px;
+  }
+.btn_left {
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 100%;
+    overflow: hidden;
+    padding: 15px 32px;
+    font-weight: bold;
+    font-family: "Trebuchet MS", "sans-serif";
+  }
+  .btn_left:hover {
+      color: #5E455A;
+      background-color: #ffffff;
+      border-radius: 15px;
+      text-decoration: underline;
+    }
+

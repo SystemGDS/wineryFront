@@ -1,0 +1,32 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.pagination input {
+    width: 30px;
+    text-align: center;
+}
+
+.pagination input, button, p {
+    margin: 1rem 1rem 1rem 1rem;
+    padding: 8px 8px 8px 8px;
+}
+
+.pagination button {
+    cursor: pointer;
+    border: none;
+}
+
+.backGroundPage{
+    background-image: linear-gradient(to right, rgba(49, 48, 48, 0.8),rgba(24, 23, 23, 0.7)), url(../Pagination/Img/david-kohler-gBdG886bLDY-unsplash.jpg); 
+    background-position: center; 
+    background-size: cover;
+    /* padding: 5rem 0; */
+    /* margin-top: 0;
+    margin-bottom: -50px;
+    border-bottom: 10px solid #B09DAC; */
+}
