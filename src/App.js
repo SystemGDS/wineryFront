@@ -13,7 +13,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Loader from "./components/Loader/Loader";
 import { ProtectedRouter } from "./components/ProtectedRouter/ProtectedRouter.jsx";
 
-axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL =
+  "https://wineryback-production.up.railway.app" || "http://localhost:3001";
 
 export default function App() {
   const { isLoading, isAuthenticated } = useAuth0();
