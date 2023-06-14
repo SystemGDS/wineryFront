@@ -10,3 +10,6 @@ export const DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 
 export const SEND_TO_CART = "SEND_TO_CART";
+
+export const SUM_CART_VALUES = "SUM_CART_VALUES";
+

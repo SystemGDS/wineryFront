@@ -10,6 +10,7 @@ import {
   DELETE_PRODUCT_FROM_CART,
   CLEAR_CART,
   SEND_TO_CART,
+  SUM_CART_VALUES
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -110,6 +111,9 @@ export const clearCart = () => ({
   type: CLEAR_CART,
 });
 
+export const sumCartValues = () => ({
+  type: SUM_CART_VALUES,
+});
 ////////////////////////**CART**/////////////////////////
 
 export const sendToCart = (payload) => {

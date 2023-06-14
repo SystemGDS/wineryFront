@@ -6,12 +6,14 @@ import {
   ADD_TO_CART,
   DELETE_PRODUCT_FROM_CART,
   CLEAR_CART,
+  SUM_CART_VALUES
 } from "../Actions/actionsTypes.js";
 
 export const initialState = {
   wines: [],
   cart: [],
   user: {},
+  total: 0,
 };
 
 function reducerIndex(state = initialState, { type, payload }) {
@@ -55,7 +57,13 @@ function reducerIndex(state = initialState, { type, payload }) {
       return initialState;
     }
     // Vaciar el carrito
-
+    case SUM_CART_VALUES: {
+      const total = state.cart.reduce((acc, product) => acc + product.price, 0);
+      return {
+        ...state,
+        total: total,
+      };
+    }
     default:
       return initialState;
   }
