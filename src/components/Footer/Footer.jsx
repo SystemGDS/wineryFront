@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
 import s from "./Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <div className={s.container}>
       <footer>
-        <h1 className={s.followus}>Connect with uss</h1>
+        <h1 className={s.followus}>Connect with us</h1>
         <div className={s.logos}>
           <Link to={"https://twitter.com/home"} target="_blank">
             <FontAwesomeIcon className={s.iconred} icon={faTwitter} />

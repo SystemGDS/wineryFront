@@ -35,7 +35,11 @@
   .prodCard {
     width: 300px;
   }
-
+  .card{
+    border-width: 3px;
+    border-style: solid;
+    border-color: #5E455A;
+  }
 .name{
     color: #5E455A;
     display: flex;

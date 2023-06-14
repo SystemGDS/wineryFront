@@ -1,0 +1,29 @@
+.mainCart{
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #a3b8a6;
+        background-size: cover;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: 800px;
+}
+
+.tittleCart{
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+    justify-content:center;
+    color: #000000;
+    font-family: "Trebuchet MS", "sans-serif";
+    font-size: 26px;
+}
+
+.name{
+    margin-bottom: 8px;
+    color: #5E455A;
+    font-family: "Trebuchet MS", "sans-serif";
+    font-size: 20px;
+}
+

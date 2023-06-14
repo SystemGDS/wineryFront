@@ -15,7 +15,7 @@
       flex-direction: column;
       justify-content: center;
       background: linear-gradient(270deg, #632033 0%, #632033 89.62%);
-      width: 752px;
+      width: 768px;
       height: 535px;
       margin-bottom: 5px;
 
@@ -55,7 +55,7 @@
   .imagen{
   margin-top: 0%;
   height: 533px;
-  width: 752px ;
+  width: 768px ;
     border-color: #632033;
     margin-top: 4px;
   }

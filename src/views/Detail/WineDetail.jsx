@@ -7,6 +7,7 @@ import style from "./WineDetail.module.css";
 import axios from "axios";
 import { WineDataProvider } from "../../utils/WineDataProvider";
 import { sendToCart, addToCart } from "../../Redux/Actions/actionsIndex";
+import { toast } from "react-toastify";
 
 export default function WineDetail() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ export default function WineDetail() {
   const AddQuantity = () => {
     if (wineById.stock > quantity) {
       setQuantity(quantity + 1);
+      toast.warn("Stock limit");
     }
   };
   const RemoveQuantity = () => {
@@ -135,7 +137,7 @@ export default function WineDetail() {
                   }}
                 >
                   {/* {() => HandleCart()} */}
-                  <button className={style.myBtn} onClick=""> 
+                  <button className={style.myBtn} onClick="">
                     Add to Cart
                   </button>
                 </div>
@@ -192,4 +194,3 @@ export default function WineDetail() {
   );
 }
 /*eslint-enable */
-

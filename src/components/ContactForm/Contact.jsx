@@ -1,15 +1,31 @@
 /* eslint-disable no-unused-vars */
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-// import validate from "./validate";
+import validate from "./ValidateContact";
 import s from "../ContactForm/Contact.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import TextField from "@mui/material/TextField";
+//IMPORTO EMAILJS, SWAL y LAS VARIABLES DE ENTORNO SEGUN ME DICE EL TUTORIAL
+import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
+// const { REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_PUBLIC_KEY } =
+//   process.env;
+
+const SERVICE_ID = process.env.REACT_APP_SERVICE_ID;
+const TEMPLATE_ID = process.env.REACT_APP_TEMPLATE_ID;
+const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY;
 
 export default function Contact() {
   const dispatch = useDispatch();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({
+    name: "",
+    lastname: "",
+    phone: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const [textField, setTextField] = useState({
     name: "",
     lastname: "",
@@ -25,9 +41,12 @@ export default function Contact() {
 
   const isButtonDisabled = () => !(textField.name && textField.lastname);
 
+  console.log(SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(textField); //  setError(validate(textField));
+    //setError(textField);
+    setError(validate(textField));
     if (typeof error === "object") return;
     console.log(error);
     await postMessage();
@@ -40,6 +59,26 @@ export default function Contact() {
       message: "",
     });
     toast.success("Thank you! Your message was sent successfully");
+    console.log(handleSubmit);
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, PUBLIC_KEY).then(
+      (result) => {
+        console.log(result.text);
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent Successfully",
+        });
+      },
+      (error) => {
+        console.log(error.text);
+        Swal.fire({
+          icon: "error",
+          title: "Ooops, something went wrong",
+          text: error.text,
+        });
+      }
+    );
+    e.target.reset();
   };
 
   const postMessage = async () => {
@@ -176,7 +215,7 @@ export default function Contact() {
                     {error?.subject && (
                       <p className={s.error}>{error?.subject}</p>
                     )}
-                    <div className={s.FogitrmGroupMessage}>
+                    <div className={s.FormGroupMessage}>
                       <TextField
                         className={s.FormControl}
                         variant="filled"

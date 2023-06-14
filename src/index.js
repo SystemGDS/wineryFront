@@ -5,9 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./Redux/Store/storeIndex.js";
+import execute from "./Redux/Store/storeIndex";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { PersistGate } from "redux-persist/integration/react";
 
+const { store, persistor } = execute();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Auth0Provider
@@ -15,9 +17,11 @@ root.render(
     domain={process.env.REACT_APP_DOMAIN}
   >
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </Auth0Provider>
 );
