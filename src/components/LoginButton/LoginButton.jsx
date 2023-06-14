@@ -14,7 +14,7 @@ const LogInButton = () => {
         onClick={() => {
           loginWithRedirect({
             // "https://henrywinery.netlify.app/" || "http://localhost:3000/"
-            authorizationParams: { redirect_uri: window.location.origin },
+            authorizationParams: { redirect_uri: window.location.origin + "/" },
           });
         }}
       >
