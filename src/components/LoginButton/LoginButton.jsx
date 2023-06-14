@@ -13,7 +13,7 @@ const LogInButton = () => {
         className={s.loginUser}
         onClick={() => {
           loginWithRedirect({
-            authorizationParams: { redirect_uri:  "http://localhost:3000/" },
+            authorizationParams: { redirect_uri:  "https://henrywinery.netlify.app/" || "http://localhost:3000/" },
           });
         }}
       >
