@@ -60,26 +60,6 @@ const shop = () => {
   };
 
   useEffect(() => {
-    (async function () {
-      try {
-        const response = await fetch("http://localhost:3001/wines");
-        const data = await response.json();
-        const paises = [];
-        await data?.forEach((el) => {
-          let division = el.origin.split("-")[0];
-          division = division.slice(0, -1);
-          paises.push(division);
-        });
-        const newarray = new Set(paises);
-        const set = Array.from(newarray);
-        setOrigin([...set]);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
     dispatch(getWines());
   }, []);
 

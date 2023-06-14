@@ -20,13 +20,13 @@ const Cart = () => {
   };
 
   return (
-    <div>
+    <div className={style.mainCart}>
       <h2>Carrito de compras</h2>
 
       {cart.length === 0 ? (
         <p>No hay productos en el carrito</p>
       ) : (
-<ul>
+        <ul>
           {cart.map((item) => (
             <div key={item.id} className={style.contCard}>
               <div className={style.name}>{item.name}</div>
@@ -44,4 +44,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Cart;
