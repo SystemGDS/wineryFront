@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { applyMiddleware, createStore, compose } from "redux";
 import reducer from "../Reducer/reducerIndex.js";
 import thunk from "redux-thunk";

@@ -10,9 +10,11 @@ import s from "./NavBar.module.css";
 import LogOutButton from "../LogOutButton/LogOutButton.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { saveUserinDB } from "../../helpers/saveUserinDB.js";
+import BurgerMenu from "./Burguer";
 
 const NavBar = () => {
   const { isAuthenticated, user } = useAuth0();
+  const isAdmin = undefined;
 
   useEffect(() => {
     isAuthenticated && saveUserinDB(user);
@@ -37,28 +39,27 @@ const NavBar = () => {
             <Link to="/about" className={s.btn_left}>
               About Us
             </Link>
-            {/* <img
-              src=""
-              alt="Logo"
-              style={{ textDecoration: "none", color: "black" }}
-            /> */}
             <Link to="/contact" className={s.btn_left}>
               Contact Us
             </Link>
-
-            {isAuthenticated ? <LogOutButton /> : <LogInButton />}
-
-            <div
-              onClick={() => {
-                console.log("abrir carrito");
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              <Link
-                to="/cart"
-                className={s.btn_right}
-                // onClick={window.location.reload}
-              >
+            <div className={s.right}>
+              {isAuthenticated ? (
+                <>
+                  <div className={s.userName}>
+                    {" "}
+                    Hi, {user.nickname}!
+                    <BurgerMenu />
+                  </div>
+                </>
+              ) : (
+                <LogInButton className={s.btn_right} />
+              )}
+              {isAdmin && (
+                <Link to="/admin" className={s.btn_right}>
+                  Admin dashboard
+                </Link>
+              )}
+              <Link to="/cart" className={s.btn_right}>
                 <FontAwesomeIcon
                   icon={faCartShopping}
                   className={s.iconCart}

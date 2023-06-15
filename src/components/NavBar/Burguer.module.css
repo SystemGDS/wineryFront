@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps
+
 .dropdown {
     position: relative;
     cursor: pointer;
@@ -11,7 +11,7 @@
     margin: 5px;
     margin-left: -120px;
     padding: 0;
-    border: 1px solid #5C7F61;
+    border: 1px solid #5E455A;
     width: 150px; 
 }
 
@@ -43,15 +43,21 @@
     height: 40px;
 }
 
-.menu a:visited {
-    color: #5c7f61;
-}
 
 .logout {
     color: rgb(255, 255, 255);
-    background-color: #5c7f61;
+    background-color: #5E455A;
     display: flex;
     align-items: center;
     justify-content: center;
     align-self: center;
-} */
+}
+
+.userprofile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    margin-left: -28px;
+    color: #5E455A;
+}
