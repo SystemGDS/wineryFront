@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-concat */
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 import { useDispatch } from "react-redux";
