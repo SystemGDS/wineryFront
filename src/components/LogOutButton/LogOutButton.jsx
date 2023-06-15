@@ -7,7 +7,7 @@ const LogOutButton = ({ className }) => {
   return (
     <LogoutIcon
       className={className}
-      onClick={() => logout({ returnTo: "http://localhost:3000/" })}
+      onClick={() => logout({ returnTo: window.location.origin + "/" })}
     />
   );
 };

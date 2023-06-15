@@ -7,7 +7,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import LogInButton from "../LoginButton/LoginButton";
 import s from "./NavBar.module.css";
-import LogOutButton from "../LogOutButton/LogOutButton.jsx";
+// import LogOutButton from "../LogOutButton/LogOutButton.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { saveUserinDB } from "../../helpers/saveUserinDB.js";
 import BurgerMenu from "./Burguer";
