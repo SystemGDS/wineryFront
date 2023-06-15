@@ -39,14 +39,17 @@ function reducerIndex(state = initialState, { type, payload }) {
         ...state,
         wines: payload,
       };
-    case ADD_TO_CART: {
-      const newProduct = state.wines.find((product) => product.id === payload);
-      const newCart = [...state.cart, newProduct];
-      return {
-        ...state,
-        cart: newCart,
-      };
-    }
+      case ADD_TO_CART: {
+        const productToAdd = state.wines.find((product) => product.id === payload);
+        if (productToAdd) {
+          const newCart = [...state.cart, productToAdd];
+          return {
+            ...state,
+            cart: newCart,
+          };
+        }
+        return state;
+      }
     case DELETE_PRODUCT_FROM_CART: {
       return {
         ...state,

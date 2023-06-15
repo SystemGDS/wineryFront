@@ -42,22 +42,25 @@ const Cart = () => {
         </div>
       )}
 
-      {cart.length === 0 ? (
-        <p>No hay productos en el carrito</p>
-      ) : (
-        <ul>
-          {cart.map((item) => (
-            <div key={item.id} className={style.contCard}>
-              <div className={style.name}>{item.name}</div>
-              <img src={item.image} alt="image card"></img>
-              <div className={style.price}>{"$" + " " + item.price}</div>
-              <button onClick={() => handleRemoveFromCart(item.id)}>
-                Eliminar
-              </button>
-            </div>
-          ))}
-        </ul>
-      )}
+{cart.length === 0 ? (
+  <p>No hay productos en el carrito</p>
+) : (
+  <ul>
+    {cart.map((item) => (
+      item && item.name && (
+        <div key={item.id} className={style.contCard}>
+          <div className={style.name}>{item.name}</div>
+          <img src={item.image} alt="image card" />
+          <div className={style.price}>{"$" + " " + item.price}</div>
+          <button onClick={() => handleRemoveFromCart(item.id)}>
+            Eliminar
+          </button>
+        </div>
+      )
+    ))}
+  </ul>
+)}
+
       <button onClick={handleClearCart}>Eliminar todos</button>
     </div>
   );

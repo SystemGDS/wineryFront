@@ -97,9 +97,9 @@ export const getReviewById = (payload) => {
     }
   };
 };
-export const addToCart = (id) => ({
+export const addToCart = (product) => ({
   type: ADD_TO_CART,
-  payload: id,
+  payload:product.id,
 });
 
 export const removeFromCart = (productId) => ({
