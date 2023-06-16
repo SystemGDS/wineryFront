@@ -9,7 +9,8 @@ export default function Card({ name, image, price, id, origin }) {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    const product = (id, name, image, price);
+    const product = {id, name, image, price};
+    console.log(product);
     dispatch(addToCart(product));
   };
 
@@ -19,8 +20,8 @@ export default function Card({ name, image, price, id, origin }) {
         <div className={styles.name}>
           {name[0].toUpperCase() + name.slice(1)}
         </div>
-        <img src={image} alt="image card" className={styles.image}></img>
-        <div className={styles.price}>{"$" + " " + price}</div>
+        <img src={image} alt="Card thumbnail" className={styles.image}></img>
+        <div className={styles.price}>{"$" + price}</div>
         <div className={styles.origin}>{origin}</div>
       </Link>
       <button onClick={handleAddToCart}>Add to Cart</button>
