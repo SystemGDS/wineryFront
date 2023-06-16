@@ -4,7 +4,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Cart/Cart.module.css";
 import React from "react";
-import { removeFromCart, clearCart,sumCartValues } from "../../Redux/Actions/actionsIndex";
+import { removeFromCart, clearCart, sumCartValues } from "../../Redux/Actions/actionsIndex";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -19,16 +19,15 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
   const handleSumCartValues = () => {
     dispatch(sumCartValues());
   };
+
   const handleBuy = () => {
     // Simulate a purchase by displaying an alert with the total price
     alert(`Compra realizada por un total de $${total}`);
   };
-  
-
-  
 
   return (
     <div className={style.mainCart}>
@@ -46,16 +45,18 @@ const Cart = () => {
         <p>No hay productos en el carrito</p>
       ) : (
         <div>
-         {cart.map((item) => (
-      item && item.name && (
-        <div key={item.id} className={style.contCard}>
-          <div className={style.name}>{item.name}</div>
-          <img src={item.image} alt="image card" />
-          <div className={style.price}>{"$" + " " + item.price}</div>
-          <button onClick={() => handleRemoveFromCart(item.id)}>
-            Eliminar
-          </button>
-        </div>)
+          {cart.map((item) => (
+            item && item.name && (
+              <div key={item.id} className={style.contCard}>
+                <div className={style.name}>{item.name}</div>
+                <img src={item.image} alt="image card" />
+                <div className={style.price}>{"$" + " " + item.price}</div>
+                <div className={style.quantity}>{`Cantidad: ${item.quantity}`}</div> {/* Agregado */}
+                <button onClick={() => handleRemoveFromCart(item.id)}>
+                  Eliminar
+                </button>
+              </div>
+            )
           ))}
         </div>
       )}
@@ -65,3 +66,4 @@ const Cart = () => {
 };
 
 export default Cart;
+

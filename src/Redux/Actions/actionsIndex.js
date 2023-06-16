@@ -111,9 +111,11 @@ export const clearCart = () => ({
   type: CLEAR_CART,
 });
 
-export const sumCartValues = () => ({
-  type: SUM_CART_VALUES,
-});
+export const sumCartValues = () => {
+  return {
+    type: SUM_CART_VALUES,
+  };
+};;
 ////////////////////////**CART**/////////////////////////
 
 export const sendToCart = (payload) => {
