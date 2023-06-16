@@ -34,13 +34,13 @@ const Cart = () => {
     // Simulate a purchase by displaying an alert with the total price
     const items = cart.map(items => {
       return {
-        id: cart.id,
-        title: cart.name,
-        picture_url:cart.image,
-        description: cart.category,
-        unit_price: cart.price,
+        id: items.id,
+        title: items.name,
+        picture_url:items.image,
+        description: items.category,
+        unit_price: items.price,
         category_id: "others",
-        quantity: cart.price,
+        quantity: 1,
       }
     })
     const payment = {
