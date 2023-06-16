@@ -1,29 +1,89 @@
 .mainCart{
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #a3b8a6;
-        background-size: cover;
-        margin-left: auto;
-        margin-right: auto;
-        min-height: 800px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #a3b8a6;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 800px;
+}
+span{
+    font-size: 18px;
 }
 
 .tittleCart{
-    display: flex;
-    align-items: center;
-    text-decoration: underline;
-    justify-content:center;
-    color: #000000;
-    font-family: "Trebuchet MS", "sans-serif";
-    font-size: 26px;
+display: flex;
+align-items: center;
+text-decoration: underline;
+justify-content:center;
+color: #000000;
+font-family: "Trebuchet MS", "sans-serif";
+font-size: 26px;
 }
 
 .name{
-    margin-bottom: 8px;
-    color: #5E455A;
-    font-family: "Trebuchet MS", "sans-serif";
-    font-size: 20px;
+margin-bottom: 8px;
+color: #5E455A;
+font-family: "Trebuchet MS", "sans-serif";
+font-size: 20px;
+}
+.contCard{
+display: flex;
+margin-bottom: 20px;
+align-items: center;
+}
+.contCard img{
+width: 100px;
+height: 100px;
+}
+.imageContainer{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.imageContainer p{
+margin: 0;
 }
 
+.imageContainer > p:first-of-type {
+width: 300px;
+max-width: 300px;
+overflow: hidden;
+}
+.imageContainer > p:nth-child(3) {
+width: 70px;
+text-align: center;
+max-width:70px;
+overflow: hidden;
+font-size: 18px;
+}
+button{
+border-radius: 8px;
+}
+
+.delete_button{
+display: block;
+height: max-content;
+padding: 10px;
+outline: none;
+border: 1px solid rgba(255, 0, 0, 0.499);
+cursor: pointer;
+}
+
+.delete_button:hover{
+background-color: crimson;
+color: white;
+}
+
+.buy_button{
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid green;
+}
+.buy_button:hover{
+    color: white;
+    background-color: green;
+}

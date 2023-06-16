@@ -24,10 +24,13 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
   const handleSumCartValues = () => {
     dispatch(sumCartValues());
   };
+
   const handleBuy = async() => {
+
     // Simulate a purchase by displaying an alert with the total price
     const items = cart.map(items => {
       return {
@@ -57,6 +60,9 @@ const Cart = () => {
     console.log(error.message)
    }
   };
+  
+
+  
 
   return (
     <div className={style.mainCart}>
@@ -66,35 +72,32 @@ const Cart = () => {
       {cart.length > 0 && (
         <div className={style.totalPrice}>
           <span>Total: ${total}</span>
-          <button onClick={handleBuy}>Comprar</button>
+          <button className={style.buy_button} onClick={handleBuy}>Comprar</button>
         </div>
       )}
 
       {cart.length === 0 ? (
         <p>No hay productos en el carrito</p>
       ) : (
-        <div>
-          {cart.map(
-            (item) =>
-              item &&
-              item.name && (
-                <div>
-                  <div key={item.id} className={style.contCard}>
-                    <div className={style.name}>{item.name}</div>
-                    <img src={item.image} alt="image card" />
-                    <div className={style.price}>{"$" + " " + item.price}</div>
-                    <button onClick={() => handleRemoveFromCart(item.id)}>
-                      Eliminar
-                    </button>
-                  </div>
-                </div>
-              )
-          )}
-        </div>
+        <ul>
+          {cart.map((item) => (
+            <div key={item.id} className={style.contCard}>
+              <div className={style.imageContainer} >
+                <img src={item.image} alt="image card" />
+                <p className={style.name}>{item.name}</p> 
+                <p className={style.price}>{"$" + " " + item.price}</p>
+              </div>
+              <button className={style.delete_button} onClick={() => handleRemoveFromCart(item.id)}>
+                Eliminar
+              </button>
+            </div>
+          ))}
+        </ul>
       )}
-      <button onClick={handleClearCart}>Eliminar todos</button>
+      <button className={style.delete_button} onClick={handleClearCart}>Eliminar todos</button>
     </div>
   );
 };
 
 export default Cart;
+
