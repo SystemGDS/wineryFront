@@ -7,7 +7,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import LogInButton from "../LoginButton/LoginButton";
 import s from "./NavBar.module.css";
-// import LogOutButton from "../LogOutButton/LogOutButton.jsx";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { saveUserinDB } from "../../helpers/saveUserinDB.js";
 import BurgerMenu from "./Burguer";
@@ -41,6 +41,12 @@ const NavBar = () => {
             </Link>
             <Link to="/contact" className={s.btn_left}>
               Contact Us
+            </Link>
+            <Link to="/admin" className={s.btn_left}>
+              Admin
+            </Link>
+            <Link to="/uploader" className={s.btn_left}>
+              Cargar
             </Link>
             <div className={s.right}>
               {isAuthenticated ? (
