@@ -9,6 +9,7 @@ import {
   clearCart,
   sumCartValues,
 } from "../../Redux/Actions/actionsIndex";
+import axios from "axios"
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -28,9 +29,36 @@ const Cart = () => {
     dispatch(sumCartValues());
   };
 
-  const handleBuy = () => {
+  const handleBuy = async() => {
+
     // Simulate a purchase by displaying an alert with the total price
-    alert(`Compra realizada por un total de $${total}`);
+    const items = cart.map(items => {
+      return {
+        id: cart.id,
+        title: cart.name,
+        picture_url:cart.image,
+        description: cart.category,
+        unit_price: cart.price,
+        category_id: "others",
+        quantity: cart.price,
+      }
+    })
+    const payment = {
+      items,
+      payer: {
+        name:"Alejandro",
+        surname:"Medina",
+        email:"ale_m@outlook.com"
+      }
+    }
+   try {
+    const response = await axios.post("/payment", payment );
+    window.location.href = response.data
+    handleClearCart()
+
+   } catch (error) {
+    console.log(error.message)
+   }
   };
   
 
