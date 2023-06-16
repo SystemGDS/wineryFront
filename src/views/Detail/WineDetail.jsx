@@ -20,7 +20,8 @@ export default function WineDetail() {
 
   async function detallesvino() {
     try {
-      const json = await axios.get(`http://localhost:3001/wines/${id}`);
+      // http://localhost:3001
+      const json = await axios.get(`/wines/${id}`);
       const wine = await json.data;
 
       setWineById(wine);
@@ -44,6 +45,17 @@ export default function WineDetail() {
   //dispatch(postProductCart(cart));
 
   //}
+
+  const handleAddToCart = () => {
+    const product = {
+      id: wineById.id,
+      name: wineById.name,
+      image: wineById.image,
+      price: wineById.price,
+    };
+    console.log(product);
+    dispatch(addToCart(product));
+  };
 
   const [quantity, setQuantity] = useState(1);
   const getById = (id) => {
@@ -136,7 +148,7 @@ export default function WineDetail() {
                   }}
                 >
                   {/* {() => HandleCart()} */}
-                  <button className={style.myBtn} onClick="">
+                  <button className={style.myBtn} onClick={handleAddToCart}>
                     Add to Cart
                   </button>
                 </div>
@@ -144,7 +156,7 @@ export default function WineDetail() {
             </div>
           </div>
         </div>
-
+        {/* 
         <div className={style.containerdescription}>
           <div>
             <span className={style.descriptiontitle}>
@@ -152,7 +164,16 @@ export default function WineDetail() {
               <u>Description</u>
             </span>
           </div>
-          {/* <p className={style.p}></p> */}
+          <p className={style.p}></p>
+          <p className={style.description}>{wineById?.detail}</p>
+        </div> */}
+        <div className={style.containerdescription}>
+          <p className={style.p}>
+            <span className={style.descriptiontitle}>
+              {" "}
+              <u>Description</u>
+            </span>
+          </p>
           <p className={style.description}>{wineById?.detail}</p>
         </div>
 

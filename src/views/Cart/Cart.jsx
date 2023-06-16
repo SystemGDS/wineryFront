@@ -4,7 +4,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Cart/Cart.module.css";
 import React from "react";
-import { removeFromCart, clearCart, sumCartValues } from "../../Redux/Actions/actionsIndex";
+
+import {
+  removeFromCart,
+  clearCart,
+  sumCartValues,
+} from "../../Redux/Actions/actionsIndex";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -45,6 +50,7 @@ const Cart = () => {
         <p>No hay productos en el carrito</p>
       ) : (
         <div>
+
           {cart.map((item) => (
             item && item.name && (
               <div key={item.id} className={style.contCard}>
@@ -58,6 +64,7 @@ const Cart = () => {
               </div>
             )
           ))}
+
         </div>
       )}
       <button onClick={handleClearCart}>Eliminar todos</button>
