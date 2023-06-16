@@ -39,14 +39,54 @@ function reducerIndex(state = initialState, { type, payload }) {
         ...state,
         wines: payload,
       };
+    //case ADD_TO_CART: {
+      //const newProduct = state.wines.find((product) => product.id === payload);
+      //const newCart = [...state.cart, newProduct];
+      //return {
+       // ...state,
+        //cart: newCart,
+      //};
+    //}
     case ADD_TO_CART: {
-      const newProduct = state.wines.find((product) => product.id === payload);
-      const newCart = [...state.cart, newProduct];
-      return {
-        ...state,
-        cart: newCart,
-      };
+      const existingProduct = state.cart.find((product) => product.id === payload);
+    
+      if (existingProduct) {
+        // Si el producto ya existe en el carrito
+        if (existingProduct.quantity >= 10) {
+          // Si se alcanzó el límite máximo, no se realiza ninguna modificación adicional
+          return state;
+        }
+    
+        // Si no se ha alcanzado el límite máximo, incrementar la cantidad
+        const updatedCart = state.cart.map((product) => {
+          if (product.id === payload) {
+            return {
+              ...product,
+              quantity: product.quantity + 1,
+            };
+          }
+          return product;
+        });
+    
+        return {
+          ...state,
+          cart: updatedCart,
+        };
+      } else {
+        // Si el producto no existe en el carrito, agregarlo con una cantidad inicial de 1
+        const newProduct = state.wines.find((product) => product.id === payload);
+        newProduct.quantity = 1;
+    
+        return {
+          ...state,
+          cart: [...state.cart, newProduct],
+        };
+      }
     }
+    
+    
+    
+    
     case DELETE_PRODUCT_FROM_CART: {
       return {
         ...state,
@@ -58,12 +98,16 @@ function reducerIndex(state = initialState, { type, payload }) {
     }
     // Vaciar el carrito
     case SUM_CART_VALUES: {
-      const total = state.cart.reduce((acc, product) => acc + product.price, 0);
+      const total = state.cart.reduce(
+        (acc, product) => acc + product.price * product.quantity,
+        0
+      );
       return {
         ...state,
         total: total,
       };
     }
+    
     default:
       return initialState;
   }

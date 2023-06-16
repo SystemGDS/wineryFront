@@ -4,7 +4,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Cart/Cart.module.css";
 import React from "react";
-import { removeFromCart, clearCart,sumCartValues } from "../../Redux/Actions/actionsIndex";
+import {
+  removeFromCart,
+  clearCart,
+  sumCartValues,
+} from "../../Redux/Actions/actionsIndex";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -19,9 +23,11 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
   const handleSumCartValues = () => {
     dispatch(sumCartValues());
   };
+
   const handleBuy = () => {
     // Simulate a purchase by displaying an alert with the total price
     alert(`Compra realizada por un total de $${total}`);
@@ -66,3 +72,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
