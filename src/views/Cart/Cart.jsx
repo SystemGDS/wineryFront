@@ -4,7 +4,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Cart/Cart.module.css";
 import React from "react";
-
 import {
   removeFromCart,
   clearCart,
@@ -33,6 +32,9 @@ const Cart = () => {
     // Simulate a purchase by displaying an alert with the total price
     alert(`Compra realizada por un total de $${total}`);
   };
+  
+
+  
 
   return (
     <div className={style.mainCart}>
@@ -42,32 +44,29 @@ const Cart = () => {
       {cart.length > 0 && (
         <div className={style.totalPrice}>
           <span>Total: ${total}</span>
-          <button onClick={handleBuy}>Comprar</button>
+          <button className={style.buy_button} onClick={handleBuy}>Comprar</button>
         </div>
       )}
 
       {cart.length === 0 ? (
         <p>No hay productos en el carrito</p>
       ) : (
-        <div>
-
+        <ul>
           {cart.map((item) => (
-            item && item.name && (
-              <div key={item.id} className={style.contCard}>
-                <div className={style.name}>{item.name}</div>
+            <div key={item.id} className={style.contCard}>
+              <div className={style.imageContainer} >
                 <img src={item.image} alt="image card" />
-                <div className={style.price}>{"$" + " " + item.price}</div>
-                <div className={style.quantity}>{`Cantidad: ${item.quantity}`}</div> {/* Agregado */}
-                <button onClick={() => handleRemoveFromCart(item.id)}>
-                  Eliminar
-                </button>
+                <p className={style.name}>{item.name}</p> 
+                <p className={style.price}>{"$" + " " + item.price}</p>
               </div>
-            )
+              <button className={style.delete_button} onClick={() => handleRemoveFromCart(item.id)}>
+                Eliminar
+              </button>
+            </div>
           ))}
-
-        </div>
+        </ul>
       )}
-      <button onClick={handleClearCart}>Eliminar todos</button>
+      <button className={style.delete_button} onClick={handleClearCart}>Eliminar todos</button>
     </div>
   );
 };
