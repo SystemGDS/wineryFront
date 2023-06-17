@@ -8,7 +8,7 @@ import Contact from "./components/ContactForm/Contact.jsx";
 import Shop from "./views/Shop/Shop.jsx";
 import About from "./views/About/About.jsx";
 import Cart from "./views/Cart/Cart.jsx";
-import Admin from "./layouts/dashboard/Dashboard.jsx";
+import Admin from "./layouts/Dashboard/Dashboard.js";
 import Cargar from "./components/LoaderImage/imgbbImageLoader";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";

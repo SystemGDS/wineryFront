@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //imports correpondientes
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -10,7 +11,10 @@ import {
   DELETE_PRODUCT_FROM_CART,
   CLEAR_CART,
   SEND_TO_CART,
-  SUM_CART_VALUES
+  SUM_CART_VALUES,
+  GET_ORDERS,
+  PUT_PRODUCT_STATE,
+  GET_PRODUCTS,
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -116,7 +120,7 @@ export const sumCartValues = () => {
   return {
     type: SUM_CART_VALUES,
   };
-};;
+};
 ////////////////////////**CART**/////////////////////////
 
 export const sendToCart = (payload) => {
@@ -127,5 +131,38 @@ export const sendToCart = (payload) => {
     } catch (error) {
       return "Failed to add to cart";
     }
+  };
+};
+
+export const getOrders = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/orders`);
+      dispatch({ type: GET_ORDERS, payload: response.data });
+    } catch (error) {
+      return "Order not found";
+    }
+  };
+};
+
+export const putProductState = ({ name, activeProduct }) => {
+  return async function (dispatch) {
+    try {
+      const adminRes = await axios.put("/products", { name, activeProduct });
+
+      dispatch({
+        type: PUT_PRODUCT_STATE,
+        payload: activeProduct,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getProducts = () => {
+  return async function (dispatch) {
+    const productsResponse = await axios.get("/products");
+    dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
