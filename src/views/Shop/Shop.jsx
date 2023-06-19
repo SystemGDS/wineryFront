@@ -15,7 +15,7 @@ import Loader from "../../components/Loader/Loader.jsx";
 const shop = () => {
   const dispatch = useDispatch();
   const wines = useSelector((store) => store.wines);
-
+  const [originFilter, setOriginFilter] = useState("");
   const isLoading = useSelector((store) => store.isLoading);
   const [origin, setOrigin] = useState(null);
   const [select, setSelect] = useState("");
@@ -47,7 +47,7 @@ const shop = () => {
   };
 
   const handleSelect = (e) => {
-    setSelect(e.target.value);
+    setOriginFilter(e.target.value);
   };
 
   const higher_At_Lower_Price = () => {
@@ -61,7 +61,7 @@ const shop = () => {
   };
 
   useEffect(() => {
-    (async function () {
+    (async () => {
       try {
         // http://localhost:3001
         const response = await fetch("/wines");
@@ -74,10 +74,8 @@ const shop = () => {
         });
         const newarray = new Set(paises);
         const set = Array.from(newarray);
-        setOrigin([...set]);
-      } catch (error) {
-        console.log(error);
-      }
+        setOrigin(Array.from(newarray));
+      } catch (error) {}
     })();
   }, []);
 
@@ -91,7 +89,7 @@ const shop = () => {
   }, [wines]);
 
   const handleFilter = function () {
-    dispatch(getFiltersWine(checkedItems, select, name));
+    dispatch(getFiltersWine(checkedItems, originFilter, name));
     setPage(1);
     setOrder("");
   };
@@ -107,6 +105,7 @@ const shop = () => {
     });
   };
   if (isLoading) return <Loader />;
+
   return (
     <div>
       <SerchBar
@@ -156,7 +155,7 @@ const shop = () => {
 
           <select
             className={styles.countries}
-            value={select}
+            value={originFilter}
             onChange={handleSelect}
           >
             <option value="">Countries</option>

@@ -8,6 +8,7 @@ import { persistReducer, persistStore } from "redux-persist";
 const persistConfig = {
   key: "state",
   storage,
+  
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
