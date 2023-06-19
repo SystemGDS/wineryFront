@@ -2,7 +2,7 @@ export async function saveUserinDB(user) {
   try {
     const USERDB = {
       email: user.email,
-      name: user.name,
+      name: user.given_name,
       userName: user.nickname,
     };
     const response = await fetch("http://localhost:3001/users", {
