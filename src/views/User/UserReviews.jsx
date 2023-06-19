@@ -15,8 +15,8 @@ export default function UserReviews() {
   const allProducts = useSelector((state) => state.allProducts);
 
   useEffect(() => {
-    !userReviews.length && dispatch(getUserReviews(user.email));
-    !allProducts.length && dispatch(getWines());
+    !userReviews?.length && dispatch(getUserReviews(user.email));
+    !allProducts?.length && dispatch(getWines());
     console.log(userReviews);
     console.log(user.email);
   }, [dispatch, userReviews, allProducts]);
