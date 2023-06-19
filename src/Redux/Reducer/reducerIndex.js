@@ -12,6 +12,7 @@ import {
   GET_PRODUCTS,
   CREATE_PRODUCTS,
   CREATE_CATEGORY,
+  GET_USERS
 } from "../Actions/actionsTypes.js";
 
 export const initialState = {
@@ -19,6 +20,7 @@ export const initialState = {
   cart: [],
   user: {},
   total: 0,
+  allUsers: []
 };
 
 function reducerIndex(state = initialState, { type, payload }) {
@@ -139,6 +141,12 @@ function reducerIndex(state = initialState, { type, payload }) {
         ...state,
         total: total,
       };
+    }
+    case GET_USERS:{
+      return{
+        ...state,
+        allUsers: payload
+      }
     }
 
     default:

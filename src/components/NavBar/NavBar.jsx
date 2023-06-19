@@ -42,7 +42,7 @@ const NavBar = () => {
             <Link to="/contact" className={s.btn_left}>
               Contact Us
             </Link>
-            <Link to="/admin" className={s.btn_left}>
+            <Link to="/admin/users" className={s.btn_left}>
               Admin
             </Link>
             <Link to="/uploader" className={s.btn_left}>

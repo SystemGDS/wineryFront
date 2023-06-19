@@ -15,6 +15,7 @@ import {
   GET_ORDERS,
   PUT_PRODUCT_STATE,
   GET_PRODUCTS,
+  GET_USERS
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -166,3 +167,10 @@ export const getProducts = () => {
     dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
+
+export const getUsers = () => {
+  return async function (dispatch) {
+    const users = (await axios.get("/users")).data
+    return dispatch({type:GET_USERS, payload: users })
+  }
+}
