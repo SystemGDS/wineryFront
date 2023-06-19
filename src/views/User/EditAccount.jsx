@@ -15,13 +15,10 @@ export default function EditAccount() {
 
   const [textField, setTextField] = useState({
     email: user.email,
-    fullName: user.name,
-    username: "",
-    picture: "",
-    birthday: "",
-    addressLineOne: "",
-    addressLineTwo: "",
-    telephone: "",
+    name: user.name,
+    userName: "",
+    image: "",
+    direction: "",
   });
 
   function onInputChange(e) {
@@ -32,20 +29,17 @@ export default function EditAccount() {
   }
 
   const isButtonDisabled = () =>
-    !textField.username || Object.keys(error).length;
+    !textField.userName || Object.keys(error).length;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(updateUser(textField));
     setTextField({
       email: user.email,
-      fullName: user.name,
-      username: "",
-      picture: "",
-      birthday: "",
-      addressLineOne: "",
-      addressLineTwo: "",
-      telephone: "",
+      name: user.name,
+      userName: "",
+      image: "",
+      direction: "",
     });
     toast.success("Your information was updated successfully");
   };
@@ -68,45 +62,13 @@ export default function EditAccount() {
                   <TextField
                     size="small"
                     onInput={onInputChange}
-                    name="addressLineOne"
+                    name="direction"
                     type="text"
                     placeholder="Set a billing address."
-                    value={user.addressLineOne}
+                    value={user.direction}
                   />
-                  {error.addressLineOne && (
-                    <span className={s.formerror}>{error.addressLineOne}</span>
-                  )}
-                </div>
-                <div className={s.formInput}>
-                  <label htmlFor="">
-                    • <u>City:</u>
-                  </label>
-                  <TextField
-                    size="small"
-                    onInput={onInputChange}
-                    name="addressLineTwo"
-                    type="text"
-                    placeholder="Add your city."
-                    value={user.addressLineTwo}
-                  />
-                  {error.addressLineTwo && (
-                    <span className={s.formerror}>{error.addressLineTwo}</span>
-                  )}
-                </div>
-                <div className={s.formInput}>
-                  <label htmlFor="">
-                    • <u>Phone:</u>
-                  </label>
-                  <TextField
-                    size="small"
-                    onInput={onInputChange}
-                    name="telephone"
-                    type="text"
-                    placeholder="Add your phone-number."
-                    value={user.telephone}
-                  />
-                  {error.telephone && (
-                    <span className={s.formerror}>{error.telephone}</span>
+                  {error.direction && (
+                    <span className={s.formerror}>{error.direction}</span>
                   )}
                 </div>
               </div>
@@ -118,30 +80,13 @@ export default function EditAccount() {
                   <TextField
                     size="small"
                     onInput={onInputChange}
-                    name="username"
+                    name="userName"
                     type="text"
                     placeholder="Change your username."
-                    value={user.username}
+                    value={user.userName}
                   />
-                  {error.username && (
-                    <span className={s.formerror}>{error.username}</span>
-                  )}
-                </div>
-                <div className={s.formInput}>
-                  <label htmlFor="">
-                    • <u>Birthday:</u>
-                  </label>
-                  <TextField
-                    size="small"
-                    onInput={onInputChange}
-                    name="birthday"
-                    type="text"
-                    maxLength={10}
-                    placeholder="Share your birthday."
-                    value={user.birthday}
-                  />
-                  {error.birthday && (
-                    <span className={s.formerror}>{error.birthday}</span>
+                  {error.userName && (
+                    <span className={s.formerror}>{error.userName}</span>
                   )}
                 </div>
                 <div className={s.formInput}>
@@ -151,14 +96,14 @@ export default function EditAccount() {
                   <TextField
                     size="small"
                     onInput={onInputChange}
-                    name="picture"
+                    name="image"
                     type="url"
                     placeholder="Change your avatar."
                   />
                 </div>
                 <div></div>
                 <button
-                  disabled={isButtonDisabled()}
+                  disabled={isButtonDisabled}
                   type="submit"
                   className={s.sendButton}
                 >

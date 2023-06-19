@@ -40,7 +40,7 @@ export default function WishList(product) {
 
         <div className={s.WishCard}>
           <div className={s.listCont}>
-            {productsWishlist.map((e, idx) => (
+            {productsWishlist?.map((e, idx) => (
               <div className={s.favList} key={idx}>
                 <DeleteForeverIcon
                   className={s.removeFav}

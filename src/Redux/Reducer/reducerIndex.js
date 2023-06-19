@@ -6,7 +6,8 @@ import {
   ADD_TO_CART,
   DELETE_PRODUCT_FROM_CART,
   CLEAR_CART,
-  SUM_CART_VALUES
+  SUM_CART_VALUES,
+  USER_BY_EMAIL,
 } from "../Actions/actionsTypes.js";
 
 export const initialState = {
@@ -64,6 +65,15 @@ function reducerIndex(state = initialState, { type, payload }) {
         total: total,
       };
     }
+    // se trae el user por email
+    case USER_BY_EMAIL: {
+      console.log(payload);
+      return {
+        ...state,
+        user: payload,
+      };
+    }
+
     default:
       return initialState;
   }
