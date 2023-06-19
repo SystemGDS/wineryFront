@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import Rating from "@mui/material/Rating";
 import s from "./UserComponent.module.css";

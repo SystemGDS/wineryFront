@@ -1,27 +1,3 @@
-/* .loginUser {
-    color: #5C7F61;
-    border: solid 3pt;
-    border-radius: 45px;
-    cursor: pointer;
-    overflow: hidden;
-    margin-right: 30px;
-    padding: 20px 30px;
-    font-weight: bold;
-    margin-top: -10px;
-    margin-left: 515px;
-
-  }
-  
-   .loginUser:hover {
-    color: rgb(255, 255, 255);
-    background-color: #5C7F61;
-  } 
-
-  .loginUser a{
-  margin-bottom: px;
-  } 
-   */
-
   .loginUser {
     color: #EFE1D3;
     background-color: #5E455A;
@@ -32,12 +8,13 @@
     padding: 15px 32px;
     font-weight: bold;
     position: absolute;
-    margin-left: 567px;
-    top: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Trebuchet MS", "sans-serif";
+    margin: 0;
+    top:30px;
+    right: 150px;
   }
   .loginUser:hover {
     color: #5E455A;

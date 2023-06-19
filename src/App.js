@@ -14,6 +14,8 @@ import Contact from "./components/ContactForm/Contact.jsx";
 import Shop from "./views/Shop/Shop.jsx";
 import About from "./views/About/About.jsx";
 import Cart from "./views/Cart/Cart.jsx";
+import Admin from "./layouts/Dashboard/Dashboard.js";
+import Cargar from "./components/LoaderImage/imgbbImageLoader";
 import axios from "axios";
 
 // axios.defaults.baseURL = "http://localhost:3001";
@@ -38,6 +40,9 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
+
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/uploader" element={<Cargar />} />
 
         <Route element={<ProtectedRouter isAuthenticated={isAuthenticated} />}>
           <Route

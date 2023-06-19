@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //imports correpondientes
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -15,6 +16,10 @@ import {
   GET_USER_REVIEWS,
   UPDATE_USER,
   USER_BY_EMAIL,
+  GET_ORDERS,
+  PUT_PRODUCT_STATE,
+  GET_PRODUCTS,
+  GET_FAVORITES,
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -102,9 +107,9 @@ export const getReviewById = (payload) => {
     }
   };
 };
-export const addToCart = (id) => ({
+export const addToCart = (product) => ({
   type: ADD_TO_CART,
-  payload: id,
+  payload: product.id,
 });
 
 export const removeFromCart = (productId) => ({
@@ -116,9 +121,11 @@ export const clearCart = () => ({
   type: CLEAR_CART,
 });
 
-export const sumCartValues = () => ({
-  type: SUM_CART_VALUES,
-});
+export const sumCartValues = () => {
+  return {
+    type: SUM_CART_VALUES,
+  };
+};
 ////////////////////////**CART**/////////////////////////
 
 export const sendToCart = (payload) => {
@@ -170,6 +177,16 @@ export const getUserReviews = (payload) => {
     }
   };
 };
+export const getOrders = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/orders`);
+      dispatch({ type: GET_ORDERS, payload: response.data });
+    } catch (error) {
+      return "Order not found";
+    }
+  };
+};
 
 export function deleteFavorites(payload) {
   return async function (dispatch) {
@@ -186,6 +203,21 @@ export function deleteFavorites(payload) {
   };
 }
 
+export const putProductState = ({ name, activeProduct }) => {
+  return async function (dispatch) {
+    try {
+      const adminRes = await axios.put("/products", { name, activeProduct });
+
+      dispatch({
+        type: PUT_PRODUCT_STATE,
+        payload: activeProduct,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export function getFavorites(email) {
   return async function (dispatch) {
     try {
@@ -196,3 +228,10 @@ export function getFavorites(email) {
     }
   };
 }
+
+export const getProducts = () => {
+  return async function (dispatch) {
+    const productsResponse = await axios.get("/products");
+    dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
+  };
+};

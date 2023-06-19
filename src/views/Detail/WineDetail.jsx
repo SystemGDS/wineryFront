@@ -46,6 +46,17 @@ export default function WineDetail() {
 
   //}
 
+  const handleAddToCart = () => {
+    const product = {
+      id: wineById.id,
+      name: wineById.name,
+      image: wineById.image,
+      price: wineById.price,
+    };
+    console.log(product);
+    dispatch(addToCart(product));
+  };
+
   const [quantity, setQuantity] = useState(1);
   const getById = (id) => {
     WineDataProvider.wineById(id).then((res) => console.log(res));
@@ -137,7 +148,7 @@ export default function WineDetail() {
                   }}
                 >
                   {/* {() => HandleCart()} */}
-                  <button className={style.myBtn} onClick="">
+                  <button className={style.myBtn} onClick={handleAddToCart}>
                     Add to Cart
                   </button>
                 </div>
@@ -145,7 +156,7 @@ export default function WineDetail() {
             </div>
           </div>
         </div>
-{/* 
+        {/* 
         <div className={style.containerdescription}>
           <div>
             <span className={style.descriptiontitle}>
