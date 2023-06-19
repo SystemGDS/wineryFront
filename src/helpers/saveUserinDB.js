@@ -5,7 +5,7 @@ export async function saveUserinDB(user) {
       name: user.given_name,
       userName: user.nickname,
     };
-    const response = await fetch("http://localhost:3001/users", {
+    const response = await fetch(`/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
