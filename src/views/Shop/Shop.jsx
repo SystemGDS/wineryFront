@@ -17,7 +17,7 @@ const shop = () => {
   const wines = useSelector((store) => store.wines);
 
   const isLoading = useSelector((store) => store.isLoading);
-  const [origin, setOrigin] = useState(null);
+  const [origin, setOrigin] = useState([]);
   const [select, setSelect] = useState("");
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(8);
@@ -61,7 +61,7 @@ const shop = () => {
   };
 
   useEffect(() => {
-    (async function () {
+    (async () => {
       try {
         // http://localhost:3001
         const response = await fetch("/wines");
@@ -74,10 +74,8 @@ const shop = () => {
         });
         const newarray = new Set(paises);
         const set = Array.from(newarray);
-        setOrigin([...set]);
-      } catch (error) {
-        console.log(error);
-      }
+        setOrigin(Array.from(newarray));
+      } catch (error) {}
     })();
   }, []);
 
@@ -107,6 +105,7 @@ const shop = () => {
     });
   };
   if (isLoading) return <Loader />;
+
   return (
     <div>
       <SerchBar

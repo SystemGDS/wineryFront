@@ -1,6 +1,3 @@
-/* eslint-disable no-useless-concat */
-/* eslint-disable jsx-a11y/img-redundant-alt */
-//import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Cart/Cart.module.css";
 import React from "react";
@@ -9,7 +6,7 @@ import {
   clearCart,
   sumCartValues,
 } from "../../Redux/Actions/actionsIndex";
-import axios from "axios"
+import axios from "axios";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -29,75 +26,85 @@ const Cart = () => {
     dispatch(sumCartValues());
   };
 
-  const handleBuy = async() => {
-
+  const handleBuy = async () => {
     // Simulate a purchase by displaying an alert with the total price
-    const items = cart.map(items => {
+    const items = cart.map((items) => {
       return {
         id: cart.id,
         title: cart.name,
-        picture_url:cart.image,
+        picture_url: cart.image,
         description: cart.category,
         unit_price: cart.price,
         category_id: "others",
         quantity: cart.price,
-      }
-    })
+      };
+    });
     const payment = {
       items,
       payer: {
-        name:"Alejandro",
-        surname:"Medina",
-        email:"ale_m@outlook.com"
-      }
+        name: "Alejandro",
+        surname: "Medina",
+        email: "ale_m@outlook.com",
+      },
+    };
+    try {
+      const response = await axios.post("/payment", payment);
+      window.location.href = response.data;
+      handleClearCart();
+    } catch (error) {
+      console.log(error.message);
     }
-   try {
-    const response = await axios.post("/payment", payment );
-    window.location.href = response.data
-    handleClearCart()
-
-   } catch (error) {
-    console.log(error.message)
-   }
   };
-  
-
-  
 
   return (
     <div className={style.mainCart}>
-      <h2>Carrito de compras</h2>
-      <button onClick={handleSumCartValues}>Calcular total del carrito</button>
+      <h2>
+        <u>Shopping Cart</u>
+      </h2>
+      <button onClick={handleSumCartValues}>Calculate total </button>
 
       {cart.length > 0 && (
         <div className={style.totalPrice}>
-          <span>Total: ${total}</span>
-          <button className={style.buy_button} onClick={handleBuy}>Comprar</button>
+          <span>
+            {" "}
+            •
+            <u>
+              <b>Total:</b>
+            </u>
+            ${total}
+          </span>
+          <button className={style.buy_button} onClick={handleBuy}>
+            Buy
+          </button>
         </div>
       )}
 
       {cart.length === 0 ? (
-        <p>No hay productos en el carrito</p>
+        <p>There are no products in the cart!</p>
       ) : (
         <ul>
           {cart.map((item) => (
             <div key={item.id} className={style.contCard}>
-              <div className={style.imageContainer} >
+              <div className={style.imageContainer}>
                 <img src={item.image} alt="image card" />
-                <p className={style.name}>{item.name}</p> 
+                <p className={style.name}>{item.name}</p>
                 <p className={style.price}>{"$" + " " + item.price}</p>
               </div>
-              <button className={style.delete_button} onClick={() => handleRemoveFromCart(item.id)}>
-                Eliminar
+              <button
+                className={style.delete_button}
+                onClick={() => handleRemoveFromCart(item.id)}
+              >
+                Remove
               </button>
             </div>
           ))}
         </ul>
       )}
-      <button className={style.delete_button} onClick={handleClearCart}>Eliminar todos</button>
+      <button className={style.delete_button} onClick={handleClearCart}>
+        Remove All Products
+      </button>
     </div>
   );
 };
 
 export default Cart;
-
