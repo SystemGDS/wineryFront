@@ -12,16 +12,14 @@ import {
   CLEAR_CART,
   SEND_TO_CART,
   SUM_CART_VALUES,
-
   DELETE_FAVORITES,
   GET_USER_REVIEWS,
   UPDATE_USER,
-
+  USER_BY_EMAIL,
   GET_ORDERS,
   PUT_PRODUCT_STATE,
   GET_PRODUCTS,
   GET_FAVORITES
-
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -141,13 +139,25 @@ export const sendToCart = (payload) => {
   };
 };
 
-
 ////////////////////////**User Component**/////////////////////////
+export function filterUsersByEmail(email) {
+  return async function (dispatch) {
+    try {
+      await axios.get("/users").then((res) => {
+        let user = res.data.find((user) => user.email === email);
+        dispatch({ type: USER_BY_EMAIL, payload: user });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export function updateUser(payload) {
   return async function () {
+    console.log(payload);
     try {
-      axios.put("/users", payload).then((data) => {
+      await axios.put("/users", payload).then((data) => {
         console.log(data);
       });
     } catch (error) {
@@ -163,8 +173,10 @@ export const getUserReviews = (payload) => {
       const res = await axios.get(`/reviews/${payload}`);
       dispatch({ type: GET_USER_REVIEWS, payload: res.data });
     } catch (error) {
+
       return "Error";}
     }}
+
 
 export const getOrders = () => {
   return async function (dispatch) {
@@ -173,11 +185,9 @@ export const getOrders = () => {
       dispatch({ type: GET_ORDERS, payload: response.data });
     } catch (error) {
       return "Order not found";
-
     }
   };
 };
-
 
 export function deleteFavorites(payload) {
   return async function (dispatch) {
@@ -187,8 +197,12 @@ export function deleteFavorites(payload) {
     });
     try {
       const response = await axios.delete("/favorites", { data: payload });
-      return response;}catch (error) {}
-    }};
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export const putProductState = ({ name, activeProduct }) => {
   return async function (dispatch) {
@@ -199,21 +213,22 @@ export const putProductState = ({ name, activeProduct }) => {
         type: PUT_PRODUCT_STATE,
         payload: activeProduct,
       });
-
     } catch (error) {
       console.log(error);
     }
   };
-
-}
+};
 
 export function getFavorites(email) {
   return async function (dispatch) {
-    const productsResponse = await axios.get(`/favorites/${email}`);
-    dispatch({ type: GET_FAVORITES, payload: productsResponse.data });
+    try {
+      const productsResponse = await axios.get(`/favorites/${email}`);
+      dispatch({ type: GET_FAVORITES, payload: productsResponse.data });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
-
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -221,4 +236,3 @@ export const getProducts = () => {
     dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
-

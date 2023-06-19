@@ -8,6 +8,5 @@ export const ProtectedRouter = ({
   if (!isAuthenticated) {
     return <Navigate to={redirectTo} replace />;
   }
-
-  return children ? children : <Outlet />
+  return children ? children : <Outlet />;
 };
