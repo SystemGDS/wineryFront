@@ -13,3 +13,8 @@ export const SEND_TO_CART = "SEND_TO_CART";
 
 export const SUM_CART_VALUES = "SUM_CART_VALUES";
 
+export const GET_ORDERS = "GET_ORDERS";
+export const PUT_PRODUCT_STATE = "PUT_PRODUCT_STATE";
+export const GET_PRODUCTS = "GET_PRODUCTS";
+export const CREATE_PRODUCTS = "CREATE_PRODUCTS";
+export const CREATE_CATEGORY = "CREATE_CATEGOTY";

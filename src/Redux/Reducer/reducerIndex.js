@@ -6,7 +6,12 @@ import {
   ADD_TO_CART,
   DELETE_PRODUCT_FROM_CART,
   CLEAR_CART,
-  SUM_CART_VALUES
+  SUM_CART_VALUES,
+  GET_ORDERS,
+  PUT_PRODUCT_STATE,
+  GET_PRODUCTS,
+  CREATE_PRODUCTS,
+  CREATE_CATEGORY,
 } from "../Actions/actionsTypes.js";
 
 export const initialState = {
@@ -34,29 +39,58 @@ function reducerIndex(state = initialState, { type, payload }) {
         ...state,
         wines: payload,
       };
+    case GET_ORDERS:
+      return {
+        ...state,
+        wines: payload,
+      };
+    case GET_PRODUCTS:
+      return {
+        ...state,
+        allProducts: payload,
+        filterProducts: payload,
+        orderedChange: !state.orderedChange,
+      };
+    case CREATE_PRODUCTS:
+      return {
+        ...state,
+        allProducts: [...state.allProducts, payload],
+      };
+    case CREATE_CATEGORY:
+      return {
+        ...state,
+        allCategories: [...state.allCategories, payload],
+      };
     case CREATE_WINE:
       return {
         ...state,
         wines: payload,
       };
+    case PUT_PRODUCT_STATE:
+      return {
+        ...state,
+        wines: payload,
+      };
     //case ADD_TO_CART: {
-      //const newProduct = state.wines.find((product) => product.id === payload);
-      //const newCart = [...state.cart, newProduct];
-      //return {
-       // ...state,
-        //cart: newCart,
-      //};
+    //const newProduct = state.wines.find((product) => product.id === payload);
+    //const newCart = [...state.cart, newProduct];
+    //return {
+    // ...state,
+    //cart: newCart,
+    //};
     //}
     case ADD_TO_CART: {
-      const existingProduct = state.cart.find((product) => product.id === payload);
-    
+      const existingProduct = state.cart.find(
+        (product) => product.id === payload
+      );
+
       if (existingProduct) {
         // Si el producto ya existe en el carrito
         if (existingProduct.quantity >= 10) {
           // Si se alcanzó el límite máximo, no se realiza ninguna modificación adicional
           return state;
         }
-    
+
         // Si no se ha alcanzado el límite máximo, incrementar la cantidad
         const updatedCart = state.cart.map((product) => {
           if (product.id === payload) {
@@ -67,26 +101,25 @@ function reducerIndex(state = initialState, { type, payload }) {
           }
           return product;
         });
-    
+
         return {
           ...state,
           cart: updatedCart,
         };
       } else {
         // Si el producto no existe en el carrito, agregarlo con una cantidad inicial de 1
-        const newProduct = state.wines.find((product) => product.id === payload);
+        const newProduct = state.wines.find(
+          (product) => product.id === payload
+        );
         newProduct.quantity = 1;
-    
+
         return {
           ...state,
           cart: [...state.cart, newProduct],
         };
       }
     }
-    
-    
-    
-    
+
     case DELETE_PRODUCT_FROM_CART: {
       return {
         ...state,
@@ -107,7 +140,7 @@ function reducerIndex(state = initialState, { type, payload }) {
         total: total,
       };
     }
-    
+
     default:
       return initialState;
   }
