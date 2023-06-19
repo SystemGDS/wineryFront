@@ -15,6 +15,7 @@ import Loader from "../../components/Loader/Loader.jsx";
 const shop = () => {
   const dispatch = useDispatch();
   const wines = useSelector((store) => store.wines);
+
   const [originFilter, setOriginFilter] = useState("");
   const isLoading = useSelector((store) => store.isLoading);
   const [origin, setOrigin] = useState(null);
@@ -46,7 +47,7 @@ const shop = () => {
     setCheckedItems([...newChecked]);
   };
 
-  const handleSelect = (e) => {
+  const handleSelect = (e) => {  
     setOriginFilter(e.target.value);
   };
 
@@ -64,12 +65,11 @@ const shop = () => {
     (async () => {
       try {
         // http://localhost:3001
-        const response = await fetch("/wines");
+        const response = await fetch("http://localhost:3001/wines");
         const data = await response.json();
         const paises = [];
         await data?.forEach((el) => {
           let division = el.origin.split("-")[0];
-          division = division.slice(0, -1);
           paises.push(division);
         });
         const newarray = new Set(paises);
@@ -160,11 +160,13 @@ const shop = () => {
           >
             <option value="">Countries</option>
             {origin?.map((or, i) => (
-              <option value={or} key={i}>
+              <option value={or} key={i} >
                 {or}
               </option>
-            ))}
+            ))
+            }
           </select>
+          
 
           <div className={styles.mainFilter}>
             <button

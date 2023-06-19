@@ -20,6 +20,7 @@ import {
   GET_ORDERS,
   PUT_PRODUCT_STATE,
   GET_PRODUCTS,
+  GET_FAVORITES
 
 } from "./actionsTypes.js";
 
@@ -162,7 +163,8 @@ export const getUserReviews = (payload) => {
       const res = await axios.get(`/reviews/${payload}`);
       dispatch({ type: GET_USER_REVIEWS, payload: res.data });
     } catch (error) {
-      return "Error";
+      return "Error";}
+    }}
 
 export const getOrders = () => {
   return async function (dispatch) {
@@ -185,7 +187,8 @@ export function deleteFavorites(payload) {
     });
     try {
       const response = await axios.delete("/favorites", { data: payload });
-      return response;
+      return response;}catch (error) {}
+    }};
 
 export const putProductState = ({ name, activeProduct }) => {
   return async function (dispatch) {
@@ -211,7 +214,6 @@ export function getFavorites(email) {
   };
 }
 
-};
 
 export const getProducts = () => {
   return async function (dispatch) {
