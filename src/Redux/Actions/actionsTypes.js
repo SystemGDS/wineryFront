@@ -13,3 +13,10 @@ export const SEND_TO_CART = "SEND_TO_CART";
 
 export const SUM_CART_VALUES = "SUM_CART_VALUES";
 
+export const UPDATE_USER = "UPDATE_USER";
+
+export const GET_USER_REVIEWS = "GET_USER_REVIEWS";
+
+export const DELETE_FAVORITES = "DELETE_FAVORITES";
+
+export const GET_FAVORITES = "GET_FAVORITES";
