@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { React, useState, useEffect } from "react";
 import s from "./UserComponent.module.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -40,7 +41,7 @@ export default function WishList(product) {
 
         <div className={s.WishCard}>
           <div className={s.listCont}>
-            {productsWishlist.map((e, idx) => (
+            {productsWishlist?.map((e, idx) => (
               <div className={s.favList} key={idx}>
                 <DeleteForeverIcon
                   className={s.removeFav}

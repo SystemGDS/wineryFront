@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import Rating from "@mui/material/Rating";
 import s from "./UserComponent.module.css";
@@ -14,8 +15,8 @@ export default function UserReviews() {
   const allProducts = useSelector((state) => state.allProducts);
 
   useEffect(() => {
-    !userReviews.length && dispatch(getUserReviews(user.email));
-    !allProducts.length && dispatch(getWines());
+    !userReviews?.length && dispatch(getUserReviews(user.email));
+    !allProducts?.length && dispatch(getWines());
     console.log(userReviews);
     console.log(user.email);
   }, [dispatch, userReviews, allProducts]);
