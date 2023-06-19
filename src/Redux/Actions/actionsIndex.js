@@ -12,15 +12,13 @@ import {
   CLEAR_CART,
   SEND_TO_CART,
   SUM_CART_VALUES,
-
   DELETE_FAVORITES,
   GET_USER_REVIEWS,
   UPDATE_USER,
-
   GET_ORDERS,
   PUT_PRODUCT_STATE,
   GET_PRODUCTS,
-
+  GET_FAVORITES,
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -140,7 +138,6 @@ export const sendToCart = (payload) => {
   };
 };
 
-
 ////////////////////////**User Component**/////////////////////////
 
 export function updateUser(payload) {
@@ -163,7 +160,9 @@ export const getUserReviews = (payload) => {
       dispatch({ type: GET_USER_REVIEWS, payload: res.data });
     } catch (error) {
       return "Error";
-
+    }
+  };
+};
 export const getOrders = () => {
   return async function (dispatch) {
     try {
@@ -171,11 +170,9 @@ export const getOrders = () => {
       dispatch({ type: GET_ORDERS, payload: response.data });
     } catch (error) {
       return "Order not found";
-
     }
   };
 };
-
 
 export function deleteFavorites(payload) {
   return async function (dispatch) {
@@ -186,6 +183,11 @@ export function deleteFavorites(payload) {
     try {
       const response = await axios.delete("/favorites", { data: payload });
       return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export const putProductState = ({ name, activeProduct }) => {
   return async function (dispatch) {
@@ -196,13 +198,11 @@ export const putProductState = ({ name, activeProduct }) => {
         type: PUT_PRODUCT_STATE,
         payload: activeProduct,
       });
-
     } catch (error) {
       console.log(error);
     }
   };
-
-}
+};
 
 export function getFavorites(email) {
   return async function (dispatch) {
@@ -211,12 +211,9 @@ export function getFavorites(email) {
   };
 }
 
-};
-
 export const getProducts = () => {
   return async function (dispatch) {
     const productsResponse = await axios.get("/products");
     dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
-

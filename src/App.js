@@ -38,10 +38,9 @@ export default function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/uploader" element={<Cargar />} />
 
-
         <Route element={<ProtectedRouter isAuthenticated={isAuthenticated} />}>
           <Route
-            path="/user"
+            path="/users"
             element={
               <ProtectedRouter
                 isAuthenticated={isAuthenticated}
