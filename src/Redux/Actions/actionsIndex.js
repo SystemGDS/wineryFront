@@ -101,9 +101,9 @@ export const getReviewById = (payload) => {
     }
   };
 };
-export const addToCart = (id) => ({
+export const addToCart = (product) => ({
   type: ADD_TO_CART,
-  payload: id,
+  payload: product.id,
 });
 
 export const removeFromCart = (productId) => ({
@@ -115,9 +115,11 @@ export const clearCart = () => ({
   type: CLEAR_CART,
 });
 
-export const sumCartValues = () => ({
-  type: SUM_CART_VALUES,
-});
+export const sumCartValues = () => {
+  return {
+    type: SUM_CART_VALUES,
+  };
+};;
 ////////////////////////**CART**/////////////////////////
 
 export const sendToCart = (payload) => {

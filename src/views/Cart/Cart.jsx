@@ -4,7 +4,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Cart/Cart.module.css";
 import React from "react";
-import { removeFromCart, clearCart,sumCartValues } from "../../Redux/Actions/actionsIndex";
+import {
+  removeFromCart,
+  clearCart,
+  sumCartValues,
+} from "../../Redux/Actions/actionsIndex";
+import axios from "axios"
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -19,12 +24,41 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
   const handleSumCartValues = () => {
     dispatch(sumCartValues());
   };
-  const handleBuy = () => {
+
+  const handleBuy = async() => {
+
     // Simulate a purchase by displaying an alert with the total price
-    alert(`Compra realizada por un total de $${total}`);
+    const items = cart.map(items => {
+      return {
+        id: cart.id,
+        title: cart.name,
+        picture_url:cart.image,
+        description: cart.category,
+        unit_price: cart.price,
+        category_id: "others",
+        quantity: cart.price,
+      }
+    })
+    const payment = {
+      items,
+      payer: {
+        name:"Alejandro",
+        surname:"Medina",
+        email:"ale_m@outlook.com"
+      }
+    }
+   try {
+    const response = await axios.post("/payment", payment );
+    window.location.href = response.data
+    handleClearCart()
+
+   } catch (error) {
+    console.log(error.message)
+   }
   };
   
 
@@ -38,7 +72,7 @@ const Cart = () => {
       {cart.length > 0 && (
         <div className={style.totalPrice}>
           <span>Total: ${total}</span>
-          <button onClick={handleBuy}>Comprar</button>
+          <button className={style.buy_button} onClick={handleBuy}>Comprar</button>
         </div>
       )}
 
@@ -48,19 +82,22 @@ const Cart = () => {
         <ul>
           {cart.map((item) => (
             <div key={item.id} className={style.contCard}>
-              <div className={style.name}>{item.name}</div>
-              <img src={item.image} alt="image card"></img>
-              <div className={style.price}>{"$" + " " + item.price}</div>
-              <button onClick={() => handleRemoveFromCart(item.id)}>
+              <div className={style.imageContainer} >
+                <img src={item.image} alt="image card" />
+                <p className={style.name}>{item.name}</p> 
+                <p className={style.price}>{"$" + " " + item.price}</p>
+              </div>
+              <button className={style.delete_button} onClick={() => handleRemoveFromCart(item.id)}>
                 Eliminar
               </button>
             </div>
           ))}
         </ul>
       )}
-      <button onClick={handleClearCart}>Eliminar todos</button>
+      <button className={style.delete_button} onClick={handleClearCart}>Eliminar todos</button>
     </div>
   );
 };
 
 export default Cart;
+
