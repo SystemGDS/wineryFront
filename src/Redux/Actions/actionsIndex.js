@@ -12,9 +12,15 @@ import {
   CLEAR_CART,
   SEND_TO_CART,
   SUM_CART_VALUES,
+
+  DELETE_FAVORITES,
+  GET_USER_REVIEWS,
+  UPDATE_USER,
+
   GET_ORDERS,
   PUT_PRODUCT_STATE,
   GET_PRODUCTS,
+
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -134,6 +140,30 @@ export const sendToCart = (payload) => {
   };
 };
 
+
+////////////////////////**User Component**/////////////////////////
+
+export function updateUser(payload) {
+  return async function () {
+    try {
+      axios.put("/users", payload).then((data) => {
+        console.log(data);
+      });
+    } catch (error) {
+      toast.error("Your profile could not be updated, please try again later");
+      console.error(error.message);
+    }
+  };
+}
+
+export const getUserReviews = (payload) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/reviews/${payload}`);
+      dispatch({ type: GET_USER_REVIEWS, payload: res.data });
+    } catch (error) {
+      return "Error";
+
 export const getOrders = () => {
   return async function (dispatch) {
     try {
@@ -141,9 +171,21 @@ export const getOrders = () => {
       dispatch({ type: GET_ORDERS, payload: response.data });
     } catch (error) {
       return "Order not found";
+
     }
   };
 };
+
+
+export function deleteFavorites(payload) {
+  return async function (dispatch) {
+    dispatch({
+      type: DELETE_FAVORITES,
+      payload: payload,
+    });
+    try {
+      const response = await axios.delete("/favorites", { data: payload });
+      return response;
 
 export const putProductState = ({ name, activeProduct }) => {
   return async function (dispatch) {
@@ -154,10 +196,21 @@ export const putProductState = ({ name, activeProduct }) => {
         type: PUT_PRODUCT_STATE,
         payload: activeProduct,
       });
+
     } catch (error) {
       console.log(error);
     }
   };
+
+}
+
+export function getFavorites(email) {
+  return async function (dispatch) {
+    const productsResponse = await axios.get(`/favorites/${email}`);
+    dispatch({ type: GET_FAVORITES, payload: productsResponse.data });
+  };
+}
+
 };
 
 export const getProducts = () => {
@@ -166,3 +219,4 @@ export const getProducts = () => {
     dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
+
