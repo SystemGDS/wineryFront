@@ -28,7 +28,9 @@ export default function Card({ name, image, price, id, origin }) {
         <div className={styles.price}>{"$" + price}</div>
         <div className={styles.origin}>{origin}</div>
       </Link>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <button className={styles.addtocart} onClick={handleAddToCart}>
+        Add to Cart
+      </button>
     </div>
   );
 }
