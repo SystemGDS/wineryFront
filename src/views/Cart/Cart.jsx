@@ -3,6 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Cart/Cart.module.css";
 import React from "react";
+import { useEffect } from "react";
 import {
   removeFromCart,
   clearCart,
@@ -24,10 +25,14 @@ const Cart = () => {
     dispatch(clearCart());
   };
 
-  const handleSumCartValues = () => {
-    dispatch(sumCartValues());
-  };
-
+  useEffect(() => {
+    const handleSumCartValues = () => {
+      dispatch(sumCartValues());
+    };
+  
+    handleSumCartValues();
+  }, [dispatch]);
+  
   const handleBuy = async () => {
     // Simulate a purchase by displaying an alert with the total price
     const items = cart.map((items) => {
@@ -65,7 +70,6 @@ const Cart = () => {
       <h2>
         <u>Shopping Cart</u>
       </h2>
-      <button onClick={handleSumCartValues}>Calculate total </button>
 
       {cart.length > 0 && (
         <div className={style.totalPrice}>
@@ -90,9 +94,9 @@ const Cart = () => {
           {cart.map((item) => (
             <div key={item.id} className={style.contCard}>
               <div className={style.imageContainer}>
-                <img src={item.image} alt="image card" />
+                <img src={item.image} alt="" />
                 <p className={style.name}>{item.name}</p>
-                <p className={style.price}>{"$" + " " + item.price}</p>
+                <p className={style.price}>{"$" + item.price}</p>
               </div>
               <button
                 className={style.delete_button}

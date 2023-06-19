@@ -19,7 +19,7 @@ import {
   GET_ORDERS,
   PUT_PRODUCT_STATE,
   GET_PRODUCTS,
-  GET_FAVORITES,
+  GET_FAVORITES
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -173,10 +173,11 @@ export const getUserReviews = (payload) => {
       const res = await axios.get(`/reviews/${payload}`);
       dispatch({ type: GET_USER_REVIEWS, payload: res.data });
     } catch (error) {
-      return "Error";
-    }
-  };
-};
+
+      return "Error";}
+    }}
+
+
 export const getOrders = () => {
   return async function (dispatch) {
     try {
