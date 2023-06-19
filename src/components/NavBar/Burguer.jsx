@@ -36,7 +36,7 @@ export default function BurgerMenu() {
       }
       menu={[
         <button onClick={handleMenuOne} key="menuOne">
-          <Link to="/user">
+          <Link to="/users">
             <div className={s.userprofile}>
               <AccountCircleIcon fontSize="large" />
             </div>

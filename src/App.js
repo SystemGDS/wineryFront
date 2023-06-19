@@ -35,7 +35,7 @@ export default function App() {
 
         <Route element={<ProtectedRouter isAuthenticated={isAuthenticated} />}>
           <Route
-            path="/user"
+            path="/users"
             element={
               <ProtectedRouter
                 isAuthenticated={isAuthenticated}
