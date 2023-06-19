@@ -12,6 +12,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loader from "./components/Loader/Loader";
 import { ProtectedRouter } from "./components/ProtectedRouter/ProtectedRouter.jsx";
+import UserComponent from "./views/User/UserComponent";
 
 // axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.baseURL =
@@ -31,7 +32,17 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
+
         <Route element={<ProtectedRouter isAuthenticated={isAuthenticated} />}>
+          <Route
+            path="/user"
+            element={
+              <ProtectedRouter
+                isAuthenticated={isAuthenticated}
+                component={UserComponent}
+              />
+            }
+          />
           {/* Aquí van las rutas protegidas. La estructura es la misma.Ejemplo:        <Route path="/checkout" element={<Checkout /> } />         */}
         </Route>
       </Routes>

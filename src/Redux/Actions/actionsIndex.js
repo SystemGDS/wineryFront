@@ -10,7 +10,10 @@ import {
   DELETE_PRODUCT_FROM_CART,
   CLEAR_CART,
   SEND_TO_CART,
-  SUM_CART_VALUES
+  SUM_CART_VALUES,
+  DELETE_FAVORITES,
+  GET_USER_REVIEWS,
+  UPDATE_USER,
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -127,3 +130,51 @@ export const sendToCart = (payload) => {
     }
   };
 };
+
+////////////////////////**User Component**/////////////////////////
+
+export function updateUser(payload) {
+  return async function () {
+    try {
+      axios.put("/users", payload).then((data) => {
+        console.log(data);
+      });
+    } catch (error) {
+      toast.error("Your profile could not be updated, please try again later");
+      console.error(error.message);
+    }
+  };
+}
+
+export const getUserReviews = (payload) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/reviews/${payload}`);
+      dispatch({ type: GET_USER_REVIEWS, payload: res.data });
+    } catch (error) {
+      return "Error";
+    }
+  };
+};
+
+export function deleteFavorites(payload) {
+  return async function (dispatch) {
+    dispatch({
+      type: DELETE_FAVORITES,
+      payload: payload,
+    });
+    try {
+      const response = await axios.delete("/favorites", { data: payload });
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getFavorites(email) {
+  return async function (dispatch) {
+    const productsResponse = await axios.get(`/favorites/${email}`);
+    dispatch({ type: GET_FAVORITES, payload: productsResponse.data });
+  };
+}

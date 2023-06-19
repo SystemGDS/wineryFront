@@ -1,0 +1,294 @@
+.nav {
+    z-index: 3;
+}
+
+.UserContainer {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    align-items: center;
+}
+
+/* ///////////////////// ACCOUNT INFORMATION /////////////////////// */
+
+.AccountInfo {
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-left: 10%;
+    background-color: #d4d8d7;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    height: 60vh;
+    margin-top: 4.8%;
+    border-radius: 15px;
+}
+
+.topInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.accountName {
+    font-size: 28pt;
+    width: 400px;
+}
+
+.topInfo p {
+    color: rgb(0, 0, 0);
+}
+
+.infoBody {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.profilePic {
+    width: 200px;
+    height: 200px;
+    border: solid 5pt #6a5592;;
+    border-radius: 15px;
+}
+
+.contactInfo {
+    width: 60%;
+}
+
+.contactInfo h4 {
+    color: rgb(0, 0, 0);
+}
+
+.AInfoCard {
+    padding-bottom: 30%;
+}
+
+/* //////////////////// EDIT ACCOUNT FORM //////////////////////// */
+
+
+.EditContainer {
+    width: 100%;
+    padding-left: 20%;
+    padding-right: 30%;
+    padding-top: 2%;
+    margin-left: 10%;
+    background-color: #d4d8d7;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    height: 90%;
+    margin-top: 5.1%;
+    border-radius: 15px;
+}
+
+
+.EditCard form {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 500px;
+    height: min-content;
+    line-height: 42pt;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.formSection button {
+    width: 25%;
+}
+
+.formerror {
+    color: brown;
+    margin-top: -15px;
+    font-size: 10pt;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.formInput input {
+    height: 21pt;
+}
+
+.sendButton{
+    margin-top: 15px;
+}
+
+/* ////////////////////  WISHLIST   //////////////////////// */
+
+
+/* .scrollDiv{
+    
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 1%;
+}  */
+
+.scrollWish{
+    width: 165%;
+    height: 80%;
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-left: 40%;
+    padding: 2%;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+}
+
+
+.WishContainer {
+    /* width: 165%;
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-left: 40%; */
+    background-color: #d4d8d7;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    height: 60%;
+    margin-top: 8.2%;
+    border-radius: 15px;
+    /* overflow: hidden;
+    overflow-y: scroll;
+    padding: 2%; */
+
+}
+.WishTitle{
+display: flex;
+justify-content: center;
+padding-top: 4%;
+}
+
+.WishCard {
+    padding-top: 1px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.WishCard h3 {
+    font-size: 24pt;
+}
+
+.listCont {
+    display: flex;
+    flex-direction: column;
+}
+
+.favList {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: solid 1pt black;
+    padding: 5px 0px;
+}
+
+.removeFav {
+    font-weight: bold;
+    padding-left: 6px;
+    padding-right: 16px;
+    color: rgb(160, 147, 147);
+}
+
+.removeFav:hover {
+    color: rgb(177, 9, 9);
+    cursor: pointer;
+}
+
+.cartFav {
+    position: absolute;
+    right: -330px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 11px;
+    
+}
+
+.cartFav:hover {
+    color: #2f860c;
+    ;
+    border-radius: 1px;
+}
+
+.cartFav:active {
+    font-weight: bold;
+}
+.addIconFav{
+    padding-left: 11px;
+}
+.favItem {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0 0px;
+    width: 300px;
+    display: flex;
+    gap: 10%;
+    color: black;
+    margin: auto;
+    font-weight: bold;
+    align-items: center;
+}
+
+.favPrice {
+    color: rgb(126, 16, 16);
+    font-weight: 600;
+}
+
+
+
+
+/* ////////////////////  REVIEWS   //////////////////////// */
+
+.ReviewContainer {
+    width: 600px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 15px;
+    margin-left: 20%;
+    background-color: #d4d8d7;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    height: 80%;
+    margin-top: 7.9%;
+    margin-bottom: 5%;
+    border-radius: 15px;
+}
+
+.ReviewCard h3 {
+    font-size: 24pt;
+    text-align: center;
+}
+
+.rewList {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: solid 1pt black;
+    padding: 5px 0px;
+}
+
+.rewItem {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0 0px;
+    width: 100%;
+    display: flex;
+    gap: 10%;
+    color: black;
+    margin: auto;
+    align-items: center;
+}
+
+.foot {
+    position: fixed;
+    bottom: -10px;
+    width: 100%;
+}
