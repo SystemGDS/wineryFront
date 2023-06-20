@@ -161,3 +161,13 @@ form {
   color: #ffffff;
   background-color: #5e455a;
 }
+
+.appButton {
+  color: #5e455a;
+  font-size: 18px;
+  cursor: pointer;
+  /* outline: none; */
+  font-weight: bold;
+  margin-top: 15px;
+  float: right;
+}
