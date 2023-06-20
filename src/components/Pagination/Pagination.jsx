@@ -49,7 +49,7 @@ export default function Pagination({ page, setPage, maxPage, wines }) {
         <input
           onChange={(e) => onChange(e)}
           onKeyDown={(e) => onKeyDown(e)}
-          value={input}
+          value={page}
         ></input>
         <p className={Styles.max_page}>of&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{maxPage} </p>
         <button disabled={page >= maxPage} onClick={nextPage}>

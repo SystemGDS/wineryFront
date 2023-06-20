@@ -5,13 +5,17 @@ export async function saveUserinDB(user) {
       name: user.given_name,
       userName: user.nickname,
     };
-    const response = await fetch(`/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(USERDB),
-    });
+
+    const response = await fetch(
+      `https://wineryback-production.up.railway.app/users`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(USERDB),
+      }
+    );
 
     await response.json();
   } catch (error) {

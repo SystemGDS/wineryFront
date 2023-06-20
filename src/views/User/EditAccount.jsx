@@ -19,6 +19,7 @@ export default function EditAccount() {
     userName: "",
     image: "",
     direction: "",
+    birthday: "",
   });
 
   function onInputChange(e) {
@@ -40,6 +41,7 @@ export default function EditAccount() {
       userName: "",
       image: "",
       direction: "",
+      birthday: "",
     });
     toast.success("Your information was updated successfully");
   };
@@ -49,8 +51,7 @@ export default function EditAccount() {
       <>
         <div className={s.EditContainer}>
           <div className={s.EditCard}>
-            <h3>
-              {" "}
+            <h3 className={s.addinformation}>
               <u>Add your information</u>
             </h3>
             <form onSubmit={handleSubmit}>
@@ -64,11 +65,28 @@ export default function EditAccount() {
                     onInput={onInputChange}
                     name="direction"
                     type="text"
-                    placeholder="Set a billing address."
+                    placeholder="Set a billing address.."
                     value={user.direction}
                   />
                   {error.direction && (
                     <span className={s.formerror}>{error.direction}</span>
+                  )}
+                </div>
+                <div className={s.formInput}>
+                  <label htmlFor="">
+                    • <u>Birthday:</u>
+                  </label>
+                  <TextField
+                    size="small"
+                    onInput={onInputChange}
+                    name="birthday"
+                    type="text"
+                    maxLength={10}
+                    placeholder="Share your birthday.."
+                    value={textField.birthday}
+                  />
+                  {error.birthday && (
+                    <span className={s.formerror}>{error.birthday}</span>
                   )}
                 </div>
               </div>
@@ -82,7 +100,7 @@ export default function EditAccount() {
                     onInput={onInputChange}
                     name="userName"
                     type="text"
-                    placeholder="Change your username."
+                    placeholder="Change your username.."
                     value={user.userName}
                   />
                   {error.userName && (
@@ -98,9 +116,10 @@ export default function EditAccount() {
                     onInput={onInputChange}
                     name="image"
                     type="url"
-                    placeholder="Change your avatar."
+                    placeholder="Change your avatar with a URL.."
                   />
                 </div>
+
                 <div></div>
                 <button
                   disabled={isButtonDisabled}

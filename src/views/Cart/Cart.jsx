@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-concat */
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Cart/Cart.module.css";
 import React from "react";
