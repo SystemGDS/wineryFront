@@ -8,6 +8,8 @@ import axios from "axios";
 import { WineDataProvider } from "../../utils/WineDataProvider";
 import { sendToCart, addToCart } from "../../Redux/Actions/actionsIndex";
 import { toast } from "react-toastify";
+import { Reviews } from "@mui/icons-material";
+import UserReview from "../../components/Reviews/ReviewComponent";
 
 export default function WineDetail() {
   const dispatch = useDispatch();
@@ -176,8 +178,8 @@ export default function WineDetail() {
           </p>
           <p className={style.description}>{wineById?.detail}</p>
         </div>
-
-        <div className={style.backgroundReview}>
+        <UserReview />
+        {/* <div className={style.backgroundReview}>
           <div className={style.containerreview}>
             <div className={style.rating}>
               <span className={style.reviewtitle}>
@@ -199,7 +201,7 @@ export default function WineDetail() {
 
             <button className={style.myBtnCalificar}>Qualify</button>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
