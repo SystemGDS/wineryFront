@@ -11,6 +11,7 @@ import s from "./NavBar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { saveUserinDB } from "../../helpers/saveUserinDB.js";
 import BurgerMenu from "./Burguer";
+// import Admin from "../../views/Dashboard/DashboardContainer"
 
 const NavBar = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -18,6 +19,7 @@ const NavBar = () => {
 
   useEffect(() => {
     isAuthenticated && saveUserinDB(user);
+    console.log(user)
   }, [user]);
 
   return (
@@ -42,11 +44,8 @@ const NavBar = () => {
             <Link to="/contact" className={s.btn_left}>
               Contact Us
             </Link>
-            <Link to="/admin" className={s.btn_left}>
+            <Link to="/admin/users" className={s.btn_left}>
               Admin
-            </Link>
-            <Link to="/uploader" className={s.btn_left}>
-              Cargar
             </Link>
             <div className={s.right}>
               {isAuthenticated ? (

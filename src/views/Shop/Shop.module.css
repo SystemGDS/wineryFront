@@ -63,6 +63,13 @@
     font-family: "Trebuchet MS", "sans-serif";
     cursor: pointer;
     margin-top: 35px;
+    text-decoration: underline;
+    font-family: "Trebuchet MS", "sans-serif";
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #EFE1D3;
+    border-radius: 5px;
+    height: 30px;
 }
 .origin{
     margin-top: 20px;
