@@ -34,3 +34,12 @@
 .origin{
     font-style:oblique;
 }
+
+.addtocart{
+    color: rgb(255, 255, 255);
+    background-color: #5E455A;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}

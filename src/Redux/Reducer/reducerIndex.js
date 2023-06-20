@@ -7,6 +7,7 @@ import {
   DELETE_PRODUCT_FROM_CART,
   CLEAR_CART,
   SUM_CART_VALUES,
+  USER_BY_EMAIL,
   GET_ORDERS,
   PUT_PRODUCT_STATE,
   GET_PRODUCTS,
@@ -141,6 +142,14 @@ function reducerIndex(state = initialState, { type, payload }) {
       return {
         ...state,
         total: total,
+      };
+    }
+    // se trae el user por email
+    case USER_BY_EMAIL: {
+      console.log(payload);
+      return {
+        ...state,
+        user: payload,
       };
     }
     case GET_USERS:{

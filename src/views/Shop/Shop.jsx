@@ -16,6 +16,7 @@ const shop = () => {
   const dispatch = useDispatch();
   const wines = useSelector((store) => store.wines);
 
+  const [originFilter, setOriginFilter] = useState("");
   const isLoading = useSelector((store) => store.isLoading);
   const [origin, setOrigin] = useState(null);
   const [select, setSelect] = useState("");
@@ -46,8 +47,8 @@ const shop = () => {
     setCheckedItems([...newChecked]);
   };
 
-  const handleSelect = (e) => {
-    setSelect(e.target.value);
+  const handleSelect = (e) => {  
+    setOriginFilter(e.target.value);
   };
 
   const higher_At_Lower_Price = () => {
@@ -61,23 +62,20 @@ const shop = () => {
   };
 
   useEffect(() => {
-    (async function () {
+    (async () => {
       try {
         // http://localhost:3001
-        const response = await fetch("/wines");
+        const response = await fetch("http://localhost:3001/wines");
         const data = await response.json();
         const paises = [];
         await data?.forEach((el) => {
           let division = el.origin.split("-")[0];
-          division = division.slice(0, -1);
           paises.push(division);
         });
         const newarray = new Set(paises);
         const set = Array.from(newarray);
-        setOrigin([...set]);
-      } catch (error) {
-        console.log(error);
-      }
+        setOrigin(Array.from(newarray));
+      } catch (error) {}
     })();
   }, []);
 
@@ -91,7 +89,7 @@ const shop = () => {
   }, [wines]);
 
   const handleFilter = function () {
-    dispatch(getFiltersWine(checkedItems, select, name));
+    dispatch(getFiltersWine(checkedItems, originFilter, name));
     setPage(1);
     setOrder("");
   };
@@ -107,6 +105,7 @@ const shop = () => {
     });
   };
   if (isLoading) return <Loader />;
+
   return (
     <div>
       <SerchBar
@@ -156,16 +155,18 @@ const shop = () => {
 
           <select
             className={styles.countries}
-            value={select}
+            value={originFilter}
             onChange={handleSelect}
           >
             <option value="">Countries</option>
             {origin?.map((or, i) => (
-              <option value={or} key={i}>
+              <option value={or} key={i} >
                 {or}
               </option>
-            ))}
+            ))
+            }
           </select>
+          
 
           <div className={styles.mainFilter}>
             <button
