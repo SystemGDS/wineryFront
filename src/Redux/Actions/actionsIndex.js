@@ -20,6 +20,7 @@ import {
   PUT_PRODUCT_STATE,
   GET_PRODUCTS,
   GET_FAVORITES
+  GET_USERS
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -181,7 +182,7 @@ export const getUserReviews = (payload) => {
 export const getOrders = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`/orders`);
+      const response = await axios.get(`/users/orders`);
       dispatch({ type: GET_ORDERS, payload: response.data });
     } catch (error) {
       return "Order not found";
@@ -236,3 +237,10 @@ export const getProducts = () => {
     dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
+
+export const getUsers = () => {
+  return async function (dispatch) {
+    const users = (await axios.get("/users")).data
+    return dispatch({type:GET_USERS, payload: users })
+  }
+}

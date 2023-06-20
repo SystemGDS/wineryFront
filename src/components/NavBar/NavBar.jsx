@@ -42,7 +42,7 @@ const NavBar = () => {
             <Link to="/contact" className={s.btn_left}>
               Contact Us
             </Link>
-          
+
             <div className={s.right}>
               {isAuthenticated ? (
                 <>

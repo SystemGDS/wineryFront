@@ -13,6 +13,7 @@ import {
   GET_PRODUCTS,
   CREATE_PRODUCTS,
   CREATE_CATEGORY,
+  GET_USERS
 } from "../Actions/actionsTypes.js";
 
 export const initialState = {
@@ -20,6 +21,8 @@ export const initialState = {
   cart: [],
   user: {},
   total: 0,
+  allUsers: [],
+  allOrders: []
 };
 
 function reducerIndex(state = initialState, { type, payload }) {
@@ -43,7 +46,7 @@ function reducerIndex(state = initialState, { type, payload }) {
     case GET_ORDERS:
       return {
         ...state,
-        wines: payload,
+        allOrders: payload,
       };
     case GET_PRODUCTS:
       return {
@@ -148,6 +151,12 @@ function reducerIndex(state = initialState, { type, payload }) {
         ...state,
         user: payload,
       };
+    }
+    case GET_USERS:{
+      return{
+        ...state,
+        allUsers: payload
+      }
     }
 
     default:
