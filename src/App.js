@@ -23,7 +23,7 @@ import NewWine from "./views/Dashboard/NewWine";
 
 // axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.baseURL =
-  /*  "https://wineryback-production.up.railway.app" || */ "http://localhost:3001";
+  "https://wineryback-production.up.railway.app" || "http://localhost:3001";
 
 export default function App() {
   const { isLoading, isAuthenticated } = useAuth0();
