@@ -1,9 +1,6 @@
 import React from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import Loader from "./components/Loader/Loader";
-import { ProtectedRouter } from "./components/ProtectedRouter/ProtectedRouter.jsx";
 import UserComponent from "./views/User/UserComponent";
 
 import NavBar from "./components/NavBar/NavBar.jsx";
@@ -19,11 +16,10 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loader from "./components/Loader/Loader";
 import { ProtectedRouter } from "./components/ProtectedRouter/ProtectedRouter.jsx";
-import Payments from "./views/Dashboard/Payments"
-import User from "./views/Dashboard/User"
+import Payments from "./views/Dashboard/Payments";
+import User from "./views/Dashboard/User";
 import Wines from "./views/Dashboard/Wines";
-import NewWine from "./views/Dashboard/NewWine"
-
+import NewWine from "./views/Dashboard/NewWine";
 
 // axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.baseURL =
