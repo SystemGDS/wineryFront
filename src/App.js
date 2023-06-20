@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import UserComponent from "./views/User/UserComponent";
-
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Home from "./views/Home/Home.jsx";
@@ -21,9 +20,8 @@ import User from "./views/Dashboard/User";
 import Wines from "./views/Dashboard/Wines";
 import NewWine from "./views/Dashboard/NewWine";
 
-// axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL =
-  "https://wineryback-production.up.railway.app" || "http://localhost:3001";
+//axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://wineryback-production.up.railway.app" 
 
 export default function App() {
   const { isLoading, isAuthenticated } = useAuth0();

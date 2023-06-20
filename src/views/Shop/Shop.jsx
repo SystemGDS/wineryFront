@@ -202,17 +202,21 @@ const shop = () => {
                 if (order === "min") return a.price - b.price;
               })
               .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
-              .map((wine) => (
-                <Card
-                  id={wine?.id}
-                  key={wine?.id}
-                  name={wine?.name}
-                  image={wine?.image}
-                  price={wine?.price}
-                  origin={wine?.origin}
-                  category={wine?.category}
-                ></Card>
-              ))}
+              .map((wine) =>
+                (wine.stock > 0 && !wine.banned  )?
+                  <Card 
+                    id={wine?.id}
+                    key={wine?.id}
+                    name={wine?.name}
+                    image={wine?.image}
+                    price={wine?.price}
+                    origin={wine?.origin}
+                    category={wine?.category}
+                  ></Card>
+                : null
+              
+              
+              )}
           </div>
         ) : (
           <div style={{ textAlign: "center", width: "100%" }}>
