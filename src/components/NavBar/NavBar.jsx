@@ -19,6 +19,7 @@ const NavBar = () => {
 
   useEffect(() => {
     isAuthenticated && saveUserinDB(user);
+    console.log(user)
   }, [user]);
 
   return (
