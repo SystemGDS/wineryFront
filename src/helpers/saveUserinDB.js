@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export async function saveUserinDB(user) {
   try {
     const USERDB = {
@@ -5,7 +7,7 @@ export async function saveUserinDB(user) {
       name: user.given_name,
       userName: user.nickname,
     };
-    const response = await fetch(`/users`, {
+    const response = await axios(`/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

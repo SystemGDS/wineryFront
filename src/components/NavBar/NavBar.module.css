@@ -67,7 +67,10 @@
   gap: 15px;
   color: #ffffff;
   margin-right: -15px;
-  padding: 8px 400px;
+  position:static;
+  margin-left: 150px;
+  margin-top: 8px;
+  justify-content: center;
   font-weight: bold;
   font-size: large;
   align-items: center;

@@ -11,7 +11,7 @@ import axios from "axios";
 
 export default function AccountInfo() {
   const { user, isAuthenticated } = useAuth0();
-  const localUser = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   let { id } = useParams();
 
@@ -22,6 +22,7 @@ export default function AccountInfo() {
   function reverseString(str) {
     return str.split("-").reverse().join("-");
   }
+
   return (
     isAuthenticated && (
       <>
@@ -30,33 +31,34 @@ export default function AccountInfo() {
             <div className={s.AccountInfo}>
               <div className={s.AInfoCard}>
                 <div className={s.topInfo}>
-                  <h3 className={s.accountName}> {user.nickname}</h3>
+                  <h3 className={s.accountName}>
+                    {" "}
+                    <u>Contact Info</u>
+                  </h3>
                 </div>
                 <div>
                   <div className={s.infoBody}>
                     <img
-                      src={localUser.image || user.picture}
+                      src={user.picture}
                       alt="userPic"
                       className={s.profilePic}
                     />
+
                     <div className={s.contactInfo}>
                       <h2>
-                        <u>Contant info</u>
+                        <u className={s.contactEmoji}>👥</u>
                       </h2>
-                      <hr />
-                      {/* <h4>
-                        • <u>Default Billing Address:</u>{" "}
-                        {user[0].addressLineOne
-                          .toLowerCase()
-                          .replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
-                        , {""}
-                        {user[0].addressLineTwo
-                          .toLowerCase()
-                          .replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
-                        .
-                      </h4> */}
                       <h4>
-                        • <u>Phone number:</u> {user.email}.
+                        • <u>Username:</u> {user.nickname}
+                      </h4>
+                      <h4>
+                        • <u>Birthday:</u> {user.birthday}
+                      </h4>
+                      <h4>
+                        • <u>Direction:</u> {user.direction}.
+                      </h4>
+                      <h4>
+                        • <u>Email:</u> {user.email}
                       </h4>
                     </div>
                   </div>
