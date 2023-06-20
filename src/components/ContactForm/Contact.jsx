@@ -1,16 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import validate from "./ValidateContact";
 import s from "../ContactForm/Contact.module.css";
-import axios from "axios";
-import { toast } from "react-toastify";
 import TextField from "@mui/material/TextField";
-//IMPORTO EMAILJS, SWAL y LAS VARIABLES DE ENTORNO SEGUN ME DICE EL TUTORIAL
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
-// const { REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_PUBLIC_KEY } =
-//   process.env;
+import axios from "axios";
+//import { toast } from "react-toastify";
 
 const SERVICE_ID = process.env.REACT_APP_SERVICE_ID;
 const TEMPLATE_ID = process.env.REACT_APP_TEMPLATE_ID;
@@ -18,14 +14,7 @@ const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY;
 
 export default function Contact() {
   const dispatch = useDispatch();
-  const [error, setError] = useState({
-    name: "",
-    lastname: "",
-    phone: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [errors, setErrors] = useState({});
   const [textField, setTextField] = useState({
     name: "",
     lastname: "",
@@ -35,32 +24,82 @@ export default function Contact() {
     message: "",
   });
 
-  const handleChange = (e) => {
-    setTextField({ ...textField, [e.target.name]: e.target.value });
+  const [isTouched, setIsTouched] = useState(false); // Nuevo estado para controlar si el formulario ha sido tocado
+
+  const validate = (values) => {
+    const errors = {};
+
+    // Validación del campo "name"
+    if (!values.name) {
+      errors.name = "Name is required";
+    } else if (!/^[a-zA-Z\s]+$/.test(values.name)) {
+      errors.name = "Name cannot contain numbers";
+    }
+
+    // Validación del campo "lastname"
+    if (!values.lastname) {
+      errors.lastname = "Lastname is required";
+    } else if (!/^[a-zA-Z\s]+$/.test(values.lastname)) {
+      errors.lastname = "Lastname cannot contain numbers";
+    }
+
+    // Validación del campo "email"
+    if (!values.email) {
+      errors.email = "Email is required";
+    } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(values.email)) {
+      errors.email = "Invalid email format";
+    }
+
+    // Validación del campo "phone"
+    if (!values.phone) {
+      errors.phone = "Phone number is required";
+    } else if (!/^\d{10}$/.test(values.phone)) {
+      errors.phone = "Phone number must have 10 digits";
+    }
+
+    // Validación del campo "subject"
+    if (!values.subject) {
+      errors.subject = "Subject is required";
+    }
+
+    // Validación del campo "message"
+    if (!values.message) {
+      errors.message = "Message is required";
+    }
+
+    return errors;
   };
 
-  const isButtonDisabled = () => !(textField.name && textField.lastname);
+  const [submitted, setSubmitted] = useState(false);
 
-  console.log(SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY);
+  // useEffect(() => {
+  //   if (submitted) {
+  //     toast.success("Thank you! Your message was sent successfully");
+  //     setSubmitted(false);
+  //   }
+  // }, [submitted]);
+
+  useEffect(() => {
+    const validationErrors = validate(textField);
+    setErrors(validationErrors);
+  }, [textField]);
+
+  const handleChange = (e) => {
+    setTextField({ ...textField, [e.target.name]: e.target.value });
+    setIsTouched(true); // Actualizar el estado isTouched cuando el usuario comienza a escribir
+  };
+
+  const isFormInvalid = () => {
+    return Object.values(errors).some((error) => error);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //setError(textField);
-    setError(validate(textField));
-    if (typeof error === "object") return;
-    console.log(error);
-    await postMessage();
-    setTextField({
-      name: "",
-      lastname: "",
-      phone: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
-    toast.success("Thank you! Your message was sent successfully");
-    console.log(handleSubmit);
+    const validationErrors = validate(textField);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) return;
 
+    await postMessage();
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, PUBLIC_KEY).then(
       (result) => {
         console.log(result.text);
@@ -73,12 +112,20 @@ export default function Contact() {
         console.log(error.text);
         Swal.fire({
           icon: "error",
-          title: "Ooops, something went wrong",
+          title: "Oops, something went wrong",
           text: error.text,
         });
       }
     );
-    e.target.reset();
+    setSubmitted(true);
+    setTextField({
+      name: "",
+      lastname: "",
+      phone: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
   };
 
   const postMessage = async () => {
@@ -91,14 +138,12 @@ export default function Contact() {
       message: textField.message.trim(),
     };
     try {
-      const post = await axios.post(
-        "https://submit-form.com/RwQl1rfK",
-        newMessage
-      );
+      await axios.post("https://submit-form.com/RwQl1rfK", newMessage);
     } catch (e) {
       console.log(e);
     }
   };
+
   return (
     <div className={s.headContainer}>
       <h1 className={s.centerTitle1}>
@@ -141,8 +186,9 @@ export default function Contact() {
                         name="name"
                         onChange={handleChange}
                         type="text"
+                        error={isTouched && Boolean(errors?.name)}
+                        helperText={isTouched && errors?.name}
                       />
-                      {error?.name && <p className={s.error}>{error?.name}</p>}
                     </div>
                     <div className={s.FormGroup}>
                       <TextField
@@ -157,10 +203,9 @@ export default function Contact() {
                         name="lastname"
                         onChange={handleChange}
                         type="text"
+                        error={isTouched && Boolean(errors?.lastname)}
+                        helperText={isTouched && errors?.lastname}
                       />
-                      {error?.lastname && (
-                        <p className={s.error}>{error?.lastname}</p>
-                      )}
                     </div>
 
                     <div className={s.FormGroup}>
@@ -176,10 +221,9 @@ export default function Contact() {
                         name="email"
                         onChange={handleChange}
                         type="text"
+                        error={isTouched && Boolean(errors?.email)}
+                        helperText={isTouched && errors?.email}
                       />
-                      {error?.email && (
-                        <p className={s.error}>{error?.email}</p>
-                      )}
                     </div>
                     <div className={s.FormGroup}>
                       <TextField
@@ -194,47 +238,46 @@ export default function Contact() {
                         name="phone"
                         onChange={handleChange}
                         type="text"
+                        error={isTouched && Boolean(errors?.phone)}
+                        helperText={isTouched && errors?.phone}
                       />
-                      {error?.phone && (
-                        <p className={s.error}>{error?.phone}</p>
-                      )}
                     </div>
                     <TextField
                       variant="filled"
                       color="success"
                       focused
                       className={s.FormControl}
-                      label="SUBJECT"
-                      id="fullWidthf"
-                      placeholder="Wines"
+                      label="Subject"
+                      id="fullWidth"
+                      placeholder="Write the subject here"
                       value={textField.subject}
                       name="subject"
                       onChange={handleChange}
                       type="text"
+                      error={isTouched && Boolean(errors?.subject)}
+                      helperText={isTouched && errors?.subject}
                     />
-                    {error?.subject && (
-                      <p className={s.error}>{error?.subject}</p>
-                    )}
-                    <div className={s.FormGroupMessage}>
-                      <TextField
-                        className={s.FormControl}
-                        variant="filled"
-                        color="success"
-                        focused
-                        label="Message"
-                        id="fullWidth"
-                        placeholder="Write your message here..."
-                        value={textField.message}
-                        name="message"
-                        multiline
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className={s.FormGroupButtons}>
+                    <TextField
+                      variant="filled"
+                      color="success"
+                      focused
+                      className={s.FormControl}
+                      label="Your Message"
+                      id="fullWidth"
+                      placeholder="Write your message here"
+                      value={textField.message}
+                      name="message"
+                      onChange={handleChange}
+                      multiline
+                      rows={4}
+                      error={isTouched && Boolean(errors?.message)}
+                      helperText={isTouched && errors?.message}
+                    />
+                    <div className={s.FormGroup}>
                       <button
-                        disabled={isButtonDisabled()}
+                        className={s.appButton}
                         type="submit"
-                        className={s.formButton}
+                        disabled={isFormInvalid()}
                       >
                         SEND
                       </button>
