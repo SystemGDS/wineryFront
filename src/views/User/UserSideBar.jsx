@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import s from "./UserSideBar.module.css";
 import LogOutButton from "../../components/LogOutButton/LogOutButton";
 import EditAccount from "./EditAccount";
-import Wishlist from "./Wishlist";
+
 import UserReviews from "./UserReviews";
 import AccountInfo from "./AccountInfo";
 // import ReviewsSharpIcon from "@mui/icons-material/ReviewsSharp";
@@ -62,11 +62,7 @@ export default function UserSideBar() {
                   setIsReviews(false);
                   setIsInfo(false);
                 }}
-              >
-                <h3 className={s.iconh}>
-                  <AppShortcutSharpIcon fontSize="medium" /> Your wish list
-                </h3>
-              </li>
+              ></li>
               <li
                 className={s.listItem}
                 onClick={() => {
@@ -78,7 +74,7 @@ export default function UserSideBar() {
               >
                 <h3 className={s.iconh}>
                   <RateReviewSharpIcon fontSize="medium" />
-                  Your reviews
+                  Your purchases
                 </h3>
               </li>
               <li className={s.listItem}>
@@ -90,7 +86,6 @@ export default function UserSideBar() {
         <div className={s.page}>
           {isInfo && <AccountInfo />}
           {isActive && <EditAccount />}
-          {isWish && <Wishlist />}
           {isReviews && <UserReviews />}
         </div>
       </div>

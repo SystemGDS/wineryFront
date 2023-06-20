@@ -9,7 +9,7 @@
     align-items: center;
     margin-bottom: 40px;
 justify-content: left; 
-margin-left: 75px;
+margin-left: 60px;
 
 }
 
@@ -23,17 +23,20 @@ margin-left: 75px;
 
 
 
+
+
+
 /* ///////////////////// ACCOUNT INFORMATION /////////////////////// */
 
 .AccountInfo {
-    width: 100%;
+    width: 125%;
     padding-left: 10%;
     padding-right: 10%;
     margin-left: 10%;
-    background-color: #d4d8d7;
+    background-color: #B09DAC;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     height: 60vh;
-    margin-top: 4.8%;
+    margin-top: 5.8%;
     border-radius: 15px;
 }
 
@@ -47,6 +50,8 @@ margin-left: 75px;
 .accountName {
     font-size: 28pt;
     width: 400px;
+    text-align: center;
+    margin-right: -20px;
 }
 
 .topInfo p {
@@ -62,20 +67,31 @@ margin-left: 75px;
 .profilePic {
     width: 200px;
     height: 200px;
-    border: solid 5pt #6a5592;;
+    border: solid 5pt #5E455A;
     border-radius: 15px;
 }
 
 .contactInfo {
-    width: 60%;
+    width: 100%;
+    margin-top: -30px;
 }
 
 .contactInfo h4 {
     color: rgb(0, 0, 0);
+    justify-content: center;
+    text-align: center;
 }
 
 .AInfoCard {
     padding-bottom: 30%;
+}
+
+.contactEmoji{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin-right: -50px;
 }
 
 /* //////////////////// EDIT ACCOUNT FORM //////////////////////// */
@@ -84,10 +100,10 @@ margin-left: 75px;
 .EditContainer {
     width: 100%;
     padding-left: 20%;
-    padding-right: 30%;
-    padding-top: 2%;
-    margin-left: 10%;
-    background-color: #d4d8d7;
+    padding-right: 20%;
+    padding-top: 1%;
+    margin-left: 35px;
+    background-color: #B09DAC;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     height: 90%;
     margin-top: 5.1%;
@@ -98,15 +114,19 @@ margin-left: 75px;
 .EditCard form {
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 20px;
     width: 500px;
-    height: min-content;
+    height: 200px;
     line-height: 42pt;
 }
 
 .formSection {
     display: flex;
     flex-direction: column;
+}
+
+.addinformation{
+    margin-left: 165px;
 }
 
 .formSection button {
@@ -123,14 +143,18 @@ margin-left: 75px;
     display: flex;
     flex-direction: column;
     width: 300px;
+    font-weight: bold;
 }
 
 .formInput input {
-    height: 21pt;
+    height: 25pt;
 }
 
 .sendButton{
-    margin-top: 15px;
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    margin-left: -105px;
 }
 
 /* ////////////////////  WISHLIST   //////////////////////// */
@@ -160,7 +184,7 @@ margin-left: 75px;
     padding-left: 15%;
     padding-right: 15%;
     margin-left: 40%; */
-    background-color: #d4d8d7;
+    background-color: #B09DAC;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     height: 60%;
     margin-top: 8.2%;
@@ -266,7 +290,7 @@ padding-top: 4%;
     padding-right: 5%;
     padding-top: 15px;
     margin-left: 20%;
-    background-color: #d4d8d7;
+    background-color: #B09DAC;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     height: 80%;
     margin-top: 7.9%;

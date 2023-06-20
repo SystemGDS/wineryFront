@@ -47,6 +47,7 @@ export default function App() {
         <Route path="/admin/payments" element={<Payments />} />
         <Route path="/admin/wines" element={<Wines />} />
         <Route path="/admin/newwine" element={<NewWine />} />
+
         <Route path="/uploader" element={<Cargar />} />
 
         <Route element={<ProtectedRouter isAuthenticated={isAuthenticated} />}>
