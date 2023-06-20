@@ -138,7 +138,7 @@ export const sendToCart = (payload) => {
 export const getOrders = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`/orders`);
+      const response = await axios.get(`/users/orders`);
       dispatch({ type: GET_ORDERS, payload: response.data });
     } catch (error) {
       return "Order not found";

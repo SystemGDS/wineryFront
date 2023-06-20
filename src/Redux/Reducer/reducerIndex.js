@@ -20,7 +20,8 @@ export const initialState = {
   cart: [],
   user: {},
   total: 0,
-  allUsers: []
+  allUsers: [],
+  allOrders: []
 };
 
 function reducerIndex(state = initialState, { type, payload }) {
@@ -44,7 +45,7 @@ function reducerIndex(state = initialState, { type, payload }) {
     case GET_ORDERS:
       return {
         ...state,
-        wines: payload,
+        allOrders: payload,
       };
     case GET_PRODUCTS:
       return {

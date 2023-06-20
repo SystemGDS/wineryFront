@@ -9,7 +9,6 @@ import axios from "axios"
 import { Button, Modal, Card, Form, Image} from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { handleImageUpload} from "../../components/LoaderImage/imgbbImageLoader"
 
 function Wines() {
     const dispatch = useDispatch()
@@ -25,10 +24,34 @@ function Wines() {
         category: '',
         stock: '',
         price: '',
-        image: '',
     });
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const maxPage = Math.ceil(wines.length / perPage)
+
+  
+
+  const handleImageUpload = async (event) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', event.target.files[0]);
+
+      const response = await axios.post(`https://api.imgbb.com/1/upload?key=a4af5b7bd04c5237eca393c653cba89d`, 
+        // key: imgBBUploader, // Reemplaza con API key
+        formData,
+      );
+      // Obtén la URL de la imagen cargada
+      const imageURL = response.data.data.display_url;
+      // setImageUrl(imageURL);
+      // Haz algo con la respuesta, como mostrar el enlace a la imagen cargada
+      setSelectedImage(imageURL)
+      console.log(imageURL);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
 
 
     function sliceWines() {
@@ -67,13 +90,16 @@ function Wines() {
         if (Object.values(errores).some(valor => valor !== '')) {
             return;
         }
+
+        
+
         const changes = {
             id: producto.id,
             name: document.getElementById('nameWine').value ? document.getElementById('nameWine').value : null,
             winery: document.getElementById('wineryWine').value ? document.getElementById('wineryWine').value : null,
             origin: document.getElementById('originWine').value ? document.getElementById('originWine').value : null,
             detail: document.getElementById('detailWine').value ? document.getElementById('detailWine').value : null,
-            image: document.getElementById('imageWine').value ? document.getElementById('imageWine').value : null,
+            image: selectedImage ? selectedImage : null,
             category: document.getElementById('categoryWine').value ? document.getElementById('categoryWine').value : null,
             stock: document.getElementById('stockWine').value ? document.getElementById('stockWine').value : null,
             price: document.getElementById('priceWine').value ? document.getElementById('priceWine').value : null,
@@ -110,11 +136,11 @@ function Wines() {
         const category = document.getElementById('categoryWine').value;
         const stock = document.getElementById('stockWine').value;
         const price = document.getElementById('priceWine').value;
-        const image = document.getElementById('imageWine').value;
+        // const image = document.getElementById('imageWine').value;
 
-        if(image === "") errores.image = ""
-        if(image.length > 0 && /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(image)) errores.image = ""
-        if(image.length > 0 && !/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(image)) errores.image = "The link must be an image"
+        // if(image === "") errores.image = ""
+        // if(image.length > 0 && /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(image)) errores.image = ""
+        // if(image.length > 0 && !/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(image)) errores.image = "The link must be an image"
 
 
         if(name === "") errores.name = ""
@@ -137,7 +163,7 @@ function Wines() {
         if(category === "") errores.category = ""
         if(category.length && category.length < 3 ) errores.category = "The name must have at least 3 characters"
         if(category.length && category.length > 30 ) errores.category = "The name must not exceed 30 characters"
-        if(category.length >= 3 && name.category <= 60) errores.category = ""
+        if(category.length >= 3 && category.length <= 60) errores.category = ""
 
 
         if(stock >= 0) errores.stock = ""
@@ -159,7 +185,7 @@ function Wines() {
 
     useEffect(() => {
         dispatch(getWines());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         setPage(1);
@@ -172,9 +198,9 @@ function Wines() {
             <div className='w-auto'>
                 <Sidebar />
             </div>
-            <div className='col'>
+            <div className='col bg-light'>
                 <Navbar />
-                <div className='p-5 bg-light bg-white rounded p-4'>
+                <div className='p-5 bg-white rounded p-4'>
                     <table className='table caption-top'>
                         <caption className='text-black fs-4'>Wines</caption>
                         <thead>
@@ -221,10 +247,8 @@ function Wines() {
                                     <Form>
                                         <Form.Group controlId="imageWine">
                                             <div className='d-flex justify-content-center align-items-center'> <Image src={producto.image} style={{ maxWidth: '300px', maxHeight: '200px' }} fluid /></div>
-                                            <Form.Control type="text" placeholder={producto.image} onChange={validarInputs} isInvalid={errores.image !== ''} />
-                                            <Form.Control.Feedback type="invalid">
-                                                {errores.image}
-                                            </Form.Control.Feedback>
+                                            <Form.Control type="file"  accept="image/*" onChange={handleImageUpload}  />
+                                    
                                         </Form.Group>
 
                                         <Form.Group controlId="nameWine">

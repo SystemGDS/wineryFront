@@ -16,11 +16,12 @@ import { ProtectedRouter } from "./components/ProtectedRouter/ProtectedRouter.js
 import Payments from "./views/Dashboard/Payments"
 import User from "./views/Dashboard/User"
 import Wines from "./views/Dashboard/Wines";
+import NewWine from "./views/Dashboard/NewWine"
 
 
-axios.defaults.baseURL = "http://localhost:3001";
-// axios.defaults.baseURL =
-//   "https://wineryback-production.up.railway.app" || "http://localhost:3001";
+// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL =
+  "https://wineryback-production.up.railway.app" || "http://localhost:3001";
 
 export default function App() {
   const { isLoading, isAuthenticated } = useAuth0();
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/admin/users" element={<User />} />
         <Route path="/admin/payments" element={<Payments />} />
         <Route path="/admin/wines" element={<Wines />} />
+        <Route path="/admin/newwine" element={<NewWine />} />
         <Route path="/uploader" element={<Cargar />} />
 
         <Route element={<ProtectedRouter isAuthenticated={isAuthenticated} />}>

@@ -11,9 +11,9 @@ function Sidebar() {
   return (
     <div className='sidebar d-flex justify-content-between text-white flex-column bg-dark py-3 ps-3 pe-5 vh-100'>
         <div>
-            <a href="" className='p-3 text-decoration-none text-white'>
+            <Link className='p-3 text-decoration-none text-white'>
                 <span className='fs-3'>Henry winery</span>
-            </a>
+            </Link>
             <hr className='text-secondary mt-2'/>
             <ul className='nav nav-pills flex-column mt-3'>
                 {/* <li className={active === 1? 'active nav-item p-2 m1' : "nav-item p-2 m1"} onClick={e => setActive(1)}>
@@ -41,7 +41,7 @@ function Sidebar() {
                     </Link>
                 </li>
                 <li className={active === 5? 'active nav-item p-2 m1' : "nav-item p-2 m1"} onClick={e => setActive(5)}>
-                    <Link to="/report" className='p-1 text-decoration-none text-white'>
+                    <Link to="/admin/newwine" className='p-1 text-decoration-none text-white'>
                         <i className='bi bi-plus-square me-3 fs-5'></i>
                         <span className='fs-4'>New wine</span>
                     </Link>
@@ -51,10 +51,10 @@ function Sidebar() {
         <div>
             <hr className='text-white'/>
             <div className='nav-item p-2'>
-                    <a href="" className='p-1 text-decoration-none text-white'>
+                    <Link className='p-1 text-decoration-none text-white'>
                         <i className='bi bi-person-circle me-3 fs-4'></i>
                         <span className='fs-4'>Perfil</span>
-                    </a>
+                    </Link>
                 </div>
         </div>
     </div>
