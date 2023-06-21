@@ -16,9 +16,11 @@
 
 .cardsContainer {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100vw;
 }
+
 
 .filterContainer{
     display: flex;
@@ -29,9 +31,13 @@
 .categoryContainer{
     display: flex;
     flex-direction: column;
-    min-width: 200px;
-    background-color: #5E455A;
-    justify-content: flex-start;
+    background-color: #212529;
+    margin: 20px;
+    padding: 20px;
+    height: auto;
+    border-radius: 20px;
+    color: white;
+  width: 15%;
 }
 
 
@@ -40,7 +46,6 @@
     font-family: "Trebuchet MS", "sans-serif";
     margin-bottom: 20px;
     text-align: center;
-    background-color: #EFE1D3;
     border-radius: 10px;
 }
 
@@ -67,7 +72,6 @@
     font-family: "Trebuchet MS", "sans-serif";
     margin-bottom: 20px;
     text-align: center;
-    background-color: #EFE1D3;
     border-radius: 5px;
     height: 30px;
 }
@@ -77,30 +81,30 @@
     align-self: center;
     font-family: "Trebuchet MS", "sans-serif";
     text-decoration: underline;
-    background-color: #EFE1D3;
     border-radius: 10px;
-    width: 55%;
-    height: 65px;
+
 }
 
 
 .mainFilter{
     margin-top: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 
  .buttonFilter{
     display: inline-block;
-    padding: 12px 10px;
+    padding: 12px;
     font-size: 14px;
     font-weight: bold;
     font-family: "Trebuchet MS", "sans-serif";
     text-align: center;
-    background-color: #B09DAC;
     border-radius: 10px;
     cursor: pointer;
     border: none;
+    margin: 6px;
 } 
 
 .buttonFilter:hover{

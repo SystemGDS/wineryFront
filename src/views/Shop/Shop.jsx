@@ -110,7 +110,7 @@ const shop = () => {
     <div>
       <div className={styles.filterContainer}>
         <div className={styles.categoryContainer}>
-          <p className={styles.filter}>Filters and Categories</p>
+          <p className={styles.filter}>Filters by categories</p>
 
           <div className={styles.containerWines}>
             <label className={styles.labelFilter}>
@@ -143,16 +143,12 @@ const shop = () => {
             </label>
           </div>
 
-          <div className={styles.origin}>
-            <p>Origin</p>
-          </div>
-
           <select
             className={styles.countries}
             value={originFilter}
             onChange={handleSelect}
           >
-            <option value="">Countries</option>
+            <option value="">Filter by countries</option>
             {origin?.map((or, i) => (
               <option value={or} key={i} >
                 {or}
@@ -172,7 +168,8 @@ const shop = () => {
             <button className={styles.buttonFilter} onClick={clearFilters}>
               Clear Filters
             </button>
-          </div>
+        
+
           <button
             className={styles.buttonFilter}
             onClick={higher_At_Lower_Price}
@@ -185,6 +182,9 @@ const shop = () => {
           >
             Lower to Higher Price
           </button>
+
+          </div>
+
         </div>
 
         {Array.isArray(wines) && wines?.length !== 0 ? (
@@ -206,6 +206,8 @@ const shop = () => {
                     price={wine?.price}
                     origin={wine?.origin}
                     category={wine?.category}
+                    stock={wine?.stock}
+                    banned={wine?.banned}
                   ></Card>
                 : null
               

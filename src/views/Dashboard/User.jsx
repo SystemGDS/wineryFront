@@ -1,6 +1,5 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-// import Navbar from './Navbar'
 import axios from "axios"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect} from 'react'

@@ -44,7 +44,7 @@ export default function SerchBar() {
                   aria-label="Search"
                   style={{ maxWidth: 400 }}
                   />
-                <Button onClick={(event) => handleSubmit(event)} variant="outline-success">Search</Button>
+                <Button onClick={(event) => handleSubmit(event)} variant="secondary">Search</Button>
               </Form> 
   );
 }

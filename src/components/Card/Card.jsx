@@ -6,8 +6,10 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/Actions/actionsIndex.js";
 import { toast } from "react-toastify";
 
-export default function Card({ name, image, price, id, origin }) {
+export default function Card({ name, image, price, id, origin, stock, banned, category }) {
   const dispatch = useDispatch();
+
+  const deshabilitado =  stock === 0 || banned === true
 
   const handleAddToCart = () => {
     const product = { id, name, image, price };
@@ -19,18 +21,33 @@ export default function Card({ name, image, price, id, origin }) {
   };
 
   return (
-    <div className={styles.contCard}>
-      <Link to={`/detail/${id}`}>
-        <div className={styles.name}>
-          {name[0].toUpperCase() + name.slice(1)}
+    // <div className={styles.contCard}>
+    //   <Link to={`/detail/${id}`}>
+    //     <div className={styles.name}>
+    //       {name[0].toUpperCase() + name.slice(1)}
+    //     </div>
+    //     <img src={image} alt="Card thumbnail" className={styles.image}></img>
+    //     <div className={styles.price}>{"$" + price}</div>
+    //     <div className={styles.origin}>{origin}</div>
+    //   </Link>
+    //   <button className={styles.addtocart} onClick={handleAddToCart}>
+    //     Add to Cart
+    //   </button>
+    // </div>
+
+    <div style={{boxShadow: '0 3px 5px rgba(0, 0, 0, 0.2)'}} key={id} className={`${styles.card__container} ${deshabilitado ? styles.disabled : ''}`} >
+      <Link to={`/detail/${id}`} className={styles.card_link}>
+        <div>
+          <img src={image} alt={name} />
         </div>
-        <img src={image} alt="Card thumbnail" className={styles.image}></img>
-        <div className={styles.price}>{"$" + price}</div>
-        <div className={styles.origin}>{origin}</div>
+        <hr className='text-secondary mt-2' />
+        <div className={styles.card__text}>
+          <h1>{name}</h1>
+          <p>{origin}</p>
+          <p>{category}</p>
+          <h4>${price}</h4>
+        </div>
       </Link>
-      <button className={styles.addtocart} onClick={handleAddToCart}>
-        Add to Cart
-      </button>
     </div>
   );
 }
