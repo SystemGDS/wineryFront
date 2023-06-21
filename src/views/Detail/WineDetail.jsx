@@ -39,15 +39,29 @@ export default function WineDetail() {
     }
   }
 
+  // const handleAddToCart = () => {
+  //   const product = {
+  //     id: wineById.id,
+  //     name: wineById.name,
+  //     image: wineById.image,
+  //     price: wineById.price,
+  //   };
+
+  //   dispatch(addToCart(product));
+  // };
+
   const handleAddToCart = () => {
     const product = {
       id: wineById.id,
       name: wineById.name,
       image: wineById.image,
       price: wineById.price,
+      stock:wineById.stock,
+      quantity: quantity
     };
-
-    dispatch(addToCart(product));
+    for (let i = 0; i < quantity; i++) {
+      dispatch(addToCart(product));
+    }
   };
 
   const getById = (id) => {
@@ -61,9 +75,17 @@ export default function WineDetail() {
   const addQuantity = () => {
     if (wineById.stock > quantity) {
       setQuantity(quantity + 1);
+    }else{
       toast.warn("Stock limit");
     }
   };
+
+  // const addQuantity = () => {
+  //   if (wineById.stock > quantity) {
+  //     setQuantity(quantity + 1);
+  //     toast.warn("Stock limit");
+  //   }
+  // };
 
   const removeQuantity = () => {
     if (quantity > 1) {
@@ -130,6 +152,7 @@ export default function WineDetail() {
                 <button
                   onClick={addQuantity}
                   className={style.plusBtn}
+                  readOnly
                 >
                   +
                 </button>
