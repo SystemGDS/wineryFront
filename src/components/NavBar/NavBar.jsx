@@ -1,10 +1,12 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+// import { faHome } from "@fortawesome/free-solid-svg-icons";
 import LogInButton from "../LoginButton/LoginButton";
 import s from "./NavBar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -12,9 +14,9 @@ import { saveUserinDB } from "../../helpers/saveUserinDB.js";
 import BurgerMenu from "./Burguer";
 // import Admin from "../../views/Dashboard/DashboardContainer"
 
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useLocation } from "react-router-dom";

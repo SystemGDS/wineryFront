@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
-import Navbar from './Navbar'
+// import Navbar from './Navbar'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { useSelector, useDispatch } from 'react-redux'
 import Pagination from '../../components/Pagination/Pagination.jsx'

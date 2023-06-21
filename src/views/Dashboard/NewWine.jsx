@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 import { Button, Card, Form } from 'react-bootstrap';
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';

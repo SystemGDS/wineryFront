@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameWine } from "../../Redux/Actions/actionsIndex";
-import styles from "./SearchBar.module.css";
-import buscar from "../../img/buscar.png";
-import { ToastContainer } from "react-toastify";
+// import styles from "./SearchBar.module.css";
+// import buscar from "../../img/buscar.png";
+// import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';

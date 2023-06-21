@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { React, useState } from "react";
 import s from "./UserSideBar.module.css";
 import LogOutButton from "../../components/LogOutButton/LogOutButton";
@@ -8,7 +9,7 @@ import AccountInfo from "./AccountInfo";
 // import ReviewsSharpIcon from "@mui/icons-material/ReviewsSharp";
 import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
-import AppShortcutSharpIcon from "@mui/icons-material/AppShortcutSharp";
+// import AppShortcutSharpIcon from "@mui/icons-material/AppShortcutSharp";
 import RateReviewSharpIcon from "@mui/icons-material/RateReviewSharp";
 
 export default function UserSideBar() {
