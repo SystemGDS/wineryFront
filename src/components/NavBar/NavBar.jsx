@@ -55,7 +55,7 @@ const NavBar = () => {
               </Nav>
               <Nav className="d-flex align-items-center ">
               {
-               isAuthenticated && user.isAdmin
+               isAuthenticated && !user.isAdmin
                ? <Link to="/admin/users" className="nav-link ml-2 mr-2 text-white" >Dashboard</Link>
                : null
               }
