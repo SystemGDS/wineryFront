@@ -18,7 +18,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const GET_USER_REVIEWS = "GET_USER_REVIEWS";
 
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
-
+export const POST_FAVORITES = "POST_FAVORITES";
 export const GET_FAVORITES = "GET_FAVORITES";
 
 export const USER_BY_EMAIL = "USER_BY_EMAIL";

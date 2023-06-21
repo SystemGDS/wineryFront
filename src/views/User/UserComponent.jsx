@@ -11,7 +11,6 @@ export default function UserComponent() {
         <div className={s.NavBar}>
           <NavBar />
         </div>
-
         <div className={s.UserContainer}>
           <UserSideBar />
         </div>

@@ -7,10 +7,10 @@
     flex-direction: row;
      position: static; 
     align-items: center;
-    margin-bottom: 40px;
-justify-content: left; 
-margin-left: 60px;
-
+    margin-bottom: 35px;
+    margin-top: 20px;
+    justify-content: left; 
+    margin-left: 50px;
 }
 
 .foot{
@@ -20,11 +20,6 @@ margin-left: 60px;
     width: 100%;
 
 }
-
-
-
-
-
 
 /* ///////////////////// ACCOUNT INFORMATION /////////////////////// */
 
@@ -36,7 +31,7 @@ margin-left: 60px;
     background-color: #B09DAC;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     height: 60vh;
-    margin-top: 5.8%;
+    margin-top: 5.2%;
     border-radius: 15px;
 }
 
@@ -48,38 +43,44 @@ margin-left: 60px;
 }
 
 .accountName {
-    font-size: 28pt;
+    font-size: 24pt;
     width: 400px;
+    margin-top: 25px;
     text-align: center;
     margin-right: -20px;
 }
 
 .topInfo p {
     color: rgb(0, 0, 0);
+    
 }
 
 .infoBody {
     display: flex;
     flex-direction: row;
     gap: 30px;
+ 
 }
 
 .profilePic {
     width: 200px;
     height: 200px;
+    margin-top: 20px;
     border: solid 5pt #5E455A;
     border-radius: 15px;
 }
 
 .contactInfo {
     width: 100%;
-    margin-top: -30px;
+    margin-top: 20px;
+
 }
 
 .contactInfo h4 {
     color: rgb(0, 0, 0);
     justify-content: center;
     text-align: center;
+    font-size: 16pt;
 }
 
 .AInfoCard {
@@ -98,15 +99,16 @@ margin-left: 60px;
 
 
 .EditContainer {
-    width: 100%;
+    width: 150%;
     padding-left: 20%;
     padding-right: 20%;
-    padding-top: 1%;
+    padding-top: 3%;
     margin-left: 35px;
     background-color: #B09DAC;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     height: 90%;
-    margin-top: 5.1%;
+    
+    margin-top: 5.4%;
     border-radius: 15px;
 }
 
@@ -151,11 +153,18 @@ margin-left: 60px;
 }
 
 .sendButton{
-    margin-top: 45px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
-    margin-left: -105px;
+    margin-left: 235px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 20px;
+    cursor: pointer;
 }
+
+
+
 
 /* ////////////////////  WISHLIST   //////////////////////// */
 

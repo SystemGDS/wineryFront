@@ -3,24 +3,33 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Rating from "@mui/material/Rating";
-import style from "./WineDetail.module.css";
-import axios from "axios";
+import { toast } from "react-toastify";
+
 import { WineDataProvider } from "../../utils/WineDataProvider";
 import { sendToCart, addToCart } from "../../Redux/Actions/actionsIndex";
-import { toast } from "react-toastify";
+import axios from "axios";
+
+import style from "./WineDetail.module.css";
 
 export default function WineDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const user = useSelector((state) => state.user);
-  const [wineById, setWineById] = useState(null);
   const wines = useSelector((state) => state.wines);
-
   const cart = useSelector((state) => state.cart);
 
-  async function detallesvino() {
+  const [wineById, setWineById] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [rating, setRating] = useState(0);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    detallesVino();
+  }, []);
+
+  const detallesVino = async () => {
     try {
-      // http://localhost:3001
       const json = await axios.get(`/wines/${id}`);
       const wine = await json.data;
 
@@ -29,22 +38,6 @@ export default function WineDetail() {
       console.log(error);
     }
   }
-  useEffect(() => {
-    detallesvino();
-  }, []);
-
-  //const handleClick = (e) => {
-  //e.preventDefault();
-  //const existe = cart.filter((e) => {
-  //return (e?.id === wines.id)
-  //})?.length > 0
-  //if (existe) {
-  //console.log("funciona");
-  //return
-  //}
-  //dispatch(postProductCart(cart));
-
-  //}
 
   const handleAddToCart = () => {
     const product = {
@@ -53,36 +46,30 @@ export default function WineDetail() {
       image: wineById.image,
       price: wineById.price,
     };
-    console.log(product);
+
     dispatch(addToCart(product));
   };
 
-  const [quantity, setQuantity] = useState(1);
   const getById = (id) => {
     WineDataProvider.wineById(id).then((res) => console.log(res));
   };
-  const navigate = useNavigate();
+
   const goBack = () => {
     navigate(-1);
   };
-  const AddQuantity = () => {
+
+  const addQuantity = () => {
     if (wineById.stock > quantity) {
       setQuantity(quantity + 1);
       toast.warn("Stock limit");
     }
   };
-  const RemoveQuantity = () => {
+
+  const removeQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
-
-  // const HandleCart = () => {
-  //   let product = { wineById };
-  //   dispatch(sendToCart(wineById));
-  // };
-
-  const [rating, setRating] = useState(0);
 
   return (
     <>
@@ -91,7 +78,7 @@ export default function WineDetail() {
           <h3>Back</h3>
         </div>
       </div>
-      <div className={style.detailBody}></div>
+
       <div className={style.detailBody}>
         <div className={style.containerP}>
           <div className={style.imageContainer}>
@@ -111,7 +98,6 @@ export default function WineDetail() {
 
             <div className={style.masterdiv}>
               <div className={style.infoblockcontainer}>
-                <div className={style.infoblock}></div>
                 <p className={style.p}>
                   <span className={style.span}>
                     • <u> Category:</u>
@@ -129,17 +115,25 @@ export default function WineDetail() {
                     • <u> Price:</u> $ {wineById?.price}.
                   </span>
                 </p>
+                <div className="d-flex text-align-center align-items justify-content-center">
                 <button
-                  onClick={() => RemoveQuantity()}
+                  onClick={removeQuantity}
                   className={style.minusBtn}
                 >
                   -
                 </button>
-                <input className={style.input} value={quantity}></input>
-                <button onClick={() => AddQuantity()} className={style.plusBtn}>
+                <input
+                  className={style.input}
+                  value={quantity}
+                  readOnly
+                ></input>
+                <button
+                  onClick={addQuantity}
+                  className={style.plusBtn}
+                >
                   +
                 </button>
-
+                </div>
                 <div
                   style={{
                     width: "100%",
@@ -147,8 +141,10 @@ export default function WineDetail() {
                     justifyContent: "center",
                   }}
                 >
-                  {/* {() => HandleCart()} */}
-                  <button className={style.myBtn} onClick={handleAddToCart}>
+                  <button
+                    className={style.myBtn}
+                    onClick={handleAddToCart}
+                  >
                     Add to Cart
                   </button>
                 </div>
@@ -156,17 +152,7 @@ export default function WineDetail() {
             </div>
           </div>
         </div>
-        {/* 
-        <div className={style.containerdescription}>
-          <div>
-            <span className={style.descriptiontitle}>
-              {" "}
-              <u>Description</u>
-            </span>
-          </div>
-          <p className={style.p}></p>
-          <p className={style.description}>{wineById?.detail}</p>
-        </div> */}
+
         <div className={style.containerdescription}>
           <p className={style.p}>
             <span className={style.descriptiontitle}>
@@ -204,4 +190,4 @@ export default function WineDetail() {
     </>
   );
 }
-/*eslint-enable */
+/*eslint-enable */
