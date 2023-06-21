@@ -25,7 +25,6 @@ import "./stylenav.css"
 
 const NavBar = () => {
   const { isAuthenticated, user } = useAuth0();
-  const isAdmin = undefined;
 
   useEffect(() => {
     isAuthenticated && saveUserinDB(user);
@@ -55,7 +54,11 @@ const NavBar = () => {
               }
               </Nav>
               <Nav className="d-flex align-items-center ">
-              <Link to="/admin/users" className="nav-link ml-2 mr-2 text-white" >Dashboard</Link>
+              {
+               isAuthenticated && user.isAdmin
+               ? <Link to="/admin/users" className="nav-link ml-2 mr-2 text-white" >Dashboard</Link>
+               : null
+              }
               <Link to="/" className="nav-link ml-2 mr-2 text-white" ><i className="bi bi-heart-fill fs-5"></i></Link>
               <Link to="/cart" className="nav-link ml-2 mr-2 text-white" ><i className="bi bi-cart3 fs-4"></i></Link>
               {/* <Link to="/admin/users" className="navbar-brand" ><i className="bi bi-box-arrow-right fs-4"></i></Link> */}

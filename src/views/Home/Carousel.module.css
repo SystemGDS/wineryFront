@@ -1,12 +1,9 @@
 .slideshowContainer {
     max-width: 100%;
     position: relative;
-    margin: 30px;
-    margin-top: 35px;
-    margin-bottom: 5px;
+    margin: auto;
     background-color: var(--color1);
     min-height: 35vw;
-    outline: 0.8rem solid #5C6067;
   }
   
   .dotContainer {

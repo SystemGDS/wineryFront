@@ -66,10 +66,8 @@
   display: flex;
   gap: 15px;
   color: #ffffff;
-  margin-right: -15px;
   position:static;
-  margin-left: 150px;
-  margin-top: 8px;
+  margin-left: 15px;
   justify-content: center;
   font-weight: bold;
   font-size: large;
