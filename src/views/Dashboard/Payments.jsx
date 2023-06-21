@@ -84,7 +84,6 @@ export default function Payments() {
         <Sidebar />
       </div>
       <div className='col bg-light'>
-        <Navbar />
         <div className='p-5 bg-light bg-white rounded p-4'>
           <table className='table caption-top '>
             <caption className='text-black fs-4'>Payments</caption>

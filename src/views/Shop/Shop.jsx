@@ -108,12 +108,6 @@ const shop = () => {
 
   return (
     <div>
-      <SerchBar
-        searchName={name}
-        handleChangeName={handleChangeName}
-        handleFilter={handleFilter}
-      />
-      <div style={{ height: "50px" }}></div>
       <div className={styles.filterContainer}>
         <div className={styles.categoryContainer}>
           <p className={styles.filter}>Filters and Categories</p>
