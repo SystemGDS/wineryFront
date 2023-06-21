@@ -19,10 +19,17 @@
     max-height: 450px;
   }
   
+
   .card__container:hover {
     cursor: pointer;
     color: #742a68;
   }
+
+  /* .card__container:hover {
+    cursor: pointer;
+    color: #742a68;
+  } */
+
   
   .card__container h1 {
     width: 200px;
@@ -35,10 +42,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     width: 200px;
     height: 200px;
   }
   
+
+
+    align-self: center;
+}
+.icon {
+    height: 25px;
+    cursor: pointer;
+  }
+  
+  
+
   .card__container div img {
     max-width: 180px;
     max-height: 180px;
@@ -55,4 +74,13 @@
     opacity: 0.5;
     pointer-events: none;
     /* Otros estilos para mostrar como deshabilitado */
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+  
+  .icon:hover {
+    color: red;
+
   }

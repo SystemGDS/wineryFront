@@ -116,6 +116,7 @@ export const sumCartValues = () => {
     type: SUM_CART_VALUES,
   };
 };
+
 ////////////////////////**CART**/////////////////////////
 
 export const sendToCart = (payload) => {
