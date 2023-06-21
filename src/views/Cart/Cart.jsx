@@ -74,10 +74,12 @@ const Cart = () => {
         email: user.email,
       },
     };
+    
     try {
       const response = await axios.post("/payment", payment);
       window.location.href = response.data;
       handleClearCart();
+      console.log(payment)
     } catch (error) {
       console.log(error.message);
     }
