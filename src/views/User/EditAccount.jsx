@@ -122,7 +122,7 @@ export default function EditAccount() {
 
                 <div></div>
                 <button
-                  disabled={isButtonDisabled}
+                  disabled={isButtonDisabled()}
                   type="submit"
                   className={s.sendButton}
                 >

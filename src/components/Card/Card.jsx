@@ -5,6 +5,10 @@ import styles from "./Card.module.css";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/Actions/actionsIndex.js";
 import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartS } from "@fortawesome/free-solid-svg-icons";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function Card({ name, image, price, id, origin }) {
   const dispatch = useDispatch();
@@ -28,6 +32,7 @@ export default function Card({ name, image, price, id, origin }) {
         <div className={styles.price}>{"$" + price}</div>
         <div className={styles.origin}>{origin}</div>
       </Link>
+      <FavoriteIcon className={styles.icon} />
       <button className={styles.addtocart} onClick={handleAddToCart}>
         Add to Cart
       </button>

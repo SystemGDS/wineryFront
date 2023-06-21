@@ -156,17 +156,7 @@ export default function WineDetail() {
             </div>
           </div>
         </div>
-        {/* 
-        <div className={style.containerdescription}>
-          <div>
-            <span className={style.descriptiontitle}>
-              {" "}
-              <u>Description</u>
-            </span>
-          </div>
-          <p className={style.p}></p>
-          <p className={style.description}>{wineById?.detail}</p>
-        </div> */}
+
         <div className={style.containerdescription}>
           <p className={style.p}>
             <span className={style.descriptiontitle}>
