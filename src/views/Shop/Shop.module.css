@@ -37,17 +37,18 @@
     height: auto;
     border-radius: 20px;
     color: white;
-  width: 15%;
+    width: 20%;
 }
 
 
 .filter{
-    text-decoration: underline;
+    /* text-decoration: underline; */
     text-transform: uppercase;    
     font-family: "Trebuchet MS", "sans-serif";
     margin-bottom: 10px;
     text-align: center;
     border-radius: 10px;
+    font-size: 1.8rem;
 }
 
 .labelFilter{
