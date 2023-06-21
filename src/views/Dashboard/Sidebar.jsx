@@ -9,11 +9,8 @@ function Sidebar() {
     const [active, setActive] = useState("")
 
   return (
-    <div className='sidebar d-flex justify-content-between text-white flex-column bg-dark py-3 ps-3 pe-5 vh-100'>
+    <div className='sidebar d-flex justify-content-between text-white flex-column bg-dark ps-3 pe-4 vh-100'>
         <div>
-            <Link className='p-3 text-decoration-none text-white'>
-                <span className='fs-3'>Henry winery</span>
-            </Link>
             <hr className='text-secondary mt-2'/>
             <ul className='nav nav-pills flex-column mt-3'>
                 {/* <li className={active === 1? 'active nav-item p-2 m1' : "nav-item p-2 m1"} onClick={e => setActive(1)}>

@@ -7,7 +7,7 @@
 }
 
 .pagination input {
-    width: 30px;
+    width: 40px;
     text-align: center;
 }
 
@@ -29,4 +29,10 @@
     /* margin-top: 0;
     margin-bottom: -50px;
     border-bottom: 10px solid #B09DAC; */
+}
+
+.max_page{
+    color: white;
+    margin: 20px;
+    font-size: 1.2rem;
 }

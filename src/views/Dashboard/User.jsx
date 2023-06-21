@@ -1,6 +1,5 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import Navbar from './Navbar'
 import axios from "axios"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect} from 'react'
@@ -64,7 +63,6 @@ function User() {
         <Sidebar />
       </div>
       <div className='col bg-light'>
-        <Navbar />
         <div className='p-5 bg-white rounded p-4'>
           <table className='table caption-top '>
             <caption className='text-black fs-4'>Users</caption>

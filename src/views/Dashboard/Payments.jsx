@@ -71,70 +71,95 @@
 //     handleShow()
 //   };
 
-//   return (
-//     <div className='d-flex'>
-//       <ToastContainer/>
-//       <div className='w-auto'>
-//         <Sidebar />
-//       </div>
-//       <div className='col bg-light'>
-//         <Navbar />
-//         <div className='p-5 bg-light bg-white rounded p-4'>
-//           <table className='table caption-top '>
-//             <caption className='text-black fs-4'>Payments</caption>
-//             <thead>
-//               <tr>
-//                 <th scope='col'>Id order</th>
-//                 <th scope='col'>userId</th>
-//                 <th scope='col'>Date order</th>
-//                 <th scope='col'>Total</th>
-//                 <th scope='col'>Order status</th>
-//                 <th scope='col'>Order detail</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {
-//                 orders.map(order => {
-//                   return (
-//                     <tr key={order.id}>
-//                       <th scope='row' className='align-middle'>{order.id}</th>
-//                       <td className='align-middle'>{order.userId}</td>
-//                       <td className='align-middle'>{order.datePayment}</td>
-//                       <td className='align-middle'>{`$${order.total}`}</td>
-//                       <td className='align-middle'>
-//                       <Form.Select as='select' size='sm'style={{maxWidth:300}} id="defaultValue" value={order.statusDetail}  onChange={(event) => handleSelectChange(event, order)}>
-//                         {
-//                           statusOrder.map(sta => {
-//                             return (
-//                               <option key={sta} value={sta}>{sta}</option>
-//                             )
-//                           })
-//                         }
-//                         </Form.Select>
-//                       </td>
-//                       <td className='align-middle'><button type='button' className='btn btn-outline-secondary btn-sm'><i className="bi bi-eye-fill fs-5"></i></button></td>
-//                     </tr>
-//                   )
-//                 })
-//               }
-//             </tbody>
-//           </table>
-//           <Modal show={show} onHide={handleClose}>
-//         <Modal.Header closeButton>
-//           <Modal.Title>Confirm change</Modal.Title>
-//         </Modal.Header>
-//         <Modal.Body>Do you want to proceed with the change? Confirm to continue.</Modal.Body>
-//         <Modal.Footer>
-//           <Button variant="secondary" onClick={handleClose}>
-//             Close
-//           </Button>
-//           <Button variant="primary" onClick={saveChanges}>
-//             Save Change
-//           </Button>
-//         </Modal.Footer>
-//       </Modal>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+useEffect(() => {
+  getOrders();
+}, []);
+
+const handleSelectChange = (event, order) => {
+  setInitialValue(order.statusDetail);
+  setOrderId(order.id);
+  setSelectedOption(event.target.value);
+  handleShow();
+};
+
+return (
+  <div className="d-flex">
+    <ToastContainer />
+    <div className="w-auto">
+      <Sidebar />
+    </div>
+    <div className="col bg-light">
+      <div className="p-5 bg-light bg-white rounded p-4">
+        <table className="table caption-top ">
+          <caption className="text-black fs-4">Payments</caption>
+          <thead>
+            <tr>
+              <th scope="col">Id order</th>
+              <th scope="col">userId</th>
+              <th scope="col">Date order</th>
+              <th scope="col">Total</th>
+              <th scope="col">Order status</th>
+              <th scope="col">Order detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order) => {
+              return (
+                <tr key={order.id}>
+                  <th scope="row" className="align-middle">
+                    {order.id}
+                  </th>
+                  <td className="align-middle">{order.userId}</td>
+                  <td className="align-middle">{order.datePayment}</td>
+                  <td className="align-middle">{`$${order.total}`}</td>
+                  <td className="align-middle">
+                    <Form.Select
+                      as="select"
+                      size="sm"
+                      style={{ maxWidth: 300 }}
+                      id="defaultValue"
+                      value={order.statusDetail}
+                      onChange={(event) => handleSelectChange(event, order)}
+                    >
+                      {statusOrder.map((sta) => {
+                        return (
+                          <option key={sta} value={sta}>
+                            {sta}
+                          </option>
+                        );
+                      })}
+                    </Form.Select>
+                  </td>
+                  <td className="align-middle">
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary btn-sm"
+                    >
+                      <i className="bi bi-eye-fill fs-5"></i>
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirm change</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Do you want to proceed with the change? Confirm to continue.
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={saveChanges}>
+              Save Change
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    </div>
+  </div>
+);

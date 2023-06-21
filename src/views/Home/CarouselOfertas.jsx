@@ -116,7 +116,7 @@ const ofertas = [
 
 function CarrouselOfertas() {
   return (
-    <div className="m-5">
+    <div className="m-6">
       <div className={style.flexContainer}>
         <h2 className={style.our}>Our </h2>
         <h2 className={style.topwines}>Top Wines</h2>
@@ -133,7 +133,7 @@ function CarrouselOfertas() {
           keyboard={{
             enabled: true,
           }}
-          className="mySwiper m-4 justify-content-center w-100"
+          className="m-3 "
           breakpoints={{
             0: {
               slidesPerView: 1,
