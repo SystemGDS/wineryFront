@@ -133,6 +133,10 @@
 }
 
 
+.reviewtitle {
+  font-weight: bold;
+
+
   .myBtnCalificar {
     margin-top: 10px;
     align-self: center;
@@ -209,6 +213,7 @@
  }
 .reviewtitle {
   font-weight: bold;
+
 
 }
 

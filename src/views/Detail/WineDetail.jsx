@@ -1,4 +1,3 @@
-/*eslint-disable */
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +9,9 @@ import { sendToCart, addToCart } from "../../Redux/Actions/actionsIndex";
 import axios from "axios";
 
 import style from "./WineDetail.module.css";
+
+import { Reviews } from "@mui/icons-material";
+import UserReview from "../../components/Reviews/ReviewComponent";
 
 export default function WineDetail() {
   const dispatch = useDispatch();
@@ -37,6 +39,9 @@ export default function WineDetail() {
     } catch (error) {
       console.log(error);
     }
+
+  };
+
   }
 
   // const handleAddToCart = () => {
@@ -50,6 +55,7 @@ export default function WineDetail() {
   //   dispatch(addToCart(product));
   // };
 
+
   const handleAddToCart = () => {
     const product = {
       id: wineById.id,
@@ -59,9 +65,11 @@ export default function WineDetail() {
       stock:wineById.stock,
       quantity: quantity
     };
+
     for (let i = 0; i < quantity; i++) {
       dispatch(addToCart(product));
     }
+
   };
 
   const getById = (id) => {
@@ -86,6 +94,7 @@ export default function WineDetail() {
   //     toast.warn("Stock limit");
   //   }
   // };
+
 
   const removeQuantity = () => {
     if (quantity > 1) {
@@ -138,6 +147,7 @@ export default function WineDetail() {
                   </span>
                 </p>
                 <div className="d-flex text-align-center align-items justify-content-center">
+
                 <button
                   onClick={removeQuantity}
                   className={style.minusBtn}
@@ -156,6 +166,7 @@ export default function WineDetail() {
                 >
                   +
                 </button>
+
                 </div>
                 <div
                   style={{
@@ -164,10 +175,12 @@ export default function WineDetail() {
                     justifyContent: "center",
                   }}
                 >
+
                   <button
                     className={style.myBtn}
                     onClick={handleAddToCart}
                   >
+
                     Add to Cart
                   </button>
                 </div>
@@ -185,32 +198,9 @@ export default function WineDetail() {
           </p>
           <p className={style.description}>{wineById?.detail}</p>
         </div>
-
-        <div className={style.backgroundReview}>
-          <div className={style.containerreview}>
-            <div className={style.rating}>
-              <span className={style.reviewtitle}>
-                •<u> Review:</u>
-              </span>{" "}
-              <Rating name="RateReview" value={rating} />
-              <p>Your review is {rating} stars.</p>
-            </div>
-
-            <textarea
-              value={""}
-              className={style.textarea}
-              placeholder="Rate this product!"
-              type="textarea"
-              rows={5}
-              cols={5}
-              maxLength="100"
-            ></textarea>
-
-            <button className={style.myBtnCalificar}>Qualify</button>
-          </div>
-        </div>
+        {wineById && <UserReview wineId={wineById.id} />}
       </div>
     </>
   );
 }
-/*eslint-enable */
+

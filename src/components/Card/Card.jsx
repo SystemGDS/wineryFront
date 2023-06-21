@@ -6,7 +6,6 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartS } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
-
 // import { postFavorite, deleteFavorites } from "../../redux/actions/actionIndex";
 
 // import { addToCart } from "../../Redux/Actions/actionsIndex.js";
@@ -24,6 +23,7 @@ export default function Card({
   // const dispatch = useDispatch();
 
   const deshabilitado = stock === 0 || banned === true;
+
 
   // const handleAddToCart = () => {
   //   const product = { id, name, image, price };
@@ -49,6 +49,9 @@ export default function Card({
     //   </button>
     // </div>
 
+
+    <div style={{boxShadow: '0 3px 5px rgba(0, 0, 0, 0.2)'}} key={id} className={`${styles.card__container} ${deshabilitado ? styles.disabled : ''}`} >
+
     <div
       style={{ boxShadow: "0 3px 5px rgba(0, 0, 0, 0.2)" }}
       key={id}
@@ -56,11 +59,16 @@ export default function Card({
         deshabilitado ? styles.disabled : ""
       }`}
     >
+
       <Link to={`/detail/${id}`} className={styles.card_link}>
         <div>
           <img src={image} alt={name} />
         </div>
+
+        <hr className='text-secondary mt-2' />
+
         <hr className="text-secondary mt-2" />
+
         <div className={styles.card__text}>
           <h1>{name}</h1>
           <p>{origin}</p>
@@ -68,9 +76,12 @@ export default function Card({
           <h4>${price}</h4>
         </div>
       </Link>
+
+
       {/* <button className={styles.addtocart} onClick={handleAddToCart}>
         Add to Cart
       </button> */}
+
     </div>
   );
 }
