@@ -2,6 +2,7 @@
     display: block;
     align-items: center;
     width: 100%;
+    background-color: #EFE1D3;
 }
 
 .map {
@@ -39,7 +40,6 @@
     margin-top: 30px;
     margin-bottom: 30px;
     color: #5E455A;
-    text-decoration: underline;
 }
 
 a{
