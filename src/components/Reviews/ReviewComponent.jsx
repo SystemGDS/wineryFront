@@ -6,14 +6,42 @@ import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { saveUserinDB } from "../../helpers/saveUserinDB.js";
 
-//import style from "../Reviews/Reviews.module.css";
+import styles from "./Reviews.module.css";
 
-export default function UserReview() {
+export default function UserReview({ wineId }) {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
 
+  const { isAuthenticated, user } = useAuth0();
+
+  /**
+   * Toda la informacion que necesitaas para hacer elreview
+   * {
+   *    userEmail:¨user.email, Con este correo vas a buscar el userID en el back no en el front!
+   *    wineId,
+   *    rating,
+   *    descriptions
+   * }
+   */
+  async function userDB(email) {
+    const userByEmail = (await axios.get("/users/email")).data;
+    return userByEmail;
+  }
+
+  const dispatch = useDispatch();
+
   console.log("consolel log del rating", rating);
   console.log("consolel log del rating", review);
+
+  // useEffect(() => {
+  //   if (isAuthenticated && user) {
+  //     userDB(user.email);
+  //     console.log(
+  //       "este es el console log de user DB =============",
+  //       userDB(user.email)
+  //     );
+  //   }
+  // }, []);
 
   // const user = useDispatch((store) => store.user);
 
@@ -36,14 +64,10 @@ export default function UserReview() {
     setRating(value);
   };
 
-  const { isAuthenticated, user } = useAuth0();
-
   useEffect(() => {
-    isAuthenticated && saveUserinDB(user);
-    console.log(
-      "======================este es el console log del useeffect del saveUser=============================",
-      user
-    );
+    if (isAuthenticated) {
+      console.log("``````user is authenticated!", user);
+    }
   }, [user]);
 
   const handleReviewChange = (event) => {
@@ -61,14 +85,16 @@ export default function UserReview() {
 
     // Ejemplo de solicitud POST utilizando axios
     const data = {
-      userId: user.id, // Reemplaza con el ID de usuario actual
-      wineId: 456, // Reemplaza con el ID del producto actual
+      userId: user.email, // Reemplaza con el ID de usuario actual
+      wineId, // Reemplaza con el ID del producto actual
       comment: review,
       stars: rating,
     };
 
+    console.log(data);
+
     axios
-      .post("/api/reviews", data)
+      .post("https://localhost:3001/users/review", data)
       .then((response) => {
         // Manejo de la respuesta de éxito de la solicitud
         toast.success("Review submitted successfully!");
@@ -84,32 +110,33 @@ export default function UserReview() {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <span>
-            •<u> Review:</u>
-          </span>{" "}
+    <div className={styles.backgroundReview}>
+      <span>
+        <u> Review:</u>
+      </span>
+      {isAuthenticated && (
+        <>
           <Rating
             name="RateReview"
             value={rating}
             onChange={handleRatingChange}
           />
           <p>Your review is {rating} stars.</p>
-        </div>
 
-        <textarea
-          value={review}
-          onChange={handleReviewChange}
-          placeholder="Rate this product!"
-          type="textarea"
-          rows={5}
-          cols={5}
-          maxLength="100"
-        ></textarea>
+          <textarea
+            className={styles.textarea}
+            value={review}
+            onChange={handleReviewChange}
+            placeholder="Rate this product!"
+            type="textarea"
+            rows={5}
+            cols={5}
+            maxLength="100"
+          ></textarea>
 
-        <button onClick={handleSubmit}>Qualify</button>
-      </div>
+          <button onClick={handleSubmit}>Qualify</button>
+        </>
+      )}
     </div>
   );
 }

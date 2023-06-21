@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 import { Button, Card, Form } from 'react-bootstrap';
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
@@ -162,7 +162,6 @@ function NewWine() {
                 <Sidebar />
             </div>
             <div className='col bg-light'>
-                <Navbar />
                 <div className='p-5 bg-white rounded p-4 mt-4' style={{ maxWidth: '800px', margin: '0 auto ', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)' }}>
                     <Card >
                         <Card.Body>
