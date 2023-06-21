@@ -6,8 +6,9 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartS } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
-import { useDispatch } from "react-redux";
-import { postFavorite, deleteFavorites } from "../../redux/actions/actionIndex";
+
+// import { postFavorite, deleteFavorites } from "../../redux/actions/actionIndex";
+
 // import { addToCart } from "../../Redux/Actions/actionsIndex.js";
 
 export default function Card({
@@ -22,11 +23,6 @@ export default function Card({
 }) {
   // const dispatch = useDispatch();
 
-  const { user } = useAuth0();
-  const dispatch = useDispatch();
-  const [isFav, setIsFav] = useState(false);
-  const [hearth, setHearth] = useState(FavoriteIcon);
-
   const deshabilitado = stock === 0 || banned === true;
 
   // const handleAddToCart = () => {
@@ -37,25 +33,6 @@ export default function Card({
   //     position: toast.POSITION.BOTTOM_RIGHT,
   //   });
   // };
-
-  const handleFavorite = () => {
-    if (user.email) {
-      const payload = { productId: product.id, email: user.email };
-      if (isFav) {
-        dispatch(deleteFavorites(payload));
-        setIsFav(false);
-        setHearth(FavoriteIcon);
-        toast.info("Product was removed from your wishlist");
-      } else {
-        dispatch(postFavorite(payload));
-        setIsFav(true);
-        setHearth(faHeartS);
-        toast.info("Product was added to your wishlist");
-      }
-    } else {
-      toast.warn("You must be logged in to add products to your wishlist");
-    }
-  };
 
   return (
     // <div className={styles.contCard}>
@@ -80,18 +57,6 @@ export default function Card({
       }`}
     >
       <Link to={`/detail/${id}`} className={styles.card_link}>
-        <FavoriteIcon
-          className={styles.icon}
-          onClick={() => {
-            if (!user) {
-              toast.warn(
-                "You must be logged in to add products to the wishlist"
-              );
-            } else {
-              handleFavorite();
-            }
-          }}
-        />
         <div>
           <img src={image} alt={name} />
         </div>

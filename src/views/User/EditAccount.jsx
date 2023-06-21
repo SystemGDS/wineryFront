@@ -4,13 +4,12 @@ import s from "./UserComponent.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import validateAccount from "./validateAccount";
 import { updateUser } from "../../Redux/Actions/actionsIndex";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import TextField from "@mui/material/TextField";
 
 export default function EditAccount() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-
   const [error, setError] = useState({});
 
   const [textField, setTextField] = useState({
