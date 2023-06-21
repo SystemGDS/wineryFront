@@ -5,6 +5,9 @@ import styles from "./SearchBar.module.css";
 import buscar from "../../img/buscar.png";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 
 export default function SerchBar() {
   const dispatch = useDispatch();
@@ -23,37 +26,25 @@ export default function SerchBar() {
     //que va a llamar al back y le va a pasar (name) que es lo que esta escribiendo el usuario
   }
 
-  return (
-    <div className={styles.shopBackground}>
-      <div className={styles.search}>
-        <input
-          type="text"
-          placeholder="Search wine..."
-          onChange={(event) => handleInputChange(event)}
-          className={styles.input}
-          value={name}
-        />
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      handleSubmit(event);
+    }
+  }
 
-        <button
-          type="submit"
-          onClick={(event) => handleSubmit(event)}
-          className={styles.searchButton}
-        >
-          <img src={buscar} alt="buscar" className={styles.buscar}></img>
-        </button>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-      </div>
-    </div>
+  return (
+      <Form className="d-flex">
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  value={name}
+                  onChange={(event) => handleInputChange(event)}
+                  onKeyPress={(event) => handleKeyPress(event)}
+                  aria-label="Search"
+                  style={{ maxWidth: 400 }}
+                  />
+                <Button onClick={(event) => handleSubmit(event)} variant="outline-success">Search</Button>
+              </Form> 
   );
 }
