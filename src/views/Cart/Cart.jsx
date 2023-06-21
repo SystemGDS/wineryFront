@@ -10,10 +10,14 @@ import {
   sumCartValues,
 } from "../../Redux/Actions/actionsIndex";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const total = useSelector((state) => state.total);
+  const { isAuthenticated, user } = useAuth0();
 
   const dispatch = useDispatch();
 
@@ -35,6 +39,20 @@ const Cart = () => {
   
   const handleBuy = async () => {
     // Simulate a purchase by displaying an alert with the total price
+
+    if(!isAuthenticated) {
+      return toast.info('Register to continue shopping!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+
     const items = cart.map((items) => {
       return {
 
@@ -51,9 +69,9 @@ const Cart = () => {
     const payment = {
       items,
       payer: {
-        name: "Alejandro",
-        surname: "Medina",
-        email: "ale_m@outlook.com",
+        name: user.given_name,
+        surname: user.nickname,
+        email: user.email,
       },
     };
     try {
@@ -67,6 +85,7 @@ const Cart = () => {
 
   return (
     <div className={style.mainCart}>
+      <ToastContainer/>
       <h2>
         <u>Shopping Cart</u>
       </h2>
