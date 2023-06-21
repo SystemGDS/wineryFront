@@ -2,23 +2,23 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../Redux/Actions/actionsIndex.js";
-import { toast } from "react-toastify";
+// import { useDispatch } from "react-redux";
+// import { addToCart } from "../../Redux/Actions/actionsIndex.js";
+// import { toast } from "react-toastify";
 
 export default function Card({ name, image, price, id, origin, stock, banned, category }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const deshabilitado =  stock === 0 || banned === true
 
-  const handleAddToCart = () => {
-    const product = { id, name, image, price };
-    console.log(product);
-    dispatch(addToCart(product));
-    toast.success("Your product has been added to your cart!", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-    });
-  };
+  // const handleAddToCart = () => {
+  //   const product = { id, name, image, price };
+  //   console.log(product);
+  //   dispatch(addToCart(product));
+  //   toast.success("Your product has been added to your cart!", {
+  //     position: toast.POSITION.BOTTOM_RIGHT,
+  //   });
+  // };
 
   return (
     // <div className={styles.contCard}>
