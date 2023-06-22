@@ -16,6 +16,85 @@
     margin-bottom: 25px;
     display: flex;
     text-decoration: underline;
+
+  }
+  .flexContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: larger;
+  }
+
+  .reel {
+    width: 100%;
+    padding: 5px 1px;
+    background-color: #EFE1D3;
+  }
+
+  .prodCard {
+    width: 300px;
+  }
+  .card{
+    border-width: 3px;
+    border-style: solid;
+    border-color: #000000;
+    background-color: #ffffff
+  }
+.name{
+    color: #5E455A;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.cardtop{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+}
+
+.cardbottom{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+}
+
+.cardbottom h3{
+    color: #5E455A;
+    text-align: center;
+    margin-left: 12px;
+    text-decoration: underline;
+}
+
+.category h4{
+    color: #5E455A;
+    justify-content: center;
+    margin-top: -14px;
+    display: flex;
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+/* .our {
+  font-size: 45px;
+  color: #5E455A;
+  display: flex;
+  margin-top: 25px;
+  margin-left: 40px;
+  text-decoration: underline;
+}
+
+.topwines {
+    color: #5E455A;
+    float: left;
+    font-size: 60px;
+    margin-right: 45px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    text-decoration: underline;
       
   }
   .flexContainer {
@@ -70,4 +149,4 @@
     margin-top: -14px;
     display: flex;
     margin-left: 5px;
-}
+} */

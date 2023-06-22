@@ -30,6 +30,179 @@
   height: 300px;
   overflow: hidden;
 }
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleandwish {
+  margin-bottom: 10px;
+}
+
+.masterdiv {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.infoblockcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.infoblock {
+  width: 100px;
+  height: 10px;
+  background-color: #e0e0e0;
+}
+
+.p {
+  margin: 0;
+}
+
+.span {
+  font-weight: bold;
+}
+
+.minusBtn,
+.plusBtn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.myBtn {
+  padding: 10px 20px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.containerdescription {
+  margin-top: 20px;
+}
+
+.descriptiontitle {
+  font-weight: bold;
+}
+
+.description {
+  margin-top: 10px;
+}
+
+.backgroundReview {
+  background-color: #f5f5f5;
+  padding: 20px;
+  margin-top: 20px;
+}
+.containerreview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewtitle {
+  font-weight: bold;
+}
+
+.textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.myBtnCalificar {
+  padding: 10px 20px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.h3_review{
+  text-align: center;
+}
+
+.reviewsContainer{
+  width: 100%;
+}
+
+.reviews{
+  width: 400px;
+  margin: auto;
+}
+.raiting{
+  border:1px solid black;
+  margin-bottom: 10px;
+  background-color: #C9BBC5;
+}
+.raiting p{
+  margin: 0;
+}
+.none{
+  display: none;
+}
+/* .buttonBackground {
+  display: flex;
+  justify-content: center;
+  background-color: #f5f5f5;
+  padding: 10px;
+}
+
+.backButton {
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+}
+
+.detailBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.containerP {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.imageContainer {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
 
 .image {
   width: 100%;
@@ -174,4 +347,4 @@
 }
 .none{
   display: none;
-}
+} */
