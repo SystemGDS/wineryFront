@@ -30,7 +30,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const NavBar = () => {
   const [usuario, setUsuario] = useState(null);
 
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, logout } = useAuth0();
 
   useEffect(()=>{
     const dad = async () =>{
@@ -43,6 +43,23 @@ const NavBar = () => {
     }
     dad()
   },[user])
+
+
+  useEffect(() => {
+    if (usuario && usuario.banned) {
+      logout({ returnTo: window.location.origin + "/" })
+      toast.warn('Your account has been suspended. For more details, please contact our support team.', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  },[usuario])
 
 //   const { isAuthenticated, user, logout } = useAuth0();
   
