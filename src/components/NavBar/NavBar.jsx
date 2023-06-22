@@ -29,32 +29,47 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const NavBar = () => {
   const [usuario, setUsuario] = useState(null);
-  const { isAuthenticated, user, logout } = useAuth0();
-  
-  useEffect(() => {
-    isAuthenticated && saveUserinDB(user);
-    const storedUsuario = localStorage.getItem("usuario");
-    if (storedUsuario) {
-      const parsedUsuario = JSON.parse(storedUsuario);
-      console.log(parsedUsuario)
-      if(parsedUsuario.banned){
-        toast.warn('Your account has been suspended. For more details, please contact our support team.', {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
-        logout({ returnTo: window.location.origin + "/" })
+
+  const { isAuthenticated, user } = useAuth0();
+
+  useEffect(()=>{
+    const dad = async () =>{
+      isAuthenticated && saveUserinDB(user);
+      const storedUsuario = localStorage.getItem("usuario");
+      if (storedUsuario) {
+        const parsedUsuario = JSON.parse(storedUsuario);
+        setUsuario(parsedUsuario);
       }
-      else setUsuario(parsedUsuario);
     }
+    dad()
+  },[user])
+
+//   const { isAuthenticated, user, logout } = useAuth0();
+  
+//   useEffect(() => {
+//     isAuthenticated && saveUserinDB(user);
+//     const storedUsuario = localStorage.getItem("usuario");
+//     if (storedUsuario) {
+//       const parsedUsuario = JSON.parse(storedUsuario);
+//       console.log(parsedUsuario)
+//       if(parsedUsuario.banned){
+//         toast.warn('Your account has been suspended. For more details, please contact our support team.', {
+//           position: "top-right",
+//           autoClose: 4000,
+//           hideProgressBar: false,
+//           closeOnClick: true,
+//           pauseOnHover: true,
+//           draggable: true,
+//           progress: undefined,
+//           theme: "light",
+//           });
+//         logout({ returnTo: window.location.origin + "/" })
+//       }
+//       else setUsuario(parsedUsuario);
+//     }
    
 
-  }, [user]);
+//   }, [user]);
 
 
   const location = useLocation()

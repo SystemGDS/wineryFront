@@ -151,3 +151,27 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.h3_review{
+  text-align: center;
+}
+
+.reviewsContainer{
+  width: 100%;
+}
+
+.reviews{
+  width: 400px;
+  margin: auto;
+}
+
+.raiting{
+  border:1px solid black;
+  margin-bottom: 10px;
+}
+.raiting p{
+  margin: 0;
+}
+.none{
+  display: none;
+}

@@ -9,67 +9,40 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import styles from "./Reviews.module.css";
 
-export default function UserReview({ wineId }) {
+export default function UserReview({ wineId, detallesVino }) {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
+  const [userHasReviews, setUserHasReviews] = useState(false);
 
   const { isAuthenticated, user } = useAuth0();
-
-  /**
-   * Toda la informacion que necesitaas para hacer elreview
-   * {
-   *    userEmail:¨user.email, Con este correo vas a buscar el userID en el back no en el front!
-   *    wineId,
-   *    rating,
-   *    descriptions
-   * }
-   */
-  // async function userDB(email) {
-  //   const userByEmail = (await axios.get("/users/email")).data;
-  //   return userByEmail;
-  // }
-
-  // const dispatch = useDispatch();
-
-  // console.log("consolel log del rating", rating);
-  // console.log("consolel log del rating", review);
-
-  // useEffect(() => {
-  //   if (isAuthenticated && user) {
-  //     userDB(user.email);
-  //     console.log(
-  //       "este es el console log de user DB =============",
-  //       userDB(user.email)
-  //     );
-  //   }
-  // }, []);
-
-  // const user = useDispatch((store) => store.user);
-
-  // useEffect(() => {
-  //   const getUsersFromBack = async () => {
-  //     const response = await fetch("http://localhost:3001/email", {
-  //       method: "GET",
-  //       //body: JSON.stringify({ email: user.email }),
-  //     });
-  //     const data = await response.json();
-  //     console.log(
-  //       "========================================este es el consolelog del data de POSTuser",
-  //       data
-  //     );
-  //   };
-  //   getUsersFromBack();
-  // }, []);
 
   const handleRatingChange = (event, value) => {
     setRating(value);
   };
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      console.log("user is authenticated!", user);
+  async function action(){
+    try {
+      const response = await fetch(`https://wineryback-production.up.railway.app/users/review/${user.email}/${wineId}`)
+      // const response = await fetch(`http://localhost:3001/users/review/${user.email}/${wineId}`)
+      const data = await response.json()
+      if(data.error){
+        console.log(data)
+        setUserHasReviews(false)
+        return
+      }
+      else{
+        console.log(data)
+        setUserHasReviews(true)
+      }
+    } catch (error) {
+      console.log(error)
     }
-  }, [user]);
+
+  }
+
+  useEffect(() => {
+    action()
+  }, [wineId]);
 
   const handleReviewChange = (event) => {
     setReview(event.target.value);
@@ -92,52 +65,60 @@ export default function UserReview({ wineId }) {
       stars: rating,
     };
 
-    console.log(data);
-
     axios
       .post("https://wineryback-production.up.railway.app/users/review", data)
+      // .post("http://localhost:3001/users/review", data)
       .then((response) => {
         // Manejo de la respuesta de éxito de la solicitud
         toast.success("Review submitted successfully!");
         // Restablecer los valores del estado después de enviar la reseña
         setRating(0);
         setReview("");
+      }).then(()=>{
+        action();
+        detallesVino()
       })
       .catch((error) => {
         // Manejo de errores en caso de que la solicitud falle
         toast.error("Failed to submit review.");
         console.error(error);
       });
+
+
+
   };
+  if(!isAuthenticated) return
 
   return (
-    <div className={styles.backgroundReview}>
+    <div className={`${userHasReviews ? styles.noShow : styles.backgroundReview} `}>
       <span>
         <u> Review:</u>
       </span>
-      {isAuthenticated && (
+
         <>
           <Rating
             name="RateReview"
             value={rating}
             onChange={handleRatingChange}
           />
-          <p>Your review is {rating} stars.</p>
 
-          <textarea
-            className={styles.textarea}
-            value={review}
-            onChange={handleReviewChange}
-            placeholder="Rate this product!"
-            type="textarea"
-            rows={5}
-            cols={5}
-            maxLength="100"
-          ></textarea>
+            <p>Your review is {rating} stars.</p>
+
+            <textarea
+              className={styles.textarea}
+              value={review}
+              onChange={handleReviewChange}
+              placeholder="Rate this product!"
+              type="textarea"
+              rows={5}
+              cols={5}
+              maxLength="100"
+            ></textarea>
+    
 
           <button onClick={handleSubmit}>Qualify</button>
         </>
-      )}
+  
     </div>
   );
 }
