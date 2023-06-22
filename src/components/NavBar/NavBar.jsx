@@ -15,10 +15,11 @@ import BurgerMenu from "./Burguer";
 // import Admin from "../../views/Dashboard/DashboardContainer"
 
 // import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+
+import Container from "react-bootstrap/Container";
 // import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import { useLocation } from "react-router-dom";
 import SerchBar from "../SearchBar/SearchBar";
 import "./stylenav.css"
@@ -38,6 +39,7 @@ const NavBar = () => {
   
 
   }, [user]);
+
 
   const location = useLocation()
  
@@ -83,6 +85,7 @@ const NavBar = () => {
                 : <LogInButton />
               }
               </Nav>
+
           </Container>
         </Navbar>
       </div>

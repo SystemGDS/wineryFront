@@ -21,6 +21,7 @@ import {
   GET_PRODUCTS,
   GET_FAVORITES,
   GET_USERS,
+  POST_REVIEW,
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -96,18 +97,6 @@ export function createWine(wineData) {
   };
 }
 
-////////////////////////**REVIEW**/////////////////////////
-
-export const getReviewById = (payload) => {
-  return async function (dispatch) {
-    try {
-      const respose = await axios.get(`/reviews/?productId=${payload}`);
-      dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
-    } catch (error) {
-      return "Review not found";
-    }
-  };
-};
 export const addToCart = (product) => ({
   type: ADD_TO_CART,
   payload: product.id,
@@ -127,6 +116,7 @@ export const sumCartValues = () => {
     type: SUM_CART_VALUES,
   };
 };
+
 ////////////////////////**CART**/////////////////////////
 
 export const sendToCart = (payload) => {
@@ -242,5 +232,32 @@ export const getUsers = () => {
   return async function (dispatch) {
     const users = (await axios.get("/users")).data;
     return dispatch({ type: GET_USERS, payload: users });
+  };
+};
+
+////////////////////////////////////////////////ACTIONS PARA LOS REVIEWS///////////////////////////////////
+
+export function postReview(payload) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/reviews", payload);
+      return dispatch({
+        type: POST_REVIEW,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const getReviewById = (payload) => {
+  return async function (dispatch) {
+    try {
+      const respose = await axios.get(`/reviews/?productId=${payload}`);
+      dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
+    } catch (error) {
+      return "Review not found";
+    }
   };
 };

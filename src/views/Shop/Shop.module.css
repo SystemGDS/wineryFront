@@ -37,22 +37,24 @@
     height: auto;
     border-radius: 20px;
     color: white;
-  width: 15%;
+    width: 20%;
 }
 
 
 .filter{
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    text-transform: uppercase;    
     font-family: "Trebuchet MS", "sans-serif";
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
     border-radius: 10px;
+    font-size: 1.8rem;
 }
 
 .labelFilter{
     cursor: pointer;
-    text-align: center;
-    font-family: "Trebuchet MS", "sans-serif";
+    /* text-align: center; */
+    font-family: "Trebuchet MS", "sans-serif";    
 }
 
 .mainCountries{
@@ -123,7 +125,8 @@ background-color: #EFE1D3;
     flex-direction: column;
     align-items: flex-start;
     margin-left: 40px;
-    margin-top: 10px; 
+    margin-top: 10px;
+    height: auto;
 }
 
 .filterButton1{

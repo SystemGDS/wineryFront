@@ -15,6 +15,8 @@ root.render(
   <Auth0Provider
     clientId={process.env.REACT_APP_CLIENT_ID}
     domain={process.env.REACT_APP_DOMAIN}
+    useRefreshTokens
+    cacheLocation="localstorage"
   >
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

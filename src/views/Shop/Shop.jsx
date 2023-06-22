@@ -65,7 +65,7 @@ const shop = () => {
     (async () => {
       try {
         // http://localhost:3001
-        const response = await fetch("http://localhost:3001/wines");
+        const response = await fetch("https://wineryback-production.up.railway.app/wines");
         const data = await response.json();
         const paises = [];
         await data?.forEach((el) => {

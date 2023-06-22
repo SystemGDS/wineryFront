@@ -10,7 +10,6 @@ import TextField from "@mui/material/TextField";
 export default function EditAccount() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-
   const [error, setError] = useState({});
 
   const [textField, setTextField] = useState({
@@ -122,7 +121,7 @@ export default function EditAccount() {
 
                 <div></div>
                 <button
-                  disabled={isButtonDisabled}
+                  disabled={isButtonDisabled()}
                   type="submit"
                   className={s.sendButton}
                 >
