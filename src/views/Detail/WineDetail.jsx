@@ -1,32 +1,34 @@
-/*eslint-disable */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Rating from "@mui/material/Rating";
-import { toast } from "react-toastify";
+// import Rating from "@mui/material/Rating";
+import { ToastContainer, toast } from "react-toastify";
 
 import { WineDataProvider } from "../../utils/WineDataProvider";
-import { sendToCart, addToCart } from "../../Redux/Actions/actionsIndex";
+import { addToCart } from "../../Redux/Actions/actionsIndex";
 import axios from "axios";
 
 import style from "./WineDetail.module.css";
 
+// import { Reviews } from "@mui/icons-material";
+import UserReview from "../../components/Reviews/ReviewComponent";
+import { Rating } from "@mui/material";
+
 export default function WineDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const user = useSelector((state) => state.user);
-  const wines = useSelector((state) => state.wines);
-  const cart = useSelector((state) => state.cart);
+  // const user = useSelector((state) => state.user);
+  // const wines = useSelector((state) => state.wines);
+  // const cart = useSelector((state) => state.cart);
 
   const [wineById, setWineById] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [rating, setRating] = useState(0);
+  // const [rating, setRating] = useState(0);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    detallesVino();
-  }, []);
 
   const detallesVino = async () => {
     try {
@@ -37,7 +39,22 @@ export default function WineDetail() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+  useEffect(() => {
+    detallesVino();
+  }, []);
+
+  // const handleAddToCart = () => {
+  //   const product = {
+  //     id: wineById.id,
+  //     name: wineById.name,
+  //     image: wineById.image,
+  //     price: wineById.price,
+  //   };
+
+  //   dispatch(addToCart(product));
+  // };
 
   const handleAddToCart = () => {
     const product = {
@@ -45,9 +62,13 @@ export default function WineDetail() {
       name: wineById.name,
       image: wineById.image,
       price: wineById.price,
+      stock: wineById.stock,
+      quantity: quantity,
     };
 
-    dispatch(addToCart(product));
+    for (let i = 0; i < quantity; i++) {
+      dispatch(addToCart(product));
+    }
   };
 
   const getById = (id) => {
@@ -61,16 +82,18 @@ export default function WineDetail() {
   const addQuantity = () => {
     if (wineById.stock > quantity) {
       setQuantity(quantity + 1);
+    } else {
       toast.warn("Stock limit");
+      setIsButtonDisabled(true);
     }
   };
 
   const removeQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+      setIsButtonDisabled(false);
     }
   };
-
   return (
     <>
       <div className={style.buttonBackground}>
@@ -116,23 +139,22 @@ export default function WineDetail() {
                   </span>
                 </p>
                 <div className="d-flex text-align-center align-items justify-content-center">
-                <button
-                  onClick={removeQuantity}
-                  className={style.minusBtn}
-                >
-                  -
-                </button>
-                <input
-                  className={style.input}
-                  value={quantity}
-                  readOnly
-                ></input>
-                <button
-                  onClick={addQuantity}
-                  className={style.plusBtn}
-                >
-                  +
-                </button>
+                  <button onClick={removeQuantity} className={style.minusBtn}>
+                    -
+                  </button>
+                  <input
+                    className={style.input}
+                    value={quantity}
+                    readOnly
+                  ></input>
+                  <button
+                    onClick={addQuantity}
+                    className={style.plusBtn}
+                    readOnly
+                    disabled={isButtonDisabled}
+                  >
+                    +
+                  </button>
                 </div>
                 <div
                   style={{
@@ -141,10 +163,7 @@ export default function WineDetail() {
                     justifyContent: "center",
                   }}
                 >
-                  <button
-                    className={style.myBtn}
-                    onClick={handleAddToCart}
-                  >
+                  <button className={style.myBtn} onClick={handleAddToCart}>
                     Add to Cart
                   </button>
                 </div>
@@ -162,32 +181,30 @@ export default function WineDetail() {
           </p>
           <p className={style.description}>{wineById?.detail}</p>
         </div>
-
-        <div className={style.backgroundReview}>
-          <div className={style.containerreview}>
-            <div className={style.rating}>
-              <span className={style.reviewtitle}>
-                •<u> Review:</u>
-              </span>{" "}
-              <Rating name="RateReview" value={rating} />
-              <p>Your review is {rating} stars.</p>
-            </div>
-
-            <textarea
-              value={""}
-              className={style.textarea}
-              placeholder="Rate this product!"
-              type="textarea"
-              rows={5}
-              cols={5}
-              maxLength="100"
-            ></textarea>
-
-            <button className={style.myBtnCalificar}>Qualify</button>
-          </div>
-        </div>
+        {wineById && (
+          <UserReview wineId={wineById.id} detallesVino={detallesVino} />
+        )}
       </div>
+      <h3 className={style.h3_review}>Reviews:</h3>
+      <div className={style.reviewsContainer}>
+        {wineById && wineById.reviews.length > 0 && (
+          <div className={style.reviews}>
+            {wineById.reviews.map((review) => (
+              <div className={style.raiting} key={review.id}>
+                <p>
+                  <b>Rating:</b>
+                  <Rating name="RateReview" value={review.stars} readOnly />
+                </p>
+                <p>
+                  <b>Comment:</b>{" "}
+                  <span className={style.span}>{review.comment}</span>{" "}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <ToastContainer />
     </>
   );
 }
-/*eslint-enable */
