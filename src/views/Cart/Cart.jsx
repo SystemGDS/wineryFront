@@ -78,7 +78,7 @@ const Cart = () => {
         description: items.category,
         unit_price: items.price,
         category_id: "others",
-        quantity: 1,
+        quantity: total,
       };
     });
 
