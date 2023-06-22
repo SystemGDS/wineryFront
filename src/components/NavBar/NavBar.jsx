@@ -57,6 +57,24 @@ const NavBar = () => {
     dad()
   },[user])
 
+  useEffect(() => {
+    if (usuario && usuario.banned) {
+      localStorage.setItem("usuario", JSON.stringify(""));
+      logout({ returnTo: window.location.origin + "/" })
+
+      toast.warn('Your account has been suspended. For more details, please contact our support team.', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  },[usuario])
+
 //   const { isAuthenticated, user, logout } = useAuth0();
   
 //   useEffect(() => {
