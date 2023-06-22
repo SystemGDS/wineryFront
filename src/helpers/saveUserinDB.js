@@ -23,10 +23,10 @@ export async function saveUserinDB(user) {
 
     await axios.post("/users", USERDB)
 
-    const userByEmail = (await axios.get("/users/email", {email: user.email})).data
+    const usuario = await axios.get(`/users/email/${user.email}`)
 
+    const userByEmail =  usuario.data
 
-    console.log(userByEmail)
      localStorage.setItem("usuario", JSON.stringify(userByEmail));
 
 
