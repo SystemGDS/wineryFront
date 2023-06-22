@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import {
   GET_REVIEW_BY_ID,
   GET_WINES,
@@ -14,7 +15,6 @@ import {
   CREATE_PRODUCTS,
   CREATE_CATEGORY,
   GET_USERS,
-  POST_REVIEW,
 } from "../Actions/actionsTypes.js";
 
 export const initialState = {
@@ -90,39 +90,58 @@ function reducerIndex(state = initialState, { type, payload }) {
       const existingProduct = state.cart.find(
         (product) => product.id === payload
       );
+      const productToAdd = state.wines.find(
+        (product) => product.id === payload
+      );
 
       if (existingProduct) {
         // Si el producto ya existe en el carrito
-        if (existingProduct.quantity >= 10) {
-          // Si se alcanzó el límite máximo, no se realiza ninguna modificación adicional
+        const maxQuantity = productToAdd.stock - existingProduct.quantity;
+        if (maxQuantity <= 0) {
+          // Si el stock disponible es cero o negativo, mostrar un mensaje de toast y no realizar ninguna modificación adicional
+          toast.error("There is no stock available for this product.", {
+            position: toast.POSITION.TOP_CENTER,
+          });
           return state;
         }
 
-        // Si no se ha alcanzado el límite máximo, incrementar la cantidad
+        // Actualizar la cantidad en el carrito
+        const quantityToAdd = 1;
         const updatedCart = state.cart.map((product) => {
           if (product.id === payload) {
             return {
               ...product,
-              quantity: product.quantity + 1,
+              quantity: product.quantity + quantityToAdd,
             };
           }
           return product;
         });
 
+        toast.success("Product added to cart.", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
         return {
           ...state,
           cart: updatedCart,
         };
       } else {
-        // Si el producto no existe en el carrito, agregarlo con una cantidad inicial de 1
-        const newProduct = state.wines.find(
-          (product) => product.id === payload
-        );
-        newProduct.quantity = 1;
+        // Si el producto no existe en el carrito y el stock es mayor a cero, agregarlo con una cantidad inicial de 1
+        if (productToAdd.stock <= 0) {
+          // Si el stock es cero o negativo, mostrar un mensaje de toast y no agregar al carrito
+          toast.error("There is no stock available for this product.", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          return state;
+        }
 
+        productToAdd.quantity = 1;
+
+        toast.success("Product added to cart.", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
         return {
           ...state,
-          cart: [...state.cart, newProduct],
+          cart: [...state.cart, productToAdd],
         };
       }
     }

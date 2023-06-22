@@ -118,6 +118,7 @@ const Cart = () => {
                 <img src={item.image} alt="" />
                 <p className={style.name}>{item.name}</p>
                 <p className={style.price}>{"$" + item.price}</p>
+                <span>{item.quantity}&nbsp;unity</span>
               </div>
               <button
                 className={style.delete_button}

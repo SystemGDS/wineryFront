@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import Rating from "@mui/material/Rating";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { saveUserinDB } from "../../helpers/saveUserinDB.js";
+// import { saveUserinDB } from "../../helpers/saveUserinDB.js";
 
 import styles from "./Reviews.module.css";
 
@@ -23,15 +24,15 @@ export default function UserReview({ wineId }) {
    *    descriptions
    * }
    */
-  async function userDB(email) {
-    const userByEmail = (await axios.get("/users/email")).data;
-    return userByEmail;
-  }
+  // async function userDB(email) {
+  //   const userByEmail = (await axios.get("/users/email")).data;
+  //   return userByEmail;
+  // }
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  console.log("consolel log del rating", rating);
-  console.log("consolel log del rating", review);
+  // console.log("consolel log del rating", rating);
+  // console.log("consolel log del rating", review);
 
   // useEffect(() => {
   //   if (isAuthenticated && user) {
@@ -94,7 +95,7 @@ export default function UserReview({ wineId }) {
     console.log(data);
 
     axios
-      .post("https://localhost:3001/users/review", data)
+      .post("https://wineryback-production.up.railway.app/users/review", data)
       .then((response) => {
         // Manejo de la respuesta de éxito de la solicitud
         toast.success("Review submitted successfully!");

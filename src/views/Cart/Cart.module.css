@@ -71,6 +71,7 @@ padding: 10px;
 outline: none;
 border: 5px solid rgba(255, 0, 0, 0.499);
 cursor: pointer;
+margin-left: 15px;
 }
 
 .delete_button:hover{

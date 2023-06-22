@@ -4,7 +4,7 @@ import s from "./UserComponent.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import validateAccount from "./validateAccount";
 import { updateUser } from "../../Redux/Actions/actionsIndex";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import TextField from "@mui/material/TextField";
 
 export default function EditAccount() {

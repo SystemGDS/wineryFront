@@ -1,28 +1,30 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Rating from "@mui/material/Rating";
-import { toast } from "react-toastify";
+// import Rating from "@mui/material/Rating";
+import { ToastContainer, toast } from "react-toastify";
 
 import { WineDataProvider } from "../../utils/WineDataProvider";
-import { sendToCart, addToCart } from "../../Redux/Actions/actionsIndex";
+import { addToCart } from "../../Redux/Actions/actionsIndex";
 import axios from "axios";
 
 import style from "./WineDetail.module.css";
 
-import { Reviews } from "@mui/icons-material";
+// import { Reviews } from "@mui/icons-material";
 import UserReview from "../../components/Reviews/ReviewComponent";
 
 export default function WineDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const user = useSelector((state) => state.user);
-  const wines = useSelector((state) => state.wines);
-  const cart = useSelector((state) => state.cart);
+  // const user = useSelector((state) => state.user);
+  // const wines = useSelector((state) => state.wines);
+  // const cart = useSelector((state) => state.cart);
 
   const [wineById, setWineById] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [rating, setRating] = useState(0);
+  // const [rating, setRating] = useState(0);
 
   const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ export default function WineDetail() {
 
   };
 
-  }
+  
 
   // const handleAddToCart = () => {
   //   const product = {
@@ -200,7 +202,7 @@ export default function WineDetail() {
         </div>
         {wineById && <UserReview wineId={wineById.id} />}
       </div>
+      <ToastContainer  />
     </>
   );
 }
-
