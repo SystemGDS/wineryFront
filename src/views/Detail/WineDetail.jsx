@@ -201,25 +201,25 @@ export default function WineDetail() {
                 </p>
                 <p>
                   <b>Comment:</b>{" "}
-
-//                 <span className={style.commentReview}>{review.comment}</span>{" "}
-//                 <p>
-//                   •{" "}
-//                   <b>
-//                     {" "}
-//                     <u>Rating</u>:
-//                   </b>
-//                   <Rating name="RateReview" value={review.stars} readOnly />
-//                 </p>
-//                 <p>
-//                   {" "}
-//                   •{" "}
-//                   <b>
-//                     <u>Comment:</u>
-//                   </b>{" "}
+                </p>
+                 <span className={style.commentReview}>{review.comment}</span>{" "}
+                 <p>
+                   •{" "}
+                   <b>
+                     {" "}
+                     <u>Rating</u>:
+                   </b>
+                   <Rating name="RateReview" value={review.stars} readOnly />
+                 </p>
+                 {/* <p>
+                   {" "}
+                   •{" "}
+                   <b>
+                     <u>Comment:</u>
+                  </b>{" "}
 
                   <span className={style.span}>{review.comment}</span>{" "}
-                </p>
+                </p> */}
               </div>
             ))}
           </div>
