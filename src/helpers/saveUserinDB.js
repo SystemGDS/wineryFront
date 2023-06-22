@@ -8,7 +8,7 @@ export async function saveUserinDB(user) {
       userName: user.nickname,
     };
 
-    await axios("/users", USERDB)
+    await axios.post("/users", USERDB)
 
     const userByEmail = (await axios.get("/users/email", {email: user.email})).data
 
