@@ -18,6 +18,9 @@ export default function Payments() {
   const [show, setShow] = useState(false);
   const [initialValue, setInitialValue] = useState();
   const [orderId, setOrderId] = useState();
+  const [currentOrder, setCurrentOrder] = useState()
+  const [showOrder, setShowOrder] = useState()
+
 
   const handleClose = () => {
     setShow(false);
@@ -25,6 +28,15 @@ export default function Payments() {
   const handleShow = () => {
     setShow(true);
   };
+
+  const handleCloseOrder = () => {
+    setShowOrder(false);
+  };
+  const handleShowOrder = () => {
+    setShowOrder(true);
+  };
+
+
 
   const saveChanges = () => {
     axios
@@ -77,6 +89,12 @@ export default function Payments() {
     handleShow();
   };
 
+
+  const viewOrder = (order) => {
+    handleShowOrder()
+    setCurrentOrder(order)
+  }
+
   return (
     <div className="d-flex">
       <ToastContainer />
@@ -128,12 +146,12 @@ export default function Payments() {
                       </Form.Select>
                     </td>
                     <td className="align-middle">
-                      <button
-                        type="button"
+                      <Button variant="outline-secondary" size="sm"
                         className="btn btn-outline-secondary btn-sm"
+                        onClick={() => viewOrder(order)}
                       >
                         <i className="bi bi-eye-fill fs-5"></i>
-                      </button>
+                      </Button>
                     </td>
                   </tr>
                 );
@@ -156,6 +174,33 @@ export default function Payments() {
               </Button>
             </Modal.Footer>
           </Modal>
+          <Modal show={showOrder} onHide={handleCloseOrder}>
+            <Modal.Body >
+              <div>
+              <h5>Order Details</h5>
+              <p>Order id: {currentOrder.id}</p>
+              <p>User ID: {currentOrder.userId}</p>
+              <div className="row text-align">
+                {
+                  currentOrder.items.map( wine => {
+                    return (
+                      <div className="col mb-3 d-flex justify-content-center">
+                          <p>Wine id: {wine.id}</p>
+                          <img style={{maxWidth: 100 , maxHeight: 200}} src={wine.picture_url} alt={wine.id} />
+                          <p className="fs-5">{wine.title}</p>
+                          <p className="fs-6">{wine.quantity}</p>
+                            <p className="fs-6">{wine.price}</p>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <p>Date of Purchase: {currentOrder.datePayment}</p>
+              <p>Total: {currentOrder.total}</p>
+              </div>
+            </Modal.Body>
+          </Modal>
+
         </div>
       </div>
     </div>
