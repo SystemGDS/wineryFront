@@ -182,8 +182,9 @@ export default function Payments() {
               <p>User ID: {currentOrder.userId}</p>
               <div className="row text-align">
                 {
-                  currentOrder.items.map( wine => {
-                    return (
+                  currentOrder.items &&
+                  currentOrder.items.map((wine) => {
+                     return (
                       <div className="col mb-3 d-flex justify-content-center">
                           <p>Wine id: {wine.id}</p>
                           <img style={{maxWidth: 100 , maxHeight: 200}} src={wine.picture_url} alt={wine.id} />
