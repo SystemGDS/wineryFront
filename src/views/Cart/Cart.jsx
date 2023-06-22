@@ -8,8 +8,10 @@ import {
   removeFromCart,
   clearCart,
   sumCartValues,
+  updateItemQuantity,
 } from "../../Redux/Actions/actionsIndex";
 import axios from "axios";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,6 +38,10 @@ const Cart = () => {
   
     handleSumCartValues();
   }, [dispatch]);
+
+  const handleUpdateItemQuantity = (productId, quantity) => {
+    dispatch(updateItemQuantity(productId, quantity));
+  };
   
   const handleBuy = async () => {
     // Simulate a purchase by displaying an alert with the total price
@@ -119,6 +125,18 @@ const Cart = () => {
                 <p className={style.name}>{item.name}</p>
                 <p className={style.price}>{"$" + item.price}</p>
                 <span>{item.quantity}&nbsp;unity</span>
+                <button
+                  className={style.buttonMenos}
+                  onClick={() => handleUpdateItemQuantity(item.id, -1)}
+                  >
+                  -
+                </button>
+                <button
+                  className={style.buttonMas}
+                  onClick={() => handleUpdateItemQuantity(item.id, 1)}
+                  >
+                  +
+                </button>
               </div>
               <button
                 className={style.delete_button}

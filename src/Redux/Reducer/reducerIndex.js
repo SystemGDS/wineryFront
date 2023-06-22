@@ -15,6 +15,7 @@ import {
   CREATE_PRODUCTS,
   CREATE_CATEGORY,
   GET_USERS,
+  UPDATE_ITEM_QUANTITY,
 } from "../Actions/actionsTypes.js";
 
 export const initialState = {
@@ -181,6 +182,53 @@ function reducerIndex(state = initialState, { type, payload }) {
       };
     }
 
+    case UPDATE_ITEM_QUANTITY: {
+      const { productId, quantity } = payload;
+      const productToUpdate = state.cart.find(
+        (product) => product.id === productId
+      );
+
+      if (!productToUpdate) {
+        return state;
+      }
+
+      const updatedCart = state.cart
+        .map((product) => {
+          if (product.id === productId) {
+            const newQuantity = product.quantity + quantity;
+
+            // Verificar si hay suficiente stock
+            if (newQuantity <= 0) {
+              // Eliminar el producto del carrito si la cantidad es cero o negativa
+              return null;
+            } else if (newQuantity > product.stock) {
+              // Mostrar una alerta de que no hay suficiente stock
+              toast.error("There is no stock available for this product.", {
+                position: toast.POSITION.TOP_CENTER,
+              });
+              return product; // No actualizar la cantidad si no hay suficiente stock
+            }
+
+            return {
+              ...product,
+              quantity: newQuantity,
+            };
+          }
+          return product;
+        })
+        .filter(Boolean); // Eliminar los productos nulos del carrito
+
+      const newTotal = updatedCart.reduce(
+        (acc, product) => acc + product.price * product.quantity,
+        0
+      );
+
+      return {
+        ...state,
+        cart: updatedCart,
+        total: newTotal,
+      };
+    }
     default:
       return initialState;
   }

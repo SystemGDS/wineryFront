@@ -29,3 +29,4 @@ export const GET_USERS = "GET_USERS";
 export const POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEW_BY_ID = "GET_REVIEW_BY_ID";
 export const GET_USER_REVIEWS = "GET_USER_REVIEWS";
+export const UPDATE_ITEM_QUANTITY = "UPDATE_ITEM_QUANTITY";

@@ -22,6 +22,7 @@ import {
   GET_FAVORITES,
   GET_USERS,
   POST_REVIEW,
+  UPDATE_ITEM_QUANTITY,
 } from "./actionsTypes.js";
 
 export function getWines() {
@@ -259,5 +260,15 @@ export const getReviewById = (payload) => {
     } catch (error) {
       return "Review not found";
     }
+  };
+};
+
+export const updateItemQuantity = (productId, quantity) => {
+  return {
+    type: UPDATE_ITEM_QUANTITY,
+    payload: {
+      productId,
+      quantity,
+    },
   };
 };

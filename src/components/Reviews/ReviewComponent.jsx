@@ -67,7 +67,7 @@ export default function UserReview({ wineId }) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log("``````user is authenticated!", user);
+      console.log("user is authenticated!", user);
     }
   }, [user]);
 
