@@ -26,6 +26,7 @@ export default function WineDetail() {
   const [wineById, setWineById] = useState(null);
   const [quantity, setQuantity] = useState(1);
   // const [rating, setRating] = useState(0);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const navigate = useNavigate();
 
@@ -44,8 +45,6 @@ export default function WineDetail() {
     detallesVino();
   }, []);
 
-
-
   // const handleAddToCart = () => {
   //   const product = {
   //     id: wineById.id,
@@ -57,21 +56,19 @@ export default function WineDetail() {
   //   dispatch(addToCart(product));
   // };
 
-
   const handleAddToCart = () => {
     const product = {
       id: wineById.id,
       name: wineById.name,
       image: wineById.image,
       price: wineById.price,
-      stock:wineById.stock,
-      quantity: quantity
+      stock: wineById.stock,
+      quantity: quantity,
     };
 
     for (let i = 0; i < quantity; i++) {
       dispatch(addToCart(product));
     }
-
   };
 
   const getById = (id) => {
@@ -85,25 +82,18 @@ export default function WineDetail() {
   const addQuantity = () => {
     if (wineById.stock > quantity) {
       setQuantity(quantity + 1);
-    }else{
+    } else {
       toast.warn("Stock limit");
+      setIsButtonDisabled(true);
     }
   };
-
-  // const addQuantity = () => {
-  //   if (wineById.stock > quantity) {
-  //     setQuantity(quantity + 1);
-  //     toast.warn("Stock limit");
-  //   }
-  // };
-
 
   const removeQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+      setIsButtonDisabled(false);
     }
   };
-
   return (
     <>
       <div className={style.buttonBackground}>
@@ -149,26 +139,22 @@ export default function WineDetail() {
                   </span>
                 </p>
                 <div className="d-flex text-align-center align-items justify-content-center">
-
-                <button
-                  onClick={removeQuantity}
-                  className={style.minusBtn}
-                >
-                  -
-                </button>
-                <input
-                  className={style.input}
-                  value={quantity}
-                  readOnly
-                ></input>
-                <button
-                  onClick={addQuantity}
-                  className={style.plusBtn}
-                  readOnly
-                >
-                  +
-                </button>
-
+                  <button onClick={removeQuantity} className={style.minusBtn}>
+                    -
+                  </button>
+                  <input
+                    className={style.input}
+                    value={quantity}
+                    readOnly
+                  ></input>
+                  <button
+                    onClick={addQuantity}
+                    className={style.plusBtn}
+                    readOnly
+                    disabled={isButtonDisabled}
+                  >
+                    +
+                  </button>
                 </div>
                 <div
                   style={{
@@ -177,12 +163,7 @@ export default function WineDetail() {
                     justifyContent: "center",
                   }}
                 >
-
-                  <button
-                    className={style.myBtn}
-                    onClick={handleAddToCart}
-                  >
-
+                  <button className={style.myBtn} onClick={handleAddToCart}>
                     Add to Cart
                   </button>
                 </div>
@@ -200,7 +181,9 @@ export default function WineDetail() {
           </p>
           <p className={style.description}>{wineById?.detail}</p>
         </div>
-        {wineById && <UserReview wineId={wineById.id} detallesVino={detallesVino} />}
+        {wineById && (
+          <UserReview wineId={wineById.id} detallesVino={detallesVino} />
+        )}
       </div>
 
         <h3 className={style.h3_review}>
@@ -211,23 +194,32 @@ export default function WineDetail() {
           <div className={style.reviews}>
             {wineById.reviews.map((review) => (
               <div className={style.raiting} key={review.id}>
-                <span className={style.commentReview}>{review.comment}</span>{" "}
+
                 <p>
-                  •{" "}
-                  <b>
-                    {" "}
-                    <u>Rating</u>:
-                  </b>
+                  <b>Rating:</b>
                   <Rating name="RateReview" value={review.stars} readOnly />
                 </p>
                 <p>
-                  {" "}
-                  •{" "}
-                  <b>
-                    <u>Comment:</u>
-                  </b>{" "}
-                  <span className={style.span}>{review.comment}</span>{" "}
+                  <b>Comment:</b>{" "}
                 </p>
+                 <span className={style.commentReview}>{review.comment}</span>{" "}
+                 <p>
+                   •{" "}
+                   <b>
+                     {" "}
+                     <u>Rating</u>:
+                   </b>
+                   <Rating name="RateReview" value={review.stars} readOnly />
+                 </p>
+                 {/* <p>
+                   {" "}
+                   •{" "}
+                   <b>
+                     <u>Comment:</u>
+                  </b>{" "}
+
+                  <span className={style.span}>{review.comment}</span>{" "}
+                </p> */}
               </div>
             ))}
           </div>

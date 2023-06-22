@@ -101,7 +101,7 @@ function reducerIndex(state = initialState, { type, payload }) {
         if (maxQuantity <= 0) {
           // Si el stock disponible es cero o negativo, mostrar un mensaje de toast y no realizar ninguna modificación adicional
           toast.error("There is no stock available for this product.", {
-            position: toast.POSITION.TOP_CENTER,
+            position: toast.POSITION.TOP_CENTER_RIGHT,
           });
           return state;
         }
