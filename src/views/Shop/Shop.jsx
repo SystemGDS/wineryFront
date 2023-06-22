@@ -85,7 +85,7 @@ const shop = () => {
 
   useEffect(() => {
     setPage(1);
-    setPerPage(8);
+    setPerPage(9);
   }, [wines]);
 
   const handleFilter = function () {
