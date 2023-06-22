@@ -29,16 +29,17 @@ const NavBar = () => {
   const [usuario, setUsuario] = useState(null);
   const { isAuthenticated, user } = useAuth0();
 
-  useEffect(async () => {
-    isAuthenticated && saveUserinDB(user);
-    const storedUsuario = localStorage.getItem("usuario");
-    if (storedUsuario) {
-      const parsedUsuario = JSON.parse(storedUsuario);
-      setUsuario(parsedUsuario);
+  useEffect(()=>{
+    const dad = async () =>{
+      isAuthenticated && saveUserinDB(user);
+      const storedUsuario = localStorage.getItem("usuario");
+      if (storedUsuario) {
+        const parsedUsuario = JSON.parse(storedUsuario);
+        setUsuario(parsedUsuario);
+      }
     }
-  
-
-  }, [user]);
+    dad()
+  },[user])
 
 
   const location = useLocation()

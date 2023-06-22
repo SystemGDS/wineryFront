@@ -14,6 +14,7 @@ import style from "./WineDetail.module.css";
 
 // import { Reviews } from "@mui/icons-material";
 import UserReview from "../../components/Reviews/ReviewComponent";
+import { Rating } from "@mui/material";
 
 export default function WineDetail() {
   const dispatch = useDispatch();
@@ -28,10 +29,6 @@ export default function WineDetail() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    detallesVino();
-  }, []);
-
   const detallesVino = async () => {
     try {
       const json = await axios.get(`/wines/${id}`);
@@ -41,10 +38,13 @@ export default function WineDetail() {
     } catch (error) {
       console.log(error);
     }
-
   };
 
-  
+  useEffect(() => {
+    detallesVino();
+  }, []);
+
+
 
   // const handleAddToCart = () => {
   //   const product = {
@@ -200,9 +200,28 @@ export default function WineDetail() {
           </p>
           <p className={style.description}>{wineById?.detail}</p>
         </div>
-        {wineById && <UserReview wineId={wineById.id} />}
+        {wineById && <UserReview wineId={wineById.id} detallesVino={detallesVino} />}
       </div>
-      <ToastContainer  />
+      <h3 className={style.h3_review}>Reviews:</h3>
+      <div className={style.reviewsContainer}>
+        {wineById && wineById.reviews.length > 0 && (
+          <div className={style.reviews}>
+            {wineById.reviews.map((review) => (
+              <div className={style.raiting} key={review.id}>
+                <p><b>Rating:</b> 
+                <Rating
+                  name="RateReview"
+                  value={review.stars}
+                  readOnly 
+                  />
+                </p>
+                <p><b>Comment:</b> <span className={style.span}>{review.comment}</span> </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <ToastContainer />
     </>
   );
 }

@@ -8,6 +8,7 @@ export async function saveUserinDB(user) {
 
     const response = await fetch(
       `https://wineryback-production.up.railway.app/users`,
+      // `http://localhost:3001/users`,
       {
         method: "POST",
         headers: {
