@@ -47,7 +47,9 @@ const NavBar = () => {
 
   useEffect(() => {
     if (usuario && usuario.banned) {
+      localStorage.setItem("usuario", JSON.stringify(""));
       logout({ returnTo: window.location.origin + "/" })
+
       toast.warn('Your account has been suspended. For more details, please contact our support team.', {
         position: "top-right",
         autoClose: 4000,
