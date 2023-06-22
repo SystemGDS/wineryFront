@@ -119,7 +119,7 @@ function reducerIndex(state = initialState, { type, payload }) {
         });
 
         toast.success("Product added to cart.", {
-          position: toast.POSITION.BOTTOM_RIGHT,
+          position: toast.POSITION.TOP_RIGHT,
         });
         return {
           ...state,
@@ -138,7 +138,7 @@ function reducerIndex(state = initialState, { type, payload }) {
         productToAdd.quantity = 1;
 
         toast.success("Product added to cart.", {
-          position: toast.POSITION.BOTTOM_RIGHT,
+          position: toast.POSITION.TOP_RIGHT,
         });
         return {
           ...state,

@@ -9,24 +9,24 @@ export async function saveUserinDB(user) {
     };
 
 
-    const response = await fetch(
-      `https://wineryback-production.up.railway.app/users`,
-      // `http://localhost:3001/users`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(USERDB),
-      }
-    );
+    // const response = await fetch(
+    //   `https://wineryback-production.up.railway.app/users`,
+    //   // `http://localhost:3001/users`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(USERDB),
+    //   }
+    // );
 
     await axios.post("/users", USERDB)
 
-    const userByEmail = (await axios.get("/users/email", {email: user.email})).data
+    const usuario = await axios.get(`/users/email/${user.email}`)
 
+    const userByEmail =  usuario.data
 
-    console.log(userByEmail)
      localStorage.setItem("usuario", JSON.stringify(userByEmail));
 
 

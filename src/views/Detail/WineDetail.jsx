@@ -185,18 +185,39 @@ export default function WineDetail() {
           <UserReview wineId={wineById.id} detallesVino={detallesVino} />
         )}
       </div>
-      <h3 className={style.h3_review}>Reviews:</h3>
+
+        <h3 className={style.h3_review}>
+        <u>Reviews</u>
+      </h3>
       <div className={style.reviewsContainer}>
         {wineById && wineById.reviews.length > 0 && (
           <div className={style.reviews}>
             {wineById.reviews.map((review) => (
               <div className={style.raiting} key={review.id}>
+
                 <p>
                   <b>Rating:</b>
                   <Rating name="RateReview" value={review.stars} readOnly />
                 </p>
                 <p>
                   <b>Comment:</b>{" "}
+
+//                 <span className={style.commentReview}>{review.comment}</span>{" "}
+//                 <p>
+//                   •{" "}
+//                   <b>
+//                     {" "}
+//                     <u>Rating</u>:
+//                   </b>
+//                   <Rating name="RateReview" value={review.stars} readOnly />
+//                 </p>
+//                 <p>
+//                   {" "}
+//                   •{" "}
+//                   <b>
+//                     <u>Comment:</u>
+//                   </b>{" "}
+
                   <span className={style.span}>{review.comment}</span>{" "}
                 </p>
               </div>
