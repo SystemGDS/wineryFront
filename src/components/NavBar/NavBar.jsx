@@ -30,7 +30,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const NavBar = () => {
   const [usuario, setUsuario] = useState(null);
 
-  const { isAuthenticated, user,logout } = useAuth0();
+
+  const { isAuthenticated, user, logout } = useAuth0();
 
   useEffect(()=>{
     const dad = async () =>{
@@ -56,6 +57,7 @@ const NavBar = () => {
     }
     dad()
   },[user])
+
 
   useEffect(() => {
     if (usuario && usuario.banned) {
