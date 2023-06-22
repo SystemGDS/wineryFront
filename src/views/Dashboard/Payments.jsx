@@ -33,6 +33,7 @@ export default function Payments() {
     setShowOrder(false);
   };
   const handleShowOrder = () => {
+
     setShowOrder(true);
   };
 
@@ -91,6 +92,7 @@ export default function Payments() {
 
 
   const viewOrder = (order) => {
+    console.log(order)
     handleShowOrder()
     setCurrentOrder(order)
   }
@@ -178,26 +180,26 @@ export default function Payments() {
             <Modal.Body >
               <div>
               <h5>Order Details</h5>
-              <p>Order id: {currentOrder.id}</p>
-              <p>User ID: {currentOrder.userId}</p>
+              <p>Order id: {currentOrder?.id}</p>
+              <p>User ID: {currentOrder?.userId}</p>
               <div className="row text-align">
                 {
-                  currentOrder.items &&
-                  currentOrder.items.map((wine) => {
-                     return (
+                  currentOrder &&
+                  currentOrder.items?.map( wine => {
+                    return (
                       <div className="col mb-3 d-flex justify-content-center">
-                          <p>Wine id: {wine.id}</p>
-                          <img style={{maxWidth: 100 , maxHeight: 200}} src={wine.picture_url} alt={wine.id} />
-                          <p className="fs-5">{wine.title}</p>
-                          <p className="fs-6">{wine.quantity}</p>
-                            <p className="fs-6">{wine.price}</p>
+                          <p>Wine id: {wine?.id}</p>
+                          <img style={{maxWidth: 100 , maxHeight: 150}} src={wine?.picture_url} alt={wine?.id} />
+                          <p className="fs-5">{wine?.title}</p>
+                          <p className="fs-6">{wine?.quantity}</p>
+                            <p className="fs-6">{wine?.price}</p>
                       </div>
                     )
                   })
                 }
               </div>
-              <p>Date of Purchase: {currentOrder.datePayment}</p>
-              <p>Total: {currentOrder.total}</p>
+              <p>Date of Purchase: {currentOrder?.datePayment}</p>
+              <p>Total: {currentOrder?.total}</p>
               </div>
             </Modal.Body>
           </Modal>
