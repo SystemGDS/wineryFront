@@ -245,7 +245,6 @@ export function postReview(payload) {
         type: POST_REVIEW,
         payload: response.data,
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
