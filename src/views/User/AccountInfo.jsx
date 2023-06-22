@@ -11,6 +11,7 @@ import axios from "axios";
 
 export default function AccountInfo() {
   const { user, isAuthenticated } = useAuth0();
+  const usuario = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   let { id } = useParams();
@@ -52,10 +53,10 @@ export default function AccountInfo() {
                         • <u>Username:</u> {user.nickname}
                       </h4>
                       <h4>
-                        • <u>Birthday:</u> {user.birthday}
+                      • <u>Birthday:</u> {usuario.birthday || user.birthday}
                       </h4>
                       <h4>
-                        • <u>Direction:</u> {user.direction}.
+                        • <u>Direction:</u> {usuario.direction || user.direction}
                       </h4>
                       <h4>
                         • <u>Email:</u> {user.email}
