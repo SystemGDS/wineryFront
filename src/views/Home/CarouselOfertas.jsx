@@ -8,7 +8,7 @@ import style from "./CarouselOfferts.module.css";
 
 const ofertas = [
   {
-    id: 12,
+    id: 55,
     name: "Estiba Reservada 1994",
     winery: "Catena Zapata",
     origin: "Argentina - Agrelo",
@@ -23,7 +23,7 @@ const ofertas = [
     banned: false,
   },
   {
-    id: 495,
+    id: 56,
     name: "Almaviva 2010",
     winery: "Almaviva",
     origin: "Chile - Puente Alto",
@@ -38,7 +38,7 @@ const ofertas = [
     banned: false,
   },
   {
-    id: 66,
+    id: 57,
     name: "Cobos Volturno 2013",
     winery: "Viña Cobos",
     origin: "Argentina - Perdriel",
@@ -53,7 +53,7 @@ const ofertas = [
     banned: false,
   },
   {
-    id: 564,
+    id: 58,
     name: "Red 2010",
     winery: "Nosotros",
     origin: "Argentina - Agrelo",
@@ -69,9 +69,9 @@ const ofertas = [
   },
   {
     id: 75,
-    name: "Cobos Volturno 2010",
-    winery: "Viña Cobos",
-    origin: "Argentina - Perdriel",
+    name: "Gran Blanco 2017",
+    winery: "Henry Winery",
+    origin: "Perú",
     detail:
       "The Cobos Volturno 2010 is a Red wine produced in Argentina - Perdriel. It originates from the renowned winery Viña Cobos, known for its dedication and expertise in crafting quality wines.",
     image:
@@ -83,7 +83,7 @@ const ofertas = [
     banned: false,
   },
   {
-    id: 312,
+    id: 59,
     name: "Malbec Argentino 2003",
     winery: "Catena Zapata",
     origin: "Argentina - Mendoza",
@@ -161,7 +161,7 @@ function CarrouselOfertas() {
         >
           {ofertas.map((item) => (
             <SwiperSlide key={item.id}>
-              <Link to={`/detail/${item.id}}`} key={item.id}>
+              <Link to={`/detail/${item.id}`} key={item.id}>
                 <div className={style.card}>
                   <h1 className={style.name}>{item.name}</h1>
                   <div className={style.cardtop}>
