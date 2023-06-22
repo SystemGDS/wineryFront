@@ -22,13 +22,21 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useLocation } from "react-router-dom";
 import SerchBar from "../SearchBar/SearchBar";
 import "./stylenav.css"
+import { useState } from "react";
 
 const NavBar = () => {
+  const [usuario, setUsuario] = useState(null);
   const { isAuthenticated, user } = useAuth0();
 
-  useEffect(() => {
+  useEffect(async () => {
     isAuthenticated && saveUserinDB(user);
-    console.log(user)
+    const storedUsuario = localStorage.getItem("usuario");
+    if (storedUsuario) {
+      const parsedUsuario = JSON.parse(storedUsuario);
+      setUsuario(parsedUsuario);
+    }
+  
+
   }, [user]);
 
   const location = useLocation()
@@ -55,7 +63,7 @@ const NavBar = () => {
               </Nav>
               <Nav className="d-flex align-items-center ">
               {
-               isAuthenticated && user.isAdmin
+               isAuthenticated && usuario?.isAdmin
                ? <Link to="/admin/users" className="nav-link ml-2 mr-2 text-white" >Dashboard</Link>
                : null
               }

@@ -17,7 +17,10 @@ export async function saveUserinDB(user) {
       }
     );
 
-    await response.json();
+     const usuario =  await response.json();
+     localStorage.setItem("usuario", JSON.stringify(usuario));
+
+
   } catch (error) {
     console.log(error);
   }
