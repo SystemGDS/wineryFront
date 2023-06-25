@@ -51,13 +51,13 @@ export default function EditAccount() {
         <div className={s.EditContainer}>
           <div className={s.EditCard}>
             <h3 className={s.addinformation}>
-              <u>Add your information</u>
+              Add your information
             </h3>
             <form onSubmit={handleSubmit}>
               <div className={s.formSection}>
                 <div className={s.formInput}>
                   <label htmlFor="">
-                    • <u>Address:</u>
+                    Address:
                   </label>
                   <TextField
                     size="small"
@@ -73,13 +73,13 @@ export default function EditAccount() {
                 </div>
                 <div className={s.formInput}>
                   <label htmlFor="">
-                    • <u>Birthday:</u>
+                   Birthday:
                   </label>
                   <TextField
                     size="small"
                     onInput={onInputChange}
                     name="birthday"
-                    type="text"
+                    type="date"
                     maxLength={10}
                     placeholder="Share your birthday.."
                     value={textField.birthday}
@@ -92,7 +92,7 @@ export default function EditAccount() {
               <div className={s.formSection}>
                 <div className={s.formInput}>
                   <label htmlFor="">
-                    • <u>Username:</u>
+                    Username:
                   </label>
                   <TextField
                     size="small"
